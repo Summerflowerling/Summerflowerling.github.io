@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+}
+
+/*Layout*/
+.navList {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.navBox {
+  background-color: #f5eeee;
+  padding: 10px 0;
+  height: 165px;
+}
+
+/*Img widget*/
+.img-widget {
+  display: flex;
+  margin-top: 5em;
+  position: relative;
+}
+
+img {
+  width: 20em;
+  height: 30em;
+  object-fit: cover;
+}
+
+h3 {
+  background-color: white;
+  height: 1em;
+  position: absolute;
+  left: 15em;
+  top: 1em;
+  padding: 1em;
+}
+
+.widget-rightPosition {
+  justify-content: right;
+}
+
+/*Typography*/
+
+.logo {
+  font-family: Tangerine;
+  font-style: Regular;
+  font-size: 3rem;
+  text-align: Center;
+  margin-bottom: 50px;
+}
