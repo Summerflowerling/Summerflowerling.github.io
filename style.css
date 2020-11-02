@@ -25,20 +25,29 @@ body {
 img {
   width: 20em;
   height: 30em;
+  margin: 0 1.5em;
   object-fit: cover;
 }
 
-h3 {
+.for-img-left,
+.for-img-right {
   background-color: white;
-  height: 1em;
+  height: 1.5em;
   position: absolute;
-  left: 15em;
   top: 1em;
   padding: 1em;
 }
 
+.for-img-left {
+  left: 15em;
+}
+
+.for-img-right {
+  right: 15em;
+}
+
 .widget-rightPosition {
-  justify-content: right;
+  justify-content: flex-end;
 }
 
 /*Typography*/
