@@ -1,5 +1,10 @@
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
+  line-height: 1.6;
+  font-family: "Prata", serif;
 }
 
 /*Layout*/
@@ -7,35 +12,74 @@ body {
   display: flex;
   justify-content: space-around;
   list-style: none;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .navBox {
   background-color: #f5eeee;
   padding: 10px 0;
-  height: 165px;
+  height: 11em;
+  line-height: normal;
+}
+
+ul a {
+  color: black;
+  text-decoration: none;
+}
+
+ul a:hover,
+ul a:focus {
+  color: #707070;
+}
+
+.current-page {
+  border-bottom: 1px solid #707070;
 }
 
 /*Img widget*/
+
+.gallary-container {
+  max-width: 900px;
+  background-color: blueviolet;
+  margin: 0 auto;
+}
 .img-widget {
   display: flex;
   margin-top: 5em;
   position: relative;
 }
 
+.img-widget:last-child {
+  margin-bottom: 5em;
+}
+
 img {
-  width: 20em;
-  height: 30em;
+  width: 70%;
+  height: 80%;
   margin: 0 1.5em;
   object-fit: cover;
 }
 
 .for-img-left,
 .for-img-right {
-  background-color: white;
-  height: 1.5em;
+  background-color: pink;
+  height: 5em;
   position: absolute;
   top: 1em;
   padding: 1em;
+  margin: 0 3em;
+  max-width: 200px;
+}
+
+.for-img-left {
+  right: 1em;
+  text-align: right;
+}
+
+.for-img-right {
+  left: 1em;
+  text-align: left;
 }
 
 .for-img-left {
@@ -50,6 +94,80 @@ img {
   justify-content: flex-end;
 }
 
+h5 {
+  text-align: center;
+  background-color: #f5eeee;
+  padding: 1em;
+  margin-bottom: 0;
+  height: 2em;
+}
+
+/*============================================*/
+/*Lay out - about me page*/
+.about-me-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-me-intro {
+  padding: 3em 3em;
+  color: #333232;
+  font-family: "Cormorant Infant", serif;
+}
+
+.about-me-section-title,
+.about-me-reading-title {
+  padding: 0;
+  margin: 0 2em;
+  margin-bottom: 1.5em;
+  color: #333232;
+}
+
+span {
+  position: relative;
+}
+
+span:before {
+  position: absolute;
+  content: "";
+  height: 0.2em;
+  width: 100%;
+  bottom: 0.1em;
+  z-index: -1;
+  background: pink;
+}
+
+h3 {
+  color: #333232;
+}
+.about-me-work-content {
+  width: 70%;
+  color: #636060;
+}
+
+.about-me-widget-flex {
+  display: flex;
+  padding: 0 2em;
+  margin: 2em;
+}
+
+.working-years {
+  margin-left: 5em;
+  margin-right: 0;
+  align-self: center;
+  color: #333232;
+}
+.about-me-widget-color1 {
+  background-color: #f5eeee;
+  border-radius: 25px;
+}
+
+.about-me-widget-color2 {
+  background-color: #eef5f5;
+  border-radius: 25px;
+}
+
+/*============================================*/
 /*Typography*/
 
 .logo {
