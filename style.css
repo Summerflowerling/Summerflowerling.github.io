@@ -37,12 +37,36 @@ ul a:focus {
   border-bottom: 1px solid #707070;
 }
 
-/*Img widget*/
-
-.gallary-container {
-  max-width: 900px;
-  background-color: white;
+.about-me-section-title > span,
+.make-friends > h1 > span,
+.hire-me-widget > h1 > span {
+  position: relative;
 }
+
+.about-me-section-title > span:before,
+.make-friends > h1 > span:before,
+.hire-me-widget > h1 > span:before {
+  position: absolute;
+  content: "";
+  height: 0.2em;
+  width: 100%;
+  bottom: 0.1em;
+  z-index: -1;
+  background: rgb(250, 210, 217);
+}
+
+/*widget*/
+
+.gallary-container,
+.contact-container,
+.about-me-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/*=====================Gallary=======================*/
+
+/*img-widget*/
 
 .img-widget {
   display: flex;
@@ -61,64 +85,98 @@ ul a:focus {
   object-fit: cover;
   filter: brightness(110%);
   border-radius: 25px;
-  b
+  transition: 0.3s;
+}
+
+.img-widget > img:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .painting-title {
   position: absolute;
   background-color: white;
-  padding:0 1em;
-  width:100%;
-  bottom:5%;
-  text-align:center;
+  padding: 0 1em;
+  width: 90%;
+  max-width: 480px;
+  height: 13%;
+  bottom: 7%;
+  display: flex;
+}
+
+.painting-title > h3 {
+  text-align: center;
+  margin: auto;
 }
 
 .img-widget:last-child {
   margin-bottom: 5em;
 }
 
+/*modal*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+.modal-img {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  filter: brightness(110%);
+}
+
+.modal-painting-title {
+  color: white;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.close {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  font-size: 40px;
+  color: white;
+  transition: 0.3s;
+  display: none;
+  cursor: pointer;
+}
+
 /*Footer*/
 h5 {
   text-align: center;
-  background-color: #f5eeee;
-  padding: 1em;
-  margin-bottom: 0;
-  height: 2em;
+  font-size: 0.5rem;
+  height: 10em;
+  padding-top: 8em;
 }
 
-/*============================================*/
-/*Lay out - about me page*/
-.about-me-page {
-  max-width: 900px;
-  margin: 0 auto;
-}
+/*==================about me==========================*/
+/*Lay out*/
 
 .about-me-intro {
-  padding: 3em 3em;
+  margin-top: 5em;
+  padding: 0 5em;
   color: #333232;
   font-family: "Cormorant Infant", serif;
 }
 
 .about-me-section-title,
 .about-me-reading-title {
-  padding: 0;
-  margin: 0 2em;
+  padding: 1.5em 0;
+  margin: 2em;
   margin-bottom: 1.5em;
   color: #333232;
-}
-
-.about-me-section-title > span {
-  position: relative;
-}
-
-.about-me-section-title > span:before {
-  position: absolute;
-  content: "";
-  height: 0.2em;
-  width: 100%;
-  bottom: 0.1em;
-  z-index: -1;
-  background: pink;
 }
 
 h3 {
@@ -132,7 +190,7 @@ h3 {
 .about-me-widget-flex {
   display: flex;
   padding: 0 2em;
-  margin: 2em;
+  margin: 3em;
 }
 
 .working-years {
@@ -183,6 +241,108 @@ h3 {
 .book-item > h3,
 .book-item > p {
   text-align: center;
+}
+
+/*====================Contact========================*/
+/*Layout*/
+.contact-container {
+  padding: 3em;
+}
+
+.hire-me-widget,
+.make-friends {
+  margin: 3em;
+  margin-bottom: 10em;
+}
+
+.hire-me-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+.hire-me-widget > img {
+  width: 200px;
+  height: 200px;
+  max-width: 400px;
+  max-width: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: brightness(103%);
+  margin: 0 auto;
+  margin-top: 6em;
+}
+
+.hire-me-widget > p {
+  line-height: 1.8em;
+  text-align: center;
+  border-radius: 20px;
+  padding: 1.5em 0;
+  color: #333232;
+  font-family: "Cormorant Infant", serif;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.resume-btn {
+  margin: 0 auto;
+  background-color: #f5eeee;
+  border: none;
+  font-size: 1.5rem;
+  font-family: "Cormorant Infant", serif;
+  padding: 15px 20px;
+  color: #444343;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+}
+
+.resume-btn:hover {
+  cursor: pointer;
+  background-color: #eef5f5;
+}
+
+.resume-btn:focus {
+  outline: none;
+}
+
+.resume-btn:active {
+  background-color: #68b3b3;
+
+  transform: translateY(5px);
+}
+
+.make-friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.make-friends-title {
+  padding-bottom: 2em;
+  align-self: start;
+}
+
+.make-friends > p {
+  font-size: 1.5rem;
+  font-family: "Cormorant Infant", serif;
+  text-align: center;
+}
+.make-friends-img > a > img {
+  max-width: 80px;
+  width: 100%;
+  padding-right: 1em;
+}
+
+.footer-icon-info {
+  text-align: center;
+  font-size: 0.5rem;
+  color: #333232;
+  margin-bottom: 3em;
+}
+
+.footer-icon-info > p > a:link {
+  color: #838080;
+  text-decoration: none;
 }
 
 /*============================================*/
