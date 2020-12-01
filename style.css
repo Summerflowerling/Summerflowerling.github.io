@@ -341,7 +341,7 @@ h3 {
   text-align: center;
 }
 .make-friends-img > a > img {
-  max-width: 80px;
+  max-width: 100px;
   width: 100%;
   padding-right: 1em;
 }
@@ -375,5 +375,14 @@ h3 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .contact-container {
+    padding: 1em;
+  }
+  .make-friends-img > a > img {
+    width: 80px;
   }
 }
