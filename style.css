@@ -127,7 +127,7 @@ ul a:focus {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 0%; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -139,9 +139,11 @@ ul a:focus {
 
 .modal-img {
   margin: auto;
+  margin-top: 8em;
   display: block;
   width: 80%;
   max-width: 500px;
+  height: auto;
   filter: brightness(110%);
 }
 
@@ -370,26 +372,50 @@ h3 {
 }
 
 /*=====================media=======================*/
-@media (min-width: 650px) {
+@media (min-width: 600px) {
   .gallary-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
   }
-
-  .close {
-    position: absolute;
-    right: 20%;
-    top: 5%;
-    font-size: 50px;
-  }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 415px) {
   .contact-container {
     padding: 1em;
   }
   .make-friends-img > a > img {
     width: 80px;
+  }
+
+  .about-me-intro {
+    margin-top: 5em;
+    padding: 0 3em;
+    color: #333232;
+    font-family: "Cormorant Infant", serif;
+    font-size: 0.8em;
+  }
+
+  .about-me-section-title,
+  .about-me-reading-title {
+    padding: 0.5em 0;
+  }
+
+  .about-me-work-content {
+    width: 100%;
+    color: #636060;
+  }
+
+  .about-me-widget-flex {
+    display: flex;
+    padding-left: 1.5em;
+    padding-right: 0;
+    margin: 2em;
+  }
+
+  .working-years {
+    margin-left: 1.5em;
+    margin-right: 1em;
+    font-size: 1em;
   }
 }
