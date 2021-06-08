@@ -16,22 +16,29 @@
         <h1 class="logo">Yuling</h1>
         <ul class="navList">
           <li><a href="aboutMe.html">About me</a></li>
-          <li class="current-page"><a href="index.html">Gallary</a></li>
+          <li class="current-page"><a href="index.html">Gallery</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <main class="gallary-container">
         <div class="img-widget">
-          <img src="img/allEyes.JPG" alt="watercolor eyes and flowers" />
+          <img
+            id="Eyes Wide Open"
+            src="img/allEyes.JPG"
+            alt="watercolor eyes and flowers"
+            onclick="displayModal(this.src, this.id)"
+          />
           <div class="painting-title">
-            <h3 class="for-img-left">Eyes Wide Open</h3>
+            <h3 class="for-left">Eyes Wide Open</h3>
           </div>
         </div>
 
         <div class="img-widget">
           <img
+            id="Flowes Make Us Girl"
             src="img/girlWithFlowers.JPG"
             alt="watercolor girl and flowers"
+            onclick="displayModal(this.src, this.id)"
           />
           <div class="painting-title">
             <h3 class="for-img-right">Flowers Make Us Girl</h3>
@@ -39,31 +46,57 @@
         </div>
 
         <div class="img-widget">
-          <img src="img/girlWithSunflower.JPG" alt="girl with sunflower" />
+          <img
+            id="Flowers Make Us Girl-2"
+            src="img/girlWithSunflower.JPG"
+            alt="girl with sunflower"
+            onclick="displayModal(this.src, this.id)"
+          />
           <div class="painting-title">
             <h3 class="for-img-left">Flowers Make Us Girl-2</h3>
           </div>
         </div>
 
         <div class="img-widget">
-          <img src="img/BluePlanet.JPG" alt="watercolor earth" />
+          <img
+            id="The Hometown"
+            src="img/BluePlanet.JPG"
+            alt="watercolor earth"
+            onclick="displayModal(this.src, this.id)"
+          />
           <div class="painting-title">
             <h3 class="for-img-right">The Hometown</h3>
           </div>
         </div>
 
         <div class="img-widget">
-          <img src="img/MoonZan.JPG" alt="watercolor moon with flowers" />
+          <img
+            id="The Night"
+            src="img/MoonZan.JPG"
+            alt="watercolor moon with flowers"
+            onclick="displayModal(this.src, this.id)"
+          />
           <div class="painting-title">
             <h3 class="for-img-left">The Night</h3>
           </div>
         </div>
 
         <div class="img-widget">
-          <img src="img/in a dream.JPG" alt="giant purple flowers" />
+          <img
+            id="In a Dream"
+            src="img/in a dream.JPG"
+            alt="giant purple flowers"
+            onclick="displayModal(this.src, this.id)"
+          />
           <div class="painting-title">
             <h3 class="for-img-right">In A Dream</h3>
           </div>
+        </div>
+
+        <div id="modal" class="modal">
+          <span id="close" class="close">&times;</span>
+          <img class="modal-img" id="modalImg" />
+          <div id="modal-img-title" class="modal-painting-title"></div>
         </div>
       </main>
     </div>
@@ -72,5 +105,6 @@
     </footer>
 
     <!--container-->
+    <script src="app.js"></script>
   </body>
 </html>
