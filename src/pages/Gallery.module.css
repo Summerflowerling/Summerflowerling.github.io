@@ -1,0 +1,108 @@
+@import '../styles/variables.css';
+
+.galleryContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.imgWidget {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 5em;
+  margin-top: 10em;
+  position: relative;
+}
+
+.imgWidget > img {
+  width: 90%;
+  height: 90%;
+  min-width: 250px;
+  max-width: 480px;
+  max-height: 600px;
+  object-fit: cover;
+  filter: brightness(110%);
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.imgWidget > img:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.paintingTitle {
+  position: absolute;
+  background-color: var(--white);
+  padding: 0 1em;
+  width: 100%;
+  max-width: 480px;
+  min-width: 250px;
+  height: 13%;
+  bottom: 7%;
+  display: flex;
+}
+
+.paintingTitle > h3 {
+  text-align: center;
+  margin: auto;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 400px) {
+  .paintingTitle > h3 {
+    font-size: 0.8rem;
+  }
+}
+
+.imgWidget:last-child {
+  margin-bottom: 5em;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 0%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--modal-background);
+}
+
+.modalImg {
+  margin: auto;
+  margin-top: 8em;
+  display: block;
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+  filter: brightness(110%);
+}
+
+.modalPaintingTitle {
+  color: var(--white);
+  text-align: center;
+  margin-top: 1em;
+}
+
+.close {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  font-size: 50px;
+  color: var(--white);
+  transition: 0.3s;
+  display: none;
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
+  }
+}

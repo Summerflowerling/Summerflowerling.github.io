@@ -1,0 +1,38 @@
+@import '../styles/variables.css';
+
+.navBox {
+  background-color: var(--widget-background-color1);
+  padding: 10px 0;
+  height: 11em;
+  line-height: normal;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.navList a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.navList a:hover,
+.navList a:focus {
+  color: var(--accent-color);
+}
+
+.currentPage {
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.logo {
+  font-family: Tangerine;
+  font-style: Regular;
+  font-size: 3rem;
+  text-align: Center;
+  margin-bottom: 50px;
+}
