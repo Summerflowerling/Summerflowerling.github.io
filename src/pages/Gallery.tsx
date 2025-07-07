@@ -71,7 +71,7 @@ const Gallery = () => {
           >
             <img src={src} alt={alt} className={styles.imgThumb} />
             <div className={styles.paintingTitle}>
-              <h3>{title}</h3>
+              <h3 className={styles.title}>{title}</h3>
             </div>
           </motion.div>
         ))}

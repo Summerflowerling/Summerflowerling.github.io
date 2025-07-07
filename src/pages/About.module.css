@@ -9,7 +9,7 @@
   margin-top: 5em;
   padding: 0 5em;
   color: var(--text-color);
-  font-family: "Cormorant Infant", serif;
+  font-family: 'Cormorant Infant', serif;
 }
 
 .aboutMeSectionTitle,
@@ -94,7 +94,7 @@ h3 {
 .makeFriendsTitle > span:before,
 .hireMeWidget > h1 > span:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 0.2em;
   width: 100%;
   bottom: 0.1em;

@@ -5,18 +5,28 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <div className="container">
+    <div>
       <div className={styles.navBox}>
         <h1 className={styles.logo}>Yuling</h1>
         <ul className={styles.navList}>
-          <li className={location.pathname === '/about' ? styles.currentPage : ''}>
-            <Link to="/about">About me</Link>
+          <li
+            className={location.pathname === '/about' ? styles.currentPage : ''}
+          >
+            <Link to='/about'>About me</Link>
           </li>
-          <li className={location.pathname === '/gallery' ? styles.currentPage : ''}>
-            <Link to="/gallery">Gallery</Link>
+          <li
+            className={
+              location.pathname === '/gallery' ? styles.currentPage : ''
+            }
+          >
+            <Link to='/gallery'>Gallery</Link>
           </li>
-          <li className={location.pathname === '/contact' ? styles.currentPage : ''}>
-            <Link to="/contact">Contact</Link>
+          <li
+            className={
+              location.pathname === '/contact' ? styles.currentPage : ''
+            }
+          >
+            <Link to='/contact'>Contact</Link>
           </li>
         </ul>
       </div>

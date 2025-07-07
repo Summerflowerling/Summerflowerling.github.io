@@ -1,5 +1,5 @@
-
 :root {
+  --glass-background: rgba(255, 255, 255, 0.9);
   --background-color: #f5eeee;
   --text-color: #333232;
   --text-color-secondary: #636060;
@@ -16,15 +16,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #1a1a1a;
-    --text-color: #e0e0e0;
-    --text-color-secondary: #b0b0b0;
-    --accent-color: #9e9e9e;
-    --highlight-color: #5a3a3a;
-    --widget-background-color1: #2a2a2a;
-    --widget-background-color2: #3a3a3a;
-    --button-text-color: #e0e0e0;
-    --link-color: #b0b0b0;
-    --modal-background: rgba(255, 255, 255, 0.1);
+    --glass-background: rgba(39, 46, 42, 0.6);
+    --background-color: #0c100e; /* Obsidian Veil */
+    --text-color: #e6e3dc; /* Light sand for high contrast on dark bg */
+    --text-color-secondary: #bdae9c; /* soft sandstone tone */
+    --accent-color: #c2ad90; /* Sandstone Aura - highlight and border */
+    --highlight-color: #97664d; /* Amber Eclipse - for callout bg */
+    --widget-background-color1: #364442; /* Stormbound Teal */
+    --widget-background-color2: #5d4429; /* Bronzed Ember */
+    --button-text-color: #e6e3dc; /* consistent with main text */
+    --link-color: #c2ad90; /* warm neutral that stands out subtly */
+    --modal-background: rgba(
+      12,
+      16,
+      14,
+      0.95
+    ); /* darker modal bg with transparency */
   }
 }

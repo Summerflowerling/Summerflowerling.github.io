@@ -1,53 +1,76 @@
 @import '../styles/variables.css';
 
 .contactContainer {
-  padding: 3em;
+  padding: 3rem;
 }
 
 .hireMeWidget,
 .makeFriends {
-  margin: 3em;
-  margin-bottom: 10em;
-}
-
-.hireMeWidget {
   display: flex;
   flex-direction: column;
+  margin: 3rem;
+  margin-bottom: 10rem;
 }
 
-.hireMeWidget > img {
-  width: 200px;
-  height: 200px;
-  max-width: 400px;
-  max-width: 400px;
+.hireMeWidget img {
+  width: 12.5rem;
+  height: 12.5rem;
+  max-width: 25rem;
   object-fit: cover;
   border-radius: 50%;
-  filter: brightness(103%);
-  margin: 0 auto;
-  margin-top: 6em;
+  filter: brightness(1.03);
+  margin: 6rem auto 0;
 }
 
-.hireMeWidget > p {
-  line-height: 1.8em;
-  text-align: center;
-  border-radius: 20px;
-  padding: 1.5em 0;
-  color: var(--text-color);
-  font-family: "Cormorant Infant", serif;
+.hireMeWidget p,
+.makeFriends p {
   font-size: 1.5rem;
-  margin-bottom: 0;
+  font-family: 'Cormorant Infant', serif;
+  color: var(--text-color);
+  text-align: center;
+  line-height: 1.8;
+  padding: 1.5rem 0;
+  margin: 0;
+  border-radius: 1.25rem;
+}
+
+.hireMeTitle,
+.makeFriendsTitle {
+  font-family: 'Cormorant Infant', serif;
+  font-size: 2rem;
+  color: var(--text-color);
+  padding-bottom: 2rem;
+  align-self: flex-start;
+  position: relative;
+}
+
+.hireMeTitle span,
+.makeFriendsTitle span {
+  position: relative;
+}
+
+.hireMeTitle span::before,
+.makeFriendsTitle span::before {
+  content: '';
+  position: absolute;
+  bottom: 0.1em;
+  left: 0;
+  width: 100%;
+  height: 0.2em;
+  background: var(--highlight-color);
+  z-index: -1;
 }
 
 .resumeBtn {
   margin: 0 auto;
+  padding: 1rem 1.25rem;
   background-color: var(--widget-background-color1);
-  border: none;
-  font-size: 1.5rem;
-  font-family: "Cormorant Infant", serif;
-  padding: 15px 20px;
   color: var(--button-text-color);
-  border-radius: 5px;
-  transition-duration: 0.5s;
+  font-size: 1.5rem;
+  font-family: 'Cormorant Infant', serif;
+  border: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .resumeBtn:hover {
@@ -55,88 +78,66 @@
   background-color: var(--widget-background-color2);
 }
 
-.resumeBtn:focus {
-  outline: none;
-}
-
 .resumeBtn:active {
   background-color: #68b3b3;
   transform: translateY(5px);
 }
-.resumeBtn > a {
+
+.resumeBtn:focus {
+  outline: none;
+}
+
+.resumeBtn a {
   text-decoration: none;
   color: var(--button-text-color);
 }
 
 .makeFriends {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.makeFriendsTitle {
-  padding-bottom: 2em;
-  align-self: start;
+.makeFriendsImg {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-.makeFriends > p {
-  font-size: 1.5rem;
-  font-family: "Cormorant Infant", serif;
-  text-align: center;
-}
-.makeFriendsImg > a > img {
-  max-width: 100px;
+.makeFriendsImg img {
   width: 100%;
-  padding-right: 1em;
+  max-width: 6.25rem;
 }
 
 .footerIconInfo {
   text-align: center;
   font-size: 0.5rem;
   color: var(--text-color);
-  margin-bottom: 3em;
+  margin-bottom: 3rem;
 }
 
-.footerIconInfo > p > a:link {
+.footerIconInfo a {
   color: var(--link-color);
   text-decoration: none;
 }
 
-.aboutMeSectionTitle > span,
-.makeFriendsTitle > span,
-.hireMeWidget > h1 > span {
-  position: relative;
-}
-
-.aboutMeSectionTitle > span:before,
-.makeFriendsTitle > span:before,
-.hireMeWidget > h1 > span:before {
-  position: absolute;
-  content: "";
-  height: 0.2em;
-  width: 100%;
-  bottom: 0.1em;
-  z-index: -1;
-  background: var(--highlight-color);
-}
-
 @media (max-width: 415px) {
   .contactContainer {
-    padding: 1em;
+    padding: 1rem;
   }
 
-  .makeFriends,
-  .hireMeWidget {
-    margin: 3em;
-    margin-bottom: 8em;
+  .hireMeWidget,
+  .makeFriends {
+    margin: 3rem;
+    margin-bottom: 8rem;
   }
 
-  .makeFriendsTitle,
-  .hireMeTitle {
-    padding-bottom: 1em;
+  .hireMeTitle,
+  .makeFriendsTitle {
+    padding-bottom: 1rem;
   }
-  .makeFriendsImg > a > img {
-    width: 80px;
+
+  .makeFriendsImg img {
+    max-width: 5rem;
   }
 }

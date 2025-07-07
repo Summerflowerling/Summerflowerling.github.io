@@ -1,8 +1,10 @@
+@import '../src/styles/variables.css';
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
   line-height: 1.6;
-  font-family: "Prata", serif;
+  font-family: 'Prata', serif;
+  background-color: var(--background-color);
 }
