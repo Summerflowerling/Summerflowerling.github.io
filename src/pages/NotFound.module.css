@@ -1,0 +1,37 @@
+@import '../styles/variables.css';
+
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 11em); /* Adjust based on header height */
+  text-align: center;
+  color: var(--text-color);
+}
+
+.notFoundContainer h1 {
+  font-size: 6rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+.notFoundContainer p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.notFoundContainer a {
+  font-size: 1.2rem;
+  color: var(--highlight-color);
+  text-decoration: none;
+  border: 1px solid var(--highlight-color);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.notFoundContainer a:hover {
+  background-color: var(--highlight-color);
+  color: var(--white);
+}
