@@ -1,9 +1,53 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../components/Header';
 import styles from './Gallery.module.css';
 
+const paintings = [
+  {
+    id: 'Eyes Wide Open',
+    src: '/img/allEyes.JPG',
+    alt: 'watercolor eyes and flowers',
+    title: 'Eyes Wide Open',
+  },
+  {
+    id: 'Flowers Make Us Girl',
+    src: '/img/girlWithFlowers.JPG',
+    alt: 'watercolor girl and flowers',
+    title: 'Flowers Make Us Girl',
+  },
+  {
+    id: 'Flowers Make Us Girl-2',
+    src: '/img/girlWithSunflower.JPG',
+    alt: 'girl with sunflower',
+    title: 'Flowers Make Us Girl-2',
+  },
+  {
+    id: 'The Hometown',
+    src: '/img/BluePlanet.JPG',
+    alt: 'watercolor earth',
+    title: 'The Hometown',
+  },
+  {
+    id: 'The Night',
+    src: '/img/MoonZan.JPG',
+    alt: 'watercolor moon with flowers',
+    title: 'The Night',
+  },
+  {
+    id: 'In a Dream',
+    src: '/img/in a dream.JPG',
+    alt: 'giant purple flowers',
+    title: 'In a Dream',
+  },
+];
+
 const Gallery = () => {
-  const [modal, setModal] = useState({ isOpen: false, imgSrc: '', imgTitle: '' });
+  const [modal, setModal] = useState({
+    isOpen: false,
+    imgSrc: '',
+    imgTitle: '',
+  });
 
   const displayModal = (imgSrc: string, imgTitle: string) => {
     setModal({ isOpen: true, imgSrc, imgTitle });
@@ -17,91 +61,57 @@ const Gallery = () => {
     <>
       <Header />
       <main className={styles.galleryContainer}>
-        <div className={styles.imgWidget}>
-          <img
-            id="Eyes Wide Open"
-            src="/img/allEyes.JPG"
-            alt="watercolor eyes and flowers"
-            onClick={() => displayModal("/img/allEyes.JPG", "Eyes Wide Open")}
-          />
-          <div className={styles.paintingTitle}>
-            <h3 className="for-left">Eyes Wide Open</h3>
-          </div>
-        </div>
-
-        <div className={styles.imgWidget}>
-          <img
-            id="Flowes Make Us Girl"
-            src="/img/girlWithFlowers.JPG"
-            alt="watercolor girl and flowers"
-            onClick={() => displayModal("/img/girlWithFlowers.JPG", "Flowes Make Us Girl")}
-          />
-          <div className={styles.paintingTitle}>
-            <h3 className="for-img-right">Flowers Make Us Girl</h3>
-          </div>
-        </div>
-
-        <div className={styles.imgWidget}>
-          <img
-            id="Flowers Make Us Girl-2"
-            src="/img/girlWithSunflower.JPG"
-            alt="girl with sunflower"
-            onClick={() => displayModal("/img/girlWithSunflower.JPG", "Flowers Make Us Girl-2")}
-          />
-          <div className={styles.paintingTitle}>
-            <h3 className="for-img-left">Flowers Make Us Girl-2</h3>
-          </div>
-        </div>
-
-        <div className={styles.imgWidget}>
-          <img
-            id="The Hometown"
-            src="/img/BluePlanet.JPG"
-            alt="watercolor earth"
-            onClick={() => displayModal("/img/BluePlanet.JPG", "The Hometown")}
-          />
-          <div className={styles.paintingTitle}>
-            <h3 className="for-img-right">The Hometown</h3>
-          </div>
-        </div>
-
-        <div className={styles.imgWidget}>
-          <img
-            id="The Night"
-            src="/img/MoonZan.JPG"
-            alt="watercolor moon with flowers"
-            onClick={() => displayModal("/img/MoonZan.JPG", "The Night")}
-          />
-          <div className={styles.paintingTitle}>
-            <h3 className="for-img-left">The Night</h3>
-          </div>
-        </div>
-
-        <div className={styles.imgWidget}>
-          <img
-            id="In a Dream"
-            src="/img/in a dream.JPG"
-            alt="giant purple flowers"
-            onClick={() => displayModal("/img/in a dream.JPG", "In a Dream")}
-          />
-          <div className={styles.paintingTitle}>
-            <h3 className="for-img-right">In A Dream</h3>
-          </div>
-        </div>
-
-        {modal.isOpen && (
-          <div id="modal" className={styles.modal} style={{ display: 'block' }}>
-            <span id="close" role="button" className={styles.close} onClick={closeModal} style={{ display: 'block' }}>
-              &times;
-            </span>
-            <img className={styles.modalImg} id="modalImg" src={modal.imgSrc} />
-            <div id="modal-img-title" className={styles.modalPaintingTitle}>
-              {modal.imgTitle}
+        {paintings.map(({ id, src, alt, title }) => (
+          <motion.div
+            key={id}
+            className={styles.imgWidget}
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            onClick={() => displayModal(src, title)}
+          >
+            <img src={src} alt={alt} className={styles.imgThumb} />
+            <div className={styles.paintingTitle}>
+              <h3>{title}</h3>
             </div>
-          </div>
-        )}
+          </motion.div>
+        ))}
       </main>
-      <footer>
+
+      <AnimatePresence>
+        {modal.isOpen && (
+          <motion.div
+            className={styles.modal}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.span
+              className={styles.close}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+              role='button'
+            >
+              &times;
+            </motion.span>
+            <motion.img
+              className={styles.modalImg}
+              src={modal.imgSrc}
+              alt={modal.imgTitle}
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+            />
+            <motion.div className={styles.modalPaintingTitle}>
+              {modal.imgTitle}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <footer className={styles.footer}>
         <h5>Created By Yuling 2020</h5>
       </footer>
     </>
