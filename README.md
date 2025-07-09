@@ -1,4 +1,4 @@
-# This is my Personal Portfolio
+# This is my portfolio
 
 A modern and responsive personal portfolio and art gallery website, showcasing watercolor artworks and professional information. This project is built with React and features a dynamic dark mode based on user's system preferences.
 Check here: https://summerflowerling.github.io/
