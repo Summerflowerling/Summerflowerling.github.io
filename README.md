@@ -124,5 +124,3 @@ This project can be easily deployed to GitHub Pages.
 
 *   **Icons:** Icons made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com/).
 *   **Fonts:** Google Fonts ([Prata](https://fonts.google.com/specimen/Prata), [Cormorant Infant](https://fonts.google.com/specimen/Cormorant+Infant), [Tangerine](https://fonts.google.com/specimen/Tangerine)).
->>>>>>> Stashed changes
->>>>>>> Stashed changes
