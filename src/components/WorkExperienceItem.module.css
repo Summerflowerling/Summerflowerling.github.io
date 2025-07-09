@@ -1,0 +1,57 @@
+.aboutMeWidgetFlex {
+  display: flex;
+  padding: 0 2em;
+  margin: 3em;
+}
+
+.workExperienceWrapper {
+  display: flex;
+  width: 100%;
+}
+
+.aboutMeWorkContent {
+  width: 70%;
+  color: var(--text-color-secondary);
+}
+
+.workingYears {
+  margin-left: 5em;
+  margin-right: 0;
+  align-self: center;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.aboutMeWidgetColor1 {
+  background-color: var(--widget-background-color1);
+  border-radius: 25px;
+}
+
+.aboutMeWidgetColor2 {
+  background-color: var(--widget-background-color2);
+  border-radius: 25px;
+}
+
+@media (max-width: 415px) {
+  .aboutMeWidgetFlex {
+    padding-left: 1.5em;
+    padding-right: 0;
+    margin: 2em;
+  }
+
+  .workExperienceWrapper {
+    flex-direction: column;
+  }
+
+  .aboutMeWorkContent {
+    width: 100%;
+  }
+
+  .workingYears {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+    align-self: flex-start;
+  }
+}

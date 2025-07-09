@@ -12,8 +12,7 @@
   font-family: 'Cormorant Infant', serif;
 }
 
-.aboutMeSectionTitle,
-.aboutMeReadingTitle {
+.aboutMeSectionTitle {
   padding: 1.5em 0;
   margin: 2em;
   margin-bottom: 1.5em;
@@ -23,76 +22,12 @@
 h3 {
   color: var(--text-color);
 }
-.aboutMeWorkContent {
-  width: 70%;
-  color: var(--text-color-secondary);
-}
 
-.aboutMeWidgetFlex {
-  display: flex;
-  padding: 0 2em;
-  margin: 3em;
-}
-
-.workingYears {
-  margin-left: 5em;
-  margin-right: 0;
-  align-self: center;
-  color: var(--text-color);
-}
-.aboutMeWidgetColor1 {
-  background-color: var(--widget-background-color1);
-  border-radius: 25px;
-}
-
-.aboutMeWidgetColor2 {
-  background-color: var(--widget-background-color2);
-  border-radius: 25px;
-}
-
-.bookList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 2em;
-}
-
-.bookItem {
-  margin-bottom: 8em;
-  display: flex;
-  flex-direction: column;
-}
-
-.bookItem > img {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 250px;
-  max-height: 300px;
-  object-fit: cover;
-}
-
-.bookItem > h3 {
-  margin-top: 1em;
-}
-
-.bookItem > p {
-  margin-top: 0;
-  color: var(--text-color-secondary);
-}
-.bookItem > h3,
-.bookItem > p {
-  text-align: center;
-}
-
-.aboutMeSectionTitle > span,
-.makeFriendsTitle > span,
-.hireMeWidget > h1 > span {
+.aboutMeSectionTitle > span {
   position: relative;
 }
 
-.aboutMeSectionTitle > span:before,
-.makeFriendsTitle > span:before,
-.hireMeWidget > h1 > span:before {
+.aboutMeSectionTitle > span:before {
   position: absolute;
   content: '';
   height: 0.2em;
@@ -109,25 +44,7 @@ h3 {
     font-size: 0.8em;
   }
 
-  .aboutMeSectionTitle,
-  .aboutMeReadingTitle {
+  .aboutMeSectionTitle {
     padding: 0.5em 0;
-  }
-
-  .aboutMeWorkContent {
-    width: 100%;
-  }
-
-  .aboutMeWidgetFlex {
-    display: flex;
-    padding-left: 1.5em;
-    padding-right: 0;
-    margin: 2em;
-  }
-
-  .workingYears {
-    margin-left: 1.5em;
-    margin-right: 1em;
-    font-size: 1em;
   }
 }

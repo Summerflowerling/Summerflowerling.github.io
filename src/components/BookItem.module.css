@@ -1,0 +1,37 @@
+/* styles/BookItem.module.css */
+@import '../styles/variables.css';
+
+.bookList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2em;
+}
+
+.bookItem {
+  margin-bottom: 8em;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookItem > img {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 250px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.bookItem > h3 {
+  margin-top: 1em;
+}
+
+.bookItem > p {
+  margin-top: 0;
+  color: var(--text-color-secondary);
+}
+
+.bookItem > h3,
+.bookItem > p {
+  text-align: center;
+}
