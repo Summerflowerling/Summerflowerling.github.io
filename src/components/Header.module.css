@@ -5,6 +5,17 @@
   padding: 0.625rem 0;
   height: 11rem;
   line-height: normal;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+.navBox.scrolled {
+  background-color: rgba(var(--widget-background-color1-rgb), 0.8);
+  backdrop-filter: blur(5px);
 }
 
 .navList {

@@ -6,6 +6,7 @@
   --accent-color: #707070;
   --highlight-color: rgb(250, 210, 217);
   --widget-background-color1: #f5eeee;
+  --widget-background-color1-rgb: 245, 238, 238;
   --widget-background-color2: #eef5f5;
   --button-text-color: #444343;
   --link-color: #838080;
@@ -23,14 +24,10 @@
     --accent-color: #c2ad90; /* Sandstone Aura - highlight and border */
     --highlight-color: #97664d; /* Amber Eclipse - for callout bg */
     --widget-background-color1: #364442; /* Stormbound Teal */
+    --widget-background-color1-rgb: 54, 68, 66;
     --widget-background-color2: #5d4429; /* Bronzed Ember */
-    --button-text-color: #e6e3dc; /* consistent with main text */
-    --link-color: #c2ad90; /* warm neutral that stands out subtly */
-    --modal-background: rgba(
-      12,
-      16,
-      14,
-      0.95
-    ); /* darker modal bg with transparency */
+    --button-text-color: #e6e3dc;
+    --link-color: #c2ad90; /* warm neutral */
+    --modal-background: rgba(12, 16, 14, 0.95);
   }
 }

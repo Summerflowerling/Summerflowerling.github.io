@@ -5,7 +5,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 11rem); /* Adjust based on header height */
+  min-height: 100vh; /* Ensure it takes full viewport height */
+  padding-top: 11rem; /* Account for fixed header */
   text-align: center;
   color: var(--text-color);
 }
