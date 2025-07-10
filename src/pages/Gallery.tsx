@@ -57,14 +57,24 @@ const Gallery = () => {
     setModal({ isOpen: false, imgSrc: '', imgTitle: '' });
   };
 
+  const galleryVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <>
       <Header />
       <main className={styles.galleryContainer}>
-        {paintings.map(({ id, src, alt, title }) => (
+        {paintings.map(({ id, src, alt, title }, index) => (
           <motion.div
             key={id}
             className={styles.imgWidget}
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={galleryVariants}
             whileHover={{ scale: 1.03 }}
             transition={{ type: 'spring', stiffness: 300 }}
             onClick={() => displayModal(src, title)}

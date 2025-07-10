@@ -20,10 +20,10 @@ const About = () => {
   };
 
   const workVariants: Variants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         delay: i * 0.2,
         duration: 0.5,
@@ -86,7 +86,8 @@ const About = () => {
                 key={experience.id}
                 custom={index}
                 initial='hidden'
-                animate='visible'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.5 }}
                 variants={workVariants}
               >
                 <WorkExperienceItem
@@ -115,7 +116,8 @@ const About = () => {
                 key={book.id}
                 custom={index}
                 initial='hidden'
-                animate='visible'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.5 }}
                 whileHover='hover'
                 variants={bookVariants}
               >

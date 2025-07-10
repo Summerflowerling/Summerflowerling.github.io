@@ -15,7 +15,8 @@
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
 }
 
 .imgThumb {
@@ -25,6 +26,7 @@
   display: block;
   border-radius: 1.5rem;
   filter: brightness(105%);
+  will-change: filter;
 }
 
 .paintingTitle {

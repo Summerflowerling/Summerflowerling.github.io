@@ -76,6 +76,7 @@
 .resumeBtn:hover {
   cursor: pointer;
   background-color: var(--widget-background-color2);
+  transform: scale(1.05);
 }
 
 .resumeBtn:active {
