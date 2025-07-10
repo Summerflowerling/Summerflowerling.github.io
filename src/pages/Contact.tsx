@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import styles from './Contact.module.css';
 
@@ -7,7 +8,12 @@ const Contact = () => {
       <Header />
       <main>
         <div className={styles.contactContainer}>
-          <div className={styles.hireMeWidget}>
+          <motion.div
+            className={styles.hireMeWidget}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <h1 className={styles.hireMeTitle}>
               <span>Hire Me</span>
             </h1>
@@ -21,9 +27,14 @@ const Contact = () => {
                 Email Me
               </a>
             </button>
-          </div>
+          </motion.div>
 
-          <div className={styles.makeFriends}>
+          <motion.div
+            className={styles.makeFriends}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h1 className={styles.makeFriendsTitle}>
               <span>Let's connect</span>
             </h1>
@@ -42,7 +53,7 @@ const Contact = () => {
                 <img src='/img/linkedin.png' alt='linkedin icon' />
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
         <footer>
           <div className={styles.footerIconInfo}>

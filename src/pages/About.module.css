@@ -7,7 +7,7 @@
 }
 
 .aboutMeIntro {
-  margin-top: 5rem;
+  margin-top: 4rem;
   padding: 0 5rem;
   color: var(--text-color);
   font-family: 'Cormorant Infant', serif;
@@ -60,7 +60,7 @@ h3 {
 
 @media (max-width: 25.9375rem) {
   .aboutMeIntro {
-    margin-top: 5rem;
+    margin-top: 1rem;
     padding: 0 1.5rem;
     font-size: 0.8rem;
   }

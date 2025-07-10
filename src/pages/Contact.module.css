@@ -65,7 +65,7 @@
 .resumeBtn {
   margin: 0 auto;
   padding: 1rem 1.25rem;
-  background-color: var(--widget-background-color1);
+  background-color: var(--contactMe-btn-bg);
   color: var(--button-text-color);
   font-size: 1.5rem;
   font-family: 'Cormorant Infant', serif;
@@ -76,7 +76,7 @@
 
 .resumeBtn:hover {
   cursor: pointer;
-  background-color: var(--widget-background-color2);
+  background-color: var(--contactMe-btn-hover-bg);
   transform: scale(1.05);
 }
 
@@ -92,6 +92,12 @@
 .resumeBtn a {
   text-decoration: none;
   color: var(--button-text-color);
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .makeFriends {
@@ -126,6 +132,7 @@
 @media (max-width: 415px) {
   .contactContainer {
     padding: 1rem;
+    padding-top: 11rem;
   }
 
   .hireMeWidget,
