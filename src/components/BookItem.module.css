@@ -5,11 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 2em;
+  margin: 0 2rem;
 }
 
 .bookItem {
-  margin-bottom: 8em;
+  margin-bottom: 8rem;
   display: flex;
   flex-direction: column;
 }
@@ -17,13 +17,13 @@
 .bookItem > img {
   margin: 0 auto;
   width: 100%;
-  max-width: 250px;
-  max-height: 300px;
+  max-width: 15.625rem;
+  max-height: 18.75rem;
   object-fit: cover;
 }
 
 .bookItem > h3 {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 
 .bookItem > p {

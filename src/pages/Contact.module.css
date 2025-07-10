@@ -53,10 +53,10 @@
 .makeFriendsTitle span::before {
   content: '';
   position: absolute;
-  bottom: 0.1em;
+  bottom: 0.1rem;
   left: 0;
   width: 100%;
-  height: 0.2em;
+  height: 0.2rem;
   background: var(--highlight-color);
   z-index: -1;
 }
@@ -80,7 +80,7 @@
 
 .resumeBtn:active {
   background-color: #68b3b3;
-  transform: translateY(5px);
+  transform: translateY(0.3125rem);
 }
 
 .resumeBtn:focus {
