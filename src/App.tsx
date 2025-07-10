@@ -9,13 +9,17 @@ import './styles/variables.css';
 function App() {
   return (
     <Router>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <Routes>
-          <Route path="/" element={<Gallery />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path='/' element={<About />} />
+          <Route path='/gallery' element={<Gallery />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </motion.div>
     </Router>
