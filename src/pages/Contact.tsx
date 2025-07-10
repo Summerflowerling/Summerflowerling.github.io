@@ -22,10 +22,23 @@ const Contact = () => {
               Think I may be a good fit in your company? <br />I am open to
               different job opportunities.
             </p>
+
             <button id='resume-btn' className={styles.resumeBtn}>
-              <a href='mailto: yulinglin@protonmail.com' target='_blank'>
+              <motion.a
+                href='mailto:yulinglin@protonmail.com'
+                target='_blank'
+                whileHover={{
+                  scale: 1.05,
+                  background:
+                    'linear-gradient(90deg, var(--highlight-color), var(--contactMe-btn-hover-bg))',
+                  color: 'var(--button-text-color)',
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                style={{ display: 'block', width: '100%', height: '100%' }}
+              >
                 Email Me
-              </a>
+              </motion.a>
             </button>
           </motion.div>
 
@@ -40,18 +53,22 @@ const Contact = () => {
             </h1>
             <p>Feel free to say hi</p>
             <div className={styles.makeFriendsImg}>
-              <a
+              <motion.a
                 href='https://www.instagram.com/anotherhuman124/?hl=zh-tw'
                 target='_blank'
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <img src='/img/instagram.png' alt='instagram icon' />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href='https://www.linkedin.com/in/phoebe-lin-7b5108106/'
                 target='_blank'
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <img src='/img/linkedin.png' alt='linkedin icon' />
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         </div>
