@@ -6,7 +6,6 @@ import { books, workExperiences } from '../const/aboutMeData';
 import styles from './About.module.css';
 
 const About = () => {
-  // Explicitly type variants as Variants from framer-motion
   const introVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {

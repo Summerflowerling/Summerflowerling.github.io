@@ -29,6 +29,8 @@
     --widget-background-color1-rgb: 54, 68, 66;
     --widget-background-color1-rgb: 54, 68, 66;
     --widget-background-color2: #5d4429; /* Bronzed Ember */
+    --contactMe-btn-bg: #506562;
+    --contactMe-btn-hover-bg: #4b5e5b;
     --button-text-color: #e6e3dc;
     --link-color: #c2ad90; /* warm neutral */
     --modal-background: rgba(12, 16, 14, 0.95);
