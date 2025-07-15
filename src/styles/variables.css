@@ -1,10 +1,11 @@
 :root {
   --glass-background: rgba(255, 255, 255, 0.4);
-  --background-color: #f5eeee;
+  --background-color: hsl(0, 26%, 95%);
   --text-color: #333232;
   --text-color-secondary: #636060;
+  --text-book-review: #1a1a1a;
   --accent-color: #707070;
-  --highlight-color: rgb(250, 210, 217);
+  --highlight-color: rgba(206, 151, 119, 0.7);
   --widget-background-color1: #f5eeee;
   --contactMe-btn-bg: #fbede2;
   --contactMe-btn-hover-bg: #ecd2b1;

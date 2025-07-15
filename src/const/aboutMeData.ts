@@ -36,34 +36,32 @@ export const workExperiences = [
 export const books = [
   {
     id: 1,
-    title: 'Echo Legacy',
-    subtitle: 'Stories of the Sahara',
-    image:
-      'https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/049/09/0010490999.jpg&v=4d021e42&w=348&h=348',
+    title: 'Stories of the Sahara',
+    subtitle: 'Sanmao',
+    image: '/img/stories-of-the-Sahara.jpg',
     review:
-      'A mesmerizing journey through the desert that makes you question everything you know about survival and human connection!',
+      'Echo (Sanmao) is a hugely influential writer in the Chinese-speaking world. If she were still alive, she’d be in her 80s now. Back in an era when travel wasn’t common, she was already bold enough to settle in the Sahara Desert. This book is a collection of stories about her adventures with her Spanish husband in the remote desert, filled with lively and fascinating accounts of their daily interactions with the locals. I reread it every year, and it never fails to captivate me.',
     amazonLink:
-      'https://www.amazon.com/Echo-Legacy-Stories-Sahara/dp/B08XXXXXXX',
+      'https://www.amazon.com/https://www.amazon.com/Stories-of-the-Sahara/dp/1408881845-Sahara-Sanmao/dp/1547222233',
   },
   {
     id: 2,
-    title: 'Angela Duckworth',
-    subtitle: 'Grit, the power of passion and perseverance',
-    image:
-      'https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/086/79/0010867931_bc_01.jpg&v=5f3a6a49&w=348&h=348',
+    title: 'The Silent Girl',
+    subtitle: 'Tess Gerritsen',
+    image: '/img/the-silient-girl-cover.jpg',
     review:
-      "This book changed my perspective on success! Duckworth's research proves that talent is overrated - it's all about the grind and passion.",
+      'This gripping thriller, part of my favorite mystery novel series by my top suspense writer, has a fascinating plot, well-developed characters, and a wealth of medical knowledge. I couldn’t put it down!\n',
     amazonLink:
-      'https://www.amazon.com/Grit-Passion-Perseverance-Angela-Duckworth/dp/1501111108',
+      'https://www.amazon.com/Silent-Girl-Rizzoli-Isles-Novel/dp/034551551X',
   },
   {
     id: 3,
-    title: 'John Berger',
-    subtitle: 'Ways of seeing',
-    image:
-      'https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/047/70/0010477040.jpg&v=533d706b&w=348&h=348',
+    title: 'Man Meets Dog',
+    subtitle: 'Konrad Lorenz',
+    image: '/img/men-meets-dog.jpg',
     review:
-      'Mind-blowing! Berger completely revolutionizes how you look at art and visual culture. Every page is an aha moment!',
-    amazonLink: 'https://www.amazon.com/Ways-Seeing-John-Berger/dp/0140135154',
+      'As a dog lover, I adored *Man Meets Dog* by Konrad Lorenz. This charming blend of science and heartfelt stories about dogs captures their quirks and the human-canine bond. Though some ideas are dated, the fascinating insights, vivid anecdotes, and cute sketches make it a page-turner. A must-read for pet enthusiasts!',
+    amazonLink:
+      'https://www.amazon.com/Man-Meets-Dog-Routledge-Classics/dp/0415267455',
   },
 ];
