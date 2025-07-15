@@ -9,6 +9,7 @@ interface BookItemProps {
   image: string;
   review: string;
   isHovered: boolean;
+  onAmazonClick?: () => void;
 }
 
 const BookItem: FC<BookItemProps> = ({
@@ -17,6 +18,7 @@ const BookItem: FC<BookItemProps> = ({
   image,
   review,
   isHovered,
+  onAmazonClick,
 }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -36,13 +38,13 @@ const BookItem: FC<BookItemProps> = ({
   const reviewVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: 50,
-      transition: { duration: 0.4, ease: 'easeInOut' },
+      y: '100%',
+      transition: { duration: 0.3, ease: 'easeInOut' },
     },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: 'easeInOut' },
+      transition: { duration: 0.3, ease: 'easeInOut' },
     },
   };
 
@@ -61,7 +63,7 @@ const BookItem: FC<BookItemProps> = ({
       <motion.div
         className={styles.contentContainer}
         initial='visible'
-        animate={isHovered && !isMobile ? 'hidden' : 'visible'}
+        animate='visible'
         variants={contentVariants}
       >
         <div className={styles.bookImageContainer}>
@@ -70,6 +72,7 @@ const BookItem: FC<BookItemProps> = ({
         <h3 className={styles.bookTitle}>{title}</h3>
         <p className={styles.bookSubtitle}>{subtitle}</p>
       </motion.div>
+
       <motion.div
         className={styles.reviewContainer}
         initial='hidden'
@@ -77,6 +80,15 @@ const BookItem: FC<BookItemProps> = ({
         variants={reviewVariants}
       >
         <p className={styles.reviewText}>{review}</p>
+        {!isMobile && onAmazonClick && (
+          <button
+            className={styles.amazonButton}
+            onClick={onAmazonClick}
+            aria-label={`View ${title} on Amazon`}
+          >
+            View on Amazon
+          </button>
+        )}
       </motion.div>
     </motion.div>
   );

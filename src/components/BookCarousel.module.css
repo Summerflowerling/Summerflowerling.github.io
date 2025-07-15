@@ -10,7 +10,7 @@
   overflow: visible;
   box-shadow: 0.25rem 0.25rem 0.75rem var(--shadow-color),
     -0.25rem -0.25rem 0.75rem rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(0.75rem);
 }
 
 .carouselContainer::before {
@@ -86,9 +86,9 @@
   right: 0;
   bottom: 0;
   background: var(--glass-background);
-  color: var(--text-book-review, #1a1a1a);
+  color: var(--text-color);
   padding: 1rem;
-  border-radius: 16px;
+  border-radius: 1rem;
   z-index: 20;
   display: flex;
   flex-direction: column;
@@ -98,7 +98,8 @@
   line-height: 1.4;
   box-shadow: 0.125rem 0.125rem 0.375rem var(--shadow-color),
     -0.125rem -0.125rem 0.375rem rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(0.5rem); /* Using rem unit */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .reviewOverlay p {
@@ -116,19 +117,31 @@
 
 .amazonButton,
 .closeButton {
-  background: #ff9900;
-  color: white;
+  background: var(--highlight-color);
+  color: var(--button-text-color);
   border: none;
-  padding: 6px 10px;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
   cursor: pointer;
-  font-size: 0.8rem;
-  transition: background 0.2s ease;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
 
 .amazonButton:hover,
 .closeButton:hover {
-  background: #e68a00;
+  background: var(--contactMe-btn-hover-bg);
+  transform: translateY(-0.0625rem);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.closeButton {
+  background: var(--text-color-secondary);
+}
+
+.closeButton:hover {
+  background: var(--accent-color);
 }
 
 /* Mobile and tablet styles (<768px) */
@@ -185,8 +198,17 @@
     height: auto;
   }
 
+  /* Enable review overlay for desktop too */
   .reviewOverlay {
-    display: none;
+    font-size: 0.9rem;
+    padding: 1.25rem;
+    backdrop-filter: blur(0.625rem);
+  }
+
+  .amazonButton,
+  .closeButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
   }
 }
 

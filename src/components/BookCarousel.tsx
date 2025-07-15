@@ -16,28 +16,39 @@ interface Book {
 
 const BookCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [hoveredBook, setHoveredBook] = useState<Book | null>(null);
   const [showReview, setShowReview] = useState<Book | null>(null);
 
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  const handleBookTap = (index: number, book: Book) => {
+  const handleBookTap = (
+    index: number,
+    book: Book,
+    event?: React.MouseEvent | React.TouchEvent,
+  ) => {
+    if (event) {
+      event.stopPropagation();
+    }
     if (isMobile) {
+      // Mobile behavior: toggle review overlay
       if (showReview?.id === book.id) {
         setShowReview(null);
       } else {
         setSelectedIndex(index);
         setShowReview(book);
       }
-    } else {
+    }
+  };
+
+  const handleBookHover = (index: number, book: Book) => {
+    if (!isMobile) {
       setSelectedIndex(index);
-      setHoveredBook(book);
+      setShowReview(book);
     }
   };
 
   const handleBookLeave = () => {
     if (!isMobile) {
-      setHoveredBook(null);
+      setShowReview(null);
     }
   };
 
@@ -125,10 +136,9 @@ const BookCarousel = () => {
               initial='inactive'
               animate={selectedIndex === index ? 'active' : 'inactive'}
               whileHover={!isMobile ? 'hover' : undefined}
-              onTap={() => handleBookTap(index, book)}
-              onMouseEnter={() => !isMobile && handleBookTap(index, book)}
+              onTap={() => isMobile && handleBookTap(index, book)}
+              onMouseEnter={() => handleBookHover(index, book)}
               onMouseLeave={handleBookLeave}
-              onClick={() => !isMobile && handleAmazonClick(book)}
               data-active={selectedIndex === index}
             >
               <BookItem
@@ -136,10 +146,11 @@ const BookCarousel = () => {
                 subtitle={book.subtitle}
                 image={book.image}
                 review={book.review}
-                isHovered={hoveredBook?.id === book.id}
+                isHovered={showReview?.id === book.id && !isMobile}
+                onAmazonClick={() => handleAmazonClick(book)}
               />
               <AnimatePresence>
-                {isMobile && showReview?.id === book.id && (
+                {showReview?.id === book.id && isMobile && (
                   <motion.div
                     className={styles.reviewOverlay}
                     variants={reviewVariants}
