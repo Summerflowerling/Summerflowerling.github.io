@@ -1,4 +1,6 @@
+import type { FC } from 'react';
 import { motion, type Variants } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 import styles from './BookItem.module.css';
 
 interface BookItemProps {
@@ -9,19 +11,21 @@ interface BookItemProps {
   isHovered: boolean;
 }
 
-const BookItem = ({
+const BookItem: FC<BookItemProps> = ({
   title,
   subtitle,
   image,
   review,
   isHovered,
-}: BookItemProps) => {
+}) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
   const contentVariants: Variants = {
     hidden: {
       opacity: 0,
       y: -50,
       transition: { duration: 0.4, ease: 'easeInOut' },
-    }, // Slide up and out
+    },
     visible: {
       opacity: 1,
       y: 0,
@@ -34,12 +38,12 @@ const BookItem = ({
       opacity: 0,
       y: 50,
       transition: { duration: 0.4, ease: 'easeInOut' },
-    }, // Start below
+    },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.4, ease: 'easeInOut' },
-    }, // Slide up
+    },
   };
 
   return (
@@ -57,7 +61,7 @@ const BookItem = ({
       <motion.div
         className={styles.contentContainer}
         initial='visible'
-        animate={isHovered ? 'hidden' : 'visible'}
+        animate={isHovered && !isMobile ? 'hidden' : 'visible'}
         variants={contentVariants}
       >
         <div className={styles.bookImageContainer}>
@@ -69,7 +73,7 @@ const BookItem = ({
       <motion.div
         className={styles.reviewContainer}
         initial='hidden'
-        animate={isHovered ? 'visible' : 'hidden'}
+        animate={isHovered && !isMobile ? 'visible' : 'hidden'}
         variants={reviewVariants}
       >
         <p className={styles.reviewText}>{review}</p>

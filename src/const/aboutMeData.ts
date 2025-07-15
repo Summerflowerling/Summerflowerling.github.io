@@ -41,8 +41,7 @@ export const books = [
     image: '/img/stories-of-the-Sahara.jpg',
     review:
       'Echo (Sanmao) is a hugely influential writer in the Chinese-speaking world. If she were still alive, she’d be in her 80s now. Back in an era when travel wasn’t common, she was already bold enough to settle in the Sahara Desert. This book is a collection of stories about her adventures with her Spanish husband in the remote desert, filled with lively and fascinating accounts of their daily interactions with the locals. I reread it every year, and it never fails to captivate me.',
-    amazonLink:
-      'https://www.amazon.com/https://www.amazon.com/Stories-of-the-Sahara/dp/1408881845-Sahara-Sanmao/dp/1547222233',
+    amazonLink: 'https://www.amazon.com/Stories-of-the-Sahara/dp/1408881845',
   },
   {
     id: 2,
