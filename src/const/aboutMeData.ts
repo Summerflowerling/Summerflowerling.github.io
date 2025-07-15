@@ -40,6 +40,10 @@ export const books = [
     subtitle: 'Stories of the Sahara',
     image:
       'https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/049/09/0010490999.jpg&v=4d021e42&w=348&h=348',
+    review:
+      'A mesmerizing journey through the desert that makes you question everything you know about survival and human connection!',
+    amazonLink:
+      'https://www.amazon.com/Echo-Legacy-Stories-Sahara/dp/B08XXXXXXX',
   },
   {
     id: 2,
@@ -47,6 +51,10 @@ export const books = [
     subtitle: 'Grit, the power of passion and perseverance',
     image:
       'https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/086/79/0010867931_bc_01.jpg&v=5f3a6a49&w=348&h=348',
+    review:
+      "This book changed my perspective on success! Duckworth's research proves that talent is overrated - it's all about the grind and passion.",
+    amazonLink:
+      'https://www.amazon.com/Grit-Passion-Perseverance-Angela-Duckworth/dp/1501111108',
   },
   {
     id: 3,
@@ -54,5 +62,8 @@ export const books = [
     subtitle: 'Ways of seeing',
     image:
       'https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/047/70/0010477040.jpg&v=533d706b&w=348&h=348',
+    review:
+      'Mind-blowing! Berger completely revolutionizes how you look at art and visual culture. Every page is an aha moment!',
+    amazonLink: 'https://www.amazon.com/Ways-Seeing-John-Berger/dp/0140135154',
   },
 ];

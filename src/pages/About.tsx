@@ -1,11 +1,25 @@
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import BookItem from '../components/BookItem';
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  type Variants,
+} from 'framer-motion';
 import Header from '../components/Header';
 import WorkExperienceItem from '../components/WorkExperienceItem';
-import { books, workExperiences } from '../const/aboutMeData';
+import BookCarousel from '../components/BookCarousel';
+import { workExperiences } from '../const/aboutMeData';
 import styles from './About.module.css';
+import { useRef } from 'react';
 
 const About = () => {
+  const bookRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: bookRef,
+    offset: ['start end', 'end start'], // when top hits bottom, to when bottom hits top
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.96, 1.02]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
   const introVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -30,24 +44,6 @@ const About = () => {
       },
     }),
   };
-
-  const bookVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: (i: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.4,
-        ease: 'easeOut',
-      },
-    }),
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.3 },
-    },
-  };
-
   return (
     <>
       <Header />
@@ -100,35 +96,18 @@ const About = () => {
           </AnimatePresence>
         </div>
 
-        <div>
-          <motion.h1
-            className={styles.aboutMeSectionTitle}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <span>Currently reading</span>
-          </motion.h1>
-          <div className={styles.bookList}>
-            {books.map((book, index) => (
-              <motion.div
-                key={book.id}
-                custom={index}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ once: true, amount: 0.5 }}
-                whileHover='hover'
-                variants={bookVariants}
-              >
-                <BookItem
-                  title={book.title}
-                  subtitle={book.subtitle}
-                  image={book.image}
-                />
-              </motion.div>
-            ))}
+        <motion.div
+          ref={bookRef}
+          className={styles.bookSection}
+          style={{
+            scale,
+            opacity,
+          }}
+        >
+          <div className={styles.carouselWrapper}>
+            <BookCarousel />
           </div>
-        </div>
+        </motion.div>
       </main>
     </>
   );

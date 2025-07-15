@@ -1,5 +1,5 @@
 :root {
-  --glass-background: rgba(255, 255, 255, 0.9);
+  --glass-background: rgba(255, 255, 255, 0.4);
   --background-color: #f5eeee;
   --text-color: #333232;
   --text-color-secondary: #636060;
@@ -15,27 +15,25 @@
   --modal-background: rgba(0, 0, 0, 0.9);
   --white: white;
   --black: black;
+  --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --glass-background: rgba(39, 46, 42, 0.6);
-    --background-color: #0c100e; /* Obsidian Veil */
-    --text-color: #e6e3dc; /* Light sand for high contrast on dark bg */
-    --text-color-secondary: #bdae9c; /* soft sandstone tone */
-    --accent-color: #c2ad90; /* Sandstone Aura - highlight and border */
-    --highlight-color: #97664d; /* Amber Eclipse - for callout bg */
-    --widget-background-color1: #364442; /* Stormbound Teal */
+    --background-color: #0c100e;
+    --text-color: #e6e3dc;
+    --text-color-secondary: #bdae9c;
+    --accent-color: #c2ad90;
+    --highlight-color: #97664d;
+    --widget-background-color1: #364442;
     --widget-background-color1-rgb: 54, 68, 66;
-    --widget-background-color1-rgb: 54, 68, 66;
-    --widget-background-color2: #5d4429; /* Bronzed Ember */
+    --widget-background-color2: #5d4429;
     --contactMe-btn-bg: #506562;
     --contactMe-btn-hover-bg: #4b5e5b;
     --button-text-color: #e6e3dc;
-    --link-color: #c2ad90; /* warm neutral */
+    --link-color: #c2ad90;
     --modal-background: rgba(12, 16, 14, 0.95);
-    --button-text-color: #e6e3dc;
-    --link-color: #c2ad90; /* warm neutral */
-    --modal-background: rgba(12, 16, 14, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.5);
   }
 }

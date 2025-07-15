@@ -52,6 +52,28 @@ h3 {
   box-sizing: border-box;
 }
 
+.bookSection {
+  transition: background-color 0.5s ease, transform 0.5s ease;
+  will-change: transform;
+  padding: 2rem 1rem;
+  border-radius: 1.25rem;
+  margin: 3rem 0;
+}
+
+.bookSectionActive {
+  background-color: var(--widget-background-color2);
+  box-shadow: 0 0 1rem rgba(var(--widget-background-color1-rgb), 0.4);
+  backdrop-filter: blur(0.75rem) saturate(1.1);
+}
+
+.bookSectionInactive {
+  background-color: transparent;
+}
+
+.carouselWrapper {
+  transition: all 0.5s ease;
+}
+
 @media (max-width: 48rem) {
   .aboutMeIntro {
     padding: 0 2.5rem;
