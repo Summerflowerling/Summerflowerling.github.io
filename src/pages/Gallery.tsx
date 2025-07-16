@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../components/Header';
 import styles from './Gallery.module.css';
@@ -48,43 +48,87 @@ const Gallery = () => {
     imgSrc: '',
     imgTitle: '',
   });
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const displayModal = (imgSrc: string, imgTitle: string) => {
-    setModal({ isOpen: true, imgSrc, imgTitle });
+    if (animationComplete) {
+      setModal({ isOpen: true, imgSrc, imgTitle });
+    }
   };
 
   const closeModal = () => {
     setModal({ isOpen: false, imgSrc: '', imgTitle: '' });
   };
 
-  const galleryVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
+  // Variants for initial sequential image animation
+  const imageVariants = {
+    hidden: { opacity: 0, x: -100, y: 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.3, duration: 0.4 },
+    }),
   };
 
   return (
     <>
       <Header />
       <main className={styles.galleryContainer}>
-        {paintings.map(({ id, src, alt, title }, index) => (
-          <motion.div
-            key={id}
-            className={styles.imgWidget}
-            custom={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            variants={galleryVariants}
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-            onClick={() => displayModal(src, title)}
-          >
-            <img src={src} alt={alt} className={styles.imgThumb} />
-            <div className={styles.paintingTitle}>
-              <h3 className={styles.title}>{title}</h3>
-            </div>
+        {!animationComplete && (
+          <motion.div className={styles.combinedContainer}>
+            {/* Initial 4 images in a vertical stack on mobile */}
+            {paintings.slice(0, 4).map(({ id, src, alt, title }, index) => (
+              <motion.div
+                key={id}
+                className={styles.imgWidget}
+                custom={index}
+                initial='hidden'
+                animate='visible'
+                variants={imageVariants}
+                onClick={() => displayModal(src, title)}
+              >
+                <img src={src} alt={alt} className={styles.imgThumb} />
+                <div className={styles.paintingTitle}>
+                  <h3 className={styles.title}>{title}</h3>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
-        ))}
+        )}
+
+        {/* Full gallery grid after animation */}
+        {animationComplete && (
+          <motion.div
+            className={styles.fullGallery}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {paintings.map(({ id, src, alt, title }, index) => (
+              <motion.div
+                key={id}
+                className={styles.imgWidget}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => displayModal(src, title)}
+              >
+                <img src={src} alt={alt} className={styles.imgThumb} />
+                <div className={styles.paintingTitle}>
+                  <h3 className={styles.title}>{title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </main>
 
       <AnimatePresence>
@@ -104,7 +148,7 @@ const Gallery = () => {
               onClick={closeModal}
               role='button'
             >
-              &times;
+              ×
             </motion.span>
             <motion.img
               className={styles.modalImg}

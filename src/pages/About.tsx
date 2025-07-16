@@ -65,7 +65,7 @@ const About = () => {
 
   // Work experience variants with spring and 3D effects
   const workVariants: Variants = {
-    hidden: { opacity: 0, y: 50, rotateX: -15 },
+    hidden: { opacity: 0, y: 50, rotateX: -5 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
@@ -120,7 +120,10 @@ const About = () => {
         </motion.div>
 
         {/* Work Experience Section with Parallax and Card Effects */}
-        <div ref={workRef}>
+        <div
+          ref={workRef}
+          style={{ perspective: '1000px', overflow: 'hidden' }}
+        >
           <motion.h1
             className={styles.aboutMeSectionTitle}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -138,7 +141,11 @@ const About = () => {
                 whileInView='visible'
                 viewport={{ once: true, amount: 0.3 }}
                 variants={workVariants}
-                style={{ y: workParallaxY }}
+                style={{
+                  y: workParallaxY,
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden',
+                }}
                 whileHover={{
                   scale: 1.03,
                   boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
