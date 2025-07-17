@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: var(--widget-background-color1);
+  background-color: rgba(var(--widget-background-color1-rgb), 0.6);
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
   display: flex;
   flex-direction: column;

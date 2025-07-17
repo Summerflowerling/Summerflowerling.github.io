@@ -17,6 +17,13 @@
   --white: white;
   --black: black;
   --shadow-color: rgba(0, 0, 0, 0.3);
+
+  /* New colors from the image palette */
+  --color-dark-terracotta: rgba(90, 58, 51, 0.8);
+  --color-earthy-olive: rgba(121, 110, 84, 0.5);
+  --color-desert-coral: rgba(217, 153, 133, 0.3);
+  --color-light-peachy-pink: rgba(232, 198, 181, 1);
+  --color-pale-pink: rgba(244, 246, 245, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,5 +44,12 @@
     --modal-background: rgba(12, 16, 14, 0.95);
     --shadow-color: rgba(0, 0, 0, 0.5);
     --text-book-review: #e6e3dc;
+
+    /* Retain the same new colors in dark mode for consistency with the image palette */
+    --color-dark-terracotta: #5a3a33;
+    --color-earthy-olive: #796e54;
+    --color-desert-coral: #d99985;
+    --color-light-peachy-pink: #e8c6b5;
+    --color-pale-pink: #f4f6f5;
   }
 }

@@ -3,8 +3,30 @@
 .contactContainer {
   padding: 3rem;
   padding-top: 11rem;
+  background: linear-gradient(
+    45deg,
+    var(--color-pale-pink),
+    var(--color-light-peachy-pink),
+    var(--color-desert-coral),
+    var(--color-earthy-olive),
+    var(--color-dark-terracotta)
+  );
+  background-size: 200% 200%;
+  will-change: background-position;
+  animation: gradientShift 10s ease infinite;
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 .hireMeWidget,
 .makeFriends {
   display: flex;

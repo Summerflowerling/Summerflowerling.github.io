@@ -36,6 +36,11 @@ h3 {
   bottom: 0.1rem;
   z-index: -1;
   background: var(--highlight-color);
+  transition: transform 0.3s ease;
+}
+
+.aboutMeSectionTitle:hover > span:before {
+  transform: scaleX(1.1);
 }
 
 .bookList {
@@ -50,14 +55,21 @@ h3 {
   flex: 1 1 12.5rem;
   max-width: 15.625rem;
   box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bookList > *:hover {
+  transform: translateY(-5px) rotateY(5deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .bookSection {
-  transition: background-color 0.5s ease, transform 0.5s ease;
-  will-change: transform;
+  transition: background-color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+  will-change: transform, opacity, rotateY;
   padding: 2rem 1rem;
   border-radius: 1.25rem;
   margin: 3rem 0;
+  perspective: 1000px; /* Enable 3D transforms */
 }
 
 .bookSectionActive {
@@ -72,6 +84,19 @@ h3 {
 
 .carouselWrapper {
   transition: all 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.workExperienceItem {
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--widget-background-color1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.workExperienceItem:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 48rem) {
