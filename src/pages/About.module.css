@@ -1,85 +1,94 @@
 @import '../styles/variables.css';
 
+/* Main page container */
 .aboutMePage {
-  max-width: 56.25rem;
+  max-width: 75rem;
   margin: 0 auto;
-  padding-top: 11rem;
+  padding-top: calc(var(--header-height, 5rem) + 2rem);
+  min-height: 100vh;
 }
 
-.aboutMeIntro {
-  margin-top: 4rem;
-  padding: 0 5rem;
+/* Section 2: Timeline */
+.timelineSection {
+  padding: 4rem 2rem;
+  margin-bottom: 4rem;
+  perspective: 1000px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
   color: var(--text-color);
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
   font-family: 'Cormorant Infant', serif;
 }
 
-.aboutMeSectionTitle {
-  padding: 1.5rem 0;
-  margin: 2rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-}
-
-h3 {
-  color: var(--text-color);
-}
-
-.aboutMeSectionTitle > span {
-  position: relative;
-}
-
-.aboutMeSectionTitle > span:before {
-  position: absolute;
+.sectionTitle::after {
   content: '';
-  height: 0.2rem;
-  width: 100%;
-  bottom: 0.1rem;
-  z-index: -1;
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 0.25rem;
   background: var(--highlight-color);
-  transition: transform 0.3s ease;
+  border-radius: 0.125rem;
 }
 
-.aboutMeSectionTitle:hover > span:before {
-  transform: scaleX(1.1);
-}
-
-.bookList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  justify-content: center;
-}
-
-.bookList > * {
+.timelineContainer {
   position: relative;
-  flex: 1 1 12.5rem;
-  max-width: 15.625rem;
-  box-sizing: border-box;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
-.bookList > *:hover {
-  transform: translateY(-5px) rotateY(5deg);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.timelineLine {
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 0.25rem;
+  background: linear-gradient(
+    to bottom,
+    var(--color-dark-terracotta),
+    var(--color-desert-coral)
+  );
+  border-radius: 0.125rem;
+  transform-origin: top;
 }
 
+.timelineItem {
+  position: relative;
+  padding-left: 4rem;
+  margin-bottom: 3rem;
+  transform-style: preserve-3d;
+}
+
+.timelineMarker {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-dark-terracotta);
+  border-radius: 50%;
+  border: 0.25rem solid var(--background-color);
+  box-shadow: 0 0 0 0.125rem var(--color-dark-terracotta);
+  z-index: 2;
+}
+
+/* Section 3: Book Section (unchanged styling) */
 .bookSection {
   transition: background-color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
-  will-change: transform, opacity, rotateY;
-  padding: 2rem 1rem;
-  border-radius: 1.25rem;
-  margin: 3rem 0;
-  perspective: 1000px; /* Enable 3D transforms */
-}
-
-.bookSectionActive {
+  will-change: transform, opacity;
+  padding: 4rem 2rem;
+  border-radius: 2rem;
+  margin: 4rem 0;
+  perspective: 1000px;
   background-color: var(--widget-background-color2);
-  box-shadow: 0 0 1rem rgba(var(--widget-background-color1-rgb), 0.4);
-  backdrop-filter: blur(0.75rem) saturate(1.1);
-}
-
-.bookSectionInactive {
-  background-color: transparent;
+  box-shadow: 0 0 2rem rgba(var(--widget-background-color1-rgb), 0.4);
+  backdrop-filter: blur(1rem) saturate(1.1);
 }
 
 .carouselWrapper {
@@ -87,45 +96,106 @@ h3 {
   transform-style: preserve-3d;
 }
 
+/* Work Experience Item Styles */
 .workExperienceItem {
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 1rem;
+  padding: 2rem;
   background: var(--widget-background-color1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   will-change: transform, box-shadow;
+  border: 1px solid var(--color-desert-coral);
 }
 
 .workExperienceItem:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 48rem) {
-  .aboutMeIntro {
-    padding: 0 2.5rem;
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .timelineSection,
+  .bookSection,
+  .timelineItem,
+  .workExperienceItem {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
-@media (max-width: 25.9375rem) {
-  .aboutMeIntro {
-    margin-top: 1rem;
-    padding: 0 1.5rem;
-    font-size: 0.8rem;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aboutMePage {
+    padding-top: calc(var(--header-height, 5rem) + 1rem);
   }
 
-  .aboutMeSectionTitle {
-    padding: 0.5rem 0;
-    margin: 1rem;
+  .timelineSection {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
   }
 
-  .bookList {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9375rem;
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 
-  .bookList > * {
-    flex: 0 0 auto;
-    width: 90%;
-    max-width: 18.75rem;
+  .timelineLine {
+    left: 1rem;
   }
+
+  .timelineItem {
+    padding-left: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .timelineMarker {
+    left: 0.75rem;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .bookSection {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+    border-radius: 1rem;
+  }
+
+  .workExperienceItem {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .timelineItem {
+    padding-left: 2rem;
+  }
+
+  .workExperienceItem {
+    padding: 1rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .timelineLine {
+    background: var(--text-color);
+  }
+
+  .timelineMarker {
+    background: var(--text-color);
+    border-color: var(--background-color);
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.timelineItem:focus {
+  outline: 0.125rem solid var(--highlight-color);
+  outline-offset: 0.25rem;
+}
+
+.timelineItem:focus-visible {
+  outline: 0.125rem solid var(--highlight-color);
+  outline-offset: 0.25rem;
 }

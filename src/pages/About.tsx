@@ -1,3 +1,4 @@
+import { memo, useRef } from 'react';
 import {
   motion,
   AnimatePresence,
@@ -6,72 +7,72 @@ import {
   type Variants,
 } from 'framer-motion';
 import Header from '../components/Header';
+import StorySection from '../components/StorySection';
 import WorkExperienceItem from '../components/WorkExperienceItem';
 import BookCarousel from '../components/BookCarousel';
 import { workExperiences } from '../const/aboutMeData';
 import styles from './About.module.css';
-import { useRef } from 'react';
 
-// Utility to split text into words for staggered animation
-const splitText = (text: string) =>
-  text.split(' ').map((word, index) => (
-    <motion.span
-      key={index}
-      variants={{
-        hidden: { opacity: 0, y: 20, rotateX: -10 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          transition: { duration: 0.5, delay: index * 0.05, ease: 'easeOut' },
-        },
-      }}
-      style={{ display: 'inline-block', marginRight: '0.2em' }}
-      whileHover={{ rotateY: 5, transition: { duration: 0.2 } }}
-    >
-      {word}
-    </motion.span>
-  ));
+// Memoized WorkExperienceItem for performance
+const MemoizedWorkExperienceItem = memo(WorkExperienceItem);
 
 const About = () => {
-  // Refs for scroll-based animations
-  const bookRef = useRef<HTMLDivElement | null>(null);
-  const workRef = useRef<HTMLDivElement | null>(null);
+  // Refs for sections
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const bookRef = useRef<HTMLDivElement>(null);
 
-  // Scroll progress for book section
+  // Scroll progress for sections
+  const { scrollYProgress: timelineScrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start end', 'end start'],
+  });
+
   const { scrollYProgress: bookScrollYProgress } = useScroll({
     target: bookRef,
     offset: ['start end', 'end start'],
   });
-  const bookScale = useTransform(bookScrollYProgress, [0, 1], [0.9, 1.1]);
-  const bookOpacity = useTransform(bookScrollYProgress, [0, 1], [0.7, 1]);
-  const bookRotateY = useTransform(bookScrollYProgress, [0, 1], [-10, 10]);
 
-  // Scroll progress for work section
-  const { scrollYProgress: workScrollYProgress } = useScroll({
-    target: workRef,
-    offset: ['start end', 'end start'],
-  });
-  const workParallaxY = useTransform(workScrollYProgress, [0, 1], [20, -20]);
+  // Transform values for parallax and effects
+  const timelineScale = useTransform(
+    timelineScrollYProgress,
+    [0, 0.5, 1],
+    [0.9, 1, 1.1],
+  );
+  const timelineOpacity = useTransform(
+    timelineScrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 1, 1, 0.7],
+  );
 
-  // Intro variants for staggered text animation
-  const introVariants: Variants = {
-    hidden: { opacity: 0 },
+  const bookScale = useTransform(
+    bookScrollYProgress,
+    [0, 0.5, 1],
+    [0.9, 1, 1.1],
+  );
+  const bookOpacity = useTransform(
+    bookScrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0.8],
+  );
+
+  // Animation variants
+  const timelineVariants: Variants = {
+    hidden: { opacity: 0, scaleY: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: 0.2 },
+      scaleY: 1,
+      transition: { duration: 1, ease: 'easeOut' },
     },
   };
 
-  // Work experience variants with spring and 3D effects
-  const workVariants: Variants = {
-    hidden: { opacity: 0, y: 50, rotateX: -5 },
+  const timelineItemVariants: Variants = {
+    hidden: { opacity: 0, x: -50, rotateY: -15 },
     visible: (i: number) => ({
       opacity: 1,
-      y: 0,
-      rotateX: 0,
+      x: 0,
+      rotateY: 0,
       transition: {
-        delay: i * 0.3,
+        delay: i * 0.2,
         duration: 0.6,
         ease: 'easeOut',
         type: 'spring',
@@ -80,15 +81,14 @@ const About = () => {
     }),
   };
 
-  // Book carousel item variants
   const bookVariants: Variants = {
-    hidden: { opacity: 0, rotateY: -30, scale: 0.8 },
+    hidden: { opacity: 0, rotateY: -20, scale: 0.9 },
     visible: {
       opacity: 1,
       rotateY: 0,
       scale: 1,
       transition: {
-        duration: 0.7,
+        duration: 0.8,
         ease: 'easeOut',
         type: 'spring',
         stiffness: 60,
@@ -99,92 +99,104 @@ const About = () => {
   return (
     <>
       <Header />
-      <main className={styles.aboutMePage}>
-        {/* Intro Section with Staggered Text and Gradient */}
-        <motion.div
-          className={styles.aboutMeIntro}
-          initial='hidden'
-          animate='visible'
-          variants={introVariants}
-        >
-          <motion.h1 variants={introVariants}>
-            {splitText(
-              "I'm Yuling, a Frontend Engineer passionate about crafting responsive, user-friendly web and mobile interfaces.",
-            )}
-          </motion.h1>
-          <motion.h1 variants={introVariants}>
-            {splitText(
-              'With expertise in React, TypeScript, and Preact, I build seamless experiences and advocate for clean, testable code. In my free time, I love reading, painting, and volunteering to support mental health through Lifeline.',
-            )}
-          </motion.h1>
-        </motion.div>
+      <main
+        className={styles.aboutMePage}
+        role='main'
+        aria-label='About Yuling'
+      >
+        {/* Section 1: Interactive Story */}
+        <StorySection />
 
-        {/* Work Experience Section with Parallax and Card Effects */}
-        <div
-          ref={workRef}
-          style={{ perspective: '1000px', overflow: 'hidden' }}
+        {/* Section 2: Work Experience Timeline */}
+        <motion.section
+          ref={timelineRef}
+          className={styles.timelineSection}
+          style={{
+            scale: timelineScale,
+            opacity: timelineOpacity,
+          }}
+          aria-label='Work experience timeline'
         >
-          <motion.h1
-            className={styles.aboutMeSectionTitle}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+          <motion.h2
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <span>Work Experience</span>
-          </motion.h1>
-          <AnimatePresence>
-            {workExperiences.map((experience, index) => (
-              <motion.div
-                key={experience.id}
-                custom={index}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ once: true, amount: 0.3 }}
-                variants={workVariants}
-                style={{
-                  y: workParallaxY,
-                  transformStyle: 'preserve-3d',
-                  backfaceVisibility: 'hidden',
-                }}
-                whileHover={{
-                  scale: 1.03,
-                  boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
-                  transition: { duration: 0.2 },
-                }}
-              >
-                <WorkExperienceItem
-                  title={experience.title}
-                  description={experience.description}
-                  years={experience.years}
-                  colorClass={experience.colorClass}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+            Professional Timeline
+          </motion.h2>
 
-        {/* Book Carousel Section with 3D Scroll Effects */}
-        <motion.div
+          <div className={styles.timelineContainer}>
+            <motion.div
+              className={styles.timelineLine}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.2 }}
+              variants={timelineVariants}
+              aria-hidden='true'
+            />
+
+            <AnimatePresence>
+              {workExperiences.map((experience, index) => (
+                <motion.div
+                  key={experience.id}
+                  className={styles.timelineItem}
+                  custom={index}
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={timelineItemVariants}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: '0 0.5rem 1rem rgba(0,0,0,0.1)',
+                    transition: { duration: 0.2 },
+                  }}
+                  role='article'
+                  aria-label={`Work experience: ${experience.title}`}
+                  tabIndex={0}
+                >
+                  <div className={styles.timelineMarker} aria-hidden='true' />
+                  <MemoizedWorkExperienceItem
+                    title={experience.title}
+                    description={experience.description}
+                    years={experience.years}
+                    colorClass={experience.colorClass}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </motion.section>
+
+        {/* Section 3: Hobbies with BookCarousel */}
+        <motion.section
           ref={bookRef}
-          className={`${styles.bookSection} ${
-            bookScrollYProgress.get() > 0.3
-              ? styles.bookSectionActive
-              : styles.bookSectionInactive
-          }`}
+          className={styles.bookSection}
           style={{
             scale: bookScale,
             opacity: bookOpacity,
-            rotateY: bookRotateY,
           }}
           initial='hidden'
           whileInView='visible'
           variants={bookVariants}
           viewport={{ once: true, amount: 0.3 }}
+          aria-label='My hobbies and interests'
         >
+          <motion.h2
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Beyond Code: My Hobbies
+          </motion.h2>
+
           <div className={styles.carouselWrapper}>
             <BookCarousel />
           </div>
-        </motion.div>
+        </motion.section>
       </main>
     </>
   );
