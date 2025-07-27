@@ -46,7 +46,7 @@ const TypewriterText = ({
     };
 
     animateTyping();
-  }, [start, controls, speed, hasAnimated]);
+  }, [start, controls, speed, hasAnimated, onComplete]);
 
   return (
     <span>
@@ -58,7 +58,7 @@ const TypewriterText = ({
           animate={controls}
           className={styles.typewriterChar}
         >
-          {char === ' ' ? '\u00A0' : char}
+          {char}
         </motion.span>
       ))}
       {isTypingComplete && showCursor && (

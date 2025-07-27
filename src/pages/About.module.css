@@ -12,7 +12,6 @@
 .timelineSection {
   padding: 4rem 2rem;
   margin-bottom: 4rem;
-  perspective: 1000px;
 }
 
 .sectionTitle {
@@ -62,7 +61,6 @@
   position: relative;
   padding-left: 4rem;
   margin-bottom: 3rem;
-  transform-style: preserve-3d;
 }
 
 .timelineMarker {
@@ -78,22 +76,18 @@
   z-index: 2;
 }
 
-/* Section 3: Book Section (unchanged styling) */
+/* Section 3: Book Section (optimized for performance) */
 .bookSection {
-  transition: background-color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
-  will-change: transform, opacity;
+  transition: transform 0.3s ease;
+  will-change: transform;
   padding: 4rem 2rem;
   border-radius: 2rem;
   margin: 4rem 0;
-  perspective: 1000px;
-  background-color: var(--widget-background-color2);
   box-shadow: 0 0 2rem rgba(var(--widget-background-color1-rgb), 0.4);
-  backdrop-filter: blur(1rem) saturate(1.1);
 }
 
 .carouselWrapper {
-  transition: all 0.5s ease;
-  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
 }
 
 /* Work Experience Item Styles */
@@ -101,12 +95,13 @@
   border-radius: 1rem;
   padding: 2rem;
   background: var(--widget-background-color1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform, box-shadow;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
   border: 1px solid var(--color-desert-coral);
 }
 
 .workExperienceItem:hover {
+  transform: translateY(-2px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
