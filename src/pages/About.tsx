@@ -147,11 +147,6 @@ const About = () => {
                   whileInView='visible'
                   viewport={{ once: true, amount: 0.3 }}
                   variants={timelineItemVariants}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: '0 0.5rem 1rem rgba(0,0,0,0.1)',
-                    transition: { duration: 0.2 },
-                  }}
                   role='article'
                   aria-label={`Work experience: ${experience.title}`}
                   tabIndex={0}
@@ -170,6 +165,15 @@ const About = () => {
         </motion.section>
 
         {/* Section 3: Hobbies with BookCarousel */}
+        <motion.h2
+          className={styles.sectionTitle}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Currently Reading
+        </motion.h2>
         <motion.section
           ref={bookRef}
           className={styles.bookSection}

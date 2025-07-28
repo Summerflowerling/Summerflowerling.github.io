@@ -123,9 +123,6 @@ const BookCarousel = () => {
       variants={containerVariants}
       data-in-view='true'
     >
-      <motion.h1 className={styles.sectionTitle} variants={containerVariants}>
-        <span>Currently Reading</span>
-      </motion.h1>
       <div className={styles.carousel}>
         <div className={styles.carouselTrack}>
           {books.map((book, index) => (
