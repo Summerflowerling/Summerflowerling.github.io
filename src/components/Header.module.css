@@ -2,31 +2,97 @@
 
 .navBox {
   margin-top: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   height: 5rem;
   line-height: normal;
   position: fixed;
-  /* width: 50%; */
+  width: 50%;
+  max-width: 1200px;
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  background-color: rgba(var(--widget-background-color1-rgb), 0.6);
-  backdrop-filter: blur(10px);
+  /* Enhanced glass effect */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  visibility: visible;
 }
 
 .navBox.scrolled {
-  background-color: rgba(var(--widget-background-color1-rgb), 0.8);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  /* Completely hide the header container when scrolled */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-100%);
+  transition: all 0.3s ease;
+}
+
+.navBox.expanded {
+  /* Expanded state when clicked - restore original layout */
+  width: 50%;
+  max-width: 1200px;
+  height: 5rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  top: 1rem;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Fixed Burger Menu - appears when scrolled */
+.burgerMenuFixed {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  gap: 0.4rem;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.burgerMenuFixed:hover {
+  transform: scale(1.1);
+}
+
+/* Burger Menu Styles (Legacy - keeping for burger lines only) */
+.burgerLine {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+  border-radius: 1px;
 }
 
 .navList {
@@ -37,24 +103,51 @@
   margin-right: 3rem;
   padding: 0;
   gap: 2rem;
+  transition: all 0.3s ease;
 }
 
-.navList a {
+.navBox.expanded .navList {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-right: 3rem;
+  width: auto;
+}
+
+.navList a,
+.navList button {
   color: var(--text-color);
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   transition: all 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.navBox.expanded .navList a,
+.navBox.expanded .navList button {
+  padding: 0.5rem 1rem;
+  font-size: inherit;
+  text-align: left;
+  width: auto;
+  border-radius: 20px;
 }
 
 .navList a:hover,
-.navList a:focus {
+.navList a:focus,
+.navList button:hover,
+.navList button:focus {
   color: var(--accent-color);
   background-color: rgba(var(--accent-color-rgb), 0.1);
 }
 
-.currentPage a {
+.currentPage a,
+.currentPage button {
   color: var(--accent-color);
   background-color: rgba(var(--accent-color-rgb), 0.15);
   border: 1px solid rgba(var(--accent-color-rgb), 0.3);
@@ -65,37 +158,71 @@
   font-style: normal;
   font-size: 2.5rem;
   margin: 0;
-  margin-left: 3rem;
   color: var(--text-color);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.2rem;
+  transition: all 0.3s ease;
 }
 
 .logo span {
   display: inline-block;
-  text-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.3);
+  text-shadow: none;
 }
 
 @media (max-width: 48rem) {
   .navBox {
     width: 90%;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
     height: 4rem;
+  }
+
+  .navBox.scrolled {
+    right: 1rem;
+    top: 1.5rem;
+  }
+
+  .navBox.expanded {
+    width: 90%;
+    height: 4rem;
+    padding: 0.5rem 1rem;
   }
 
   .navList {
     gap: 1rem;
+    margin-right: 0;
   }
 
-  .navList a {
+  .navBox.expanded .navList {
+    gap: 1rem;
+    margin-right: 0;
+  }
+
+  .navList a,
+  .navList button {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .navBox.expanded .navList a,
+  .navBox.expanded .navList button {
     padding: 0.3rem 0.8rem;
     font-size: 0.9rem;
   }
 
   .logo {
-    font-size: 2rem;
-    margin-left: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .burgerMenuFixed {
+    top: 1.5rem;
+    right: 1rem;
+    padding: 0.25rem;
+  }
+
+  .burgerLine {
+    width: 20px;
+    height: 1.5px;
   }
 }

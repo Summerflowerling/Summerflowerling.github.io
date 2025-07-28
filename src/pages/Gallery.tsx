@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Header from '../components/Header';
 import styles from './Gallery.module.css';
 
 const paintings = [
@@ -79,7 +78,6 @@ const Gallery = () => {
 
   return (
     <>
-      <Header />
       <main className={styles.galleryContainer}>
         {!animationComplete && (
           <motion.div className={styles.combinedContainer}>
@@ -164,10 +162,6 @@ const Gallery = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <footer className={styles.footer}>
-        <h5>Created By Yuling 2020</h5>
-      </footer>
     </>
   );
 };

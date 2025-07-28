@@ -6,7 +6,6 @@ import {
   useTransform,
   type Variants,
 } from 'framer-motion';
-import Header from '../components/Header';
 import StorySection from '../components/StorySection';
 import WorkExperienceItem from '../components/WorkExperienceItem';
 import BookCarousel from '../components/BookCarousel';
@@ -174,7 +173,6 @@ const About = () => {
 
   return (
     <>
-      <Header />
       <main
         className={styles.aboutMePage}
         role='main'

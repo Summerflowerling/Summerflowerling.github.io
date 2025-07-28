@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
-import Header from '../components/Header';
 import styles from './Contact.module.css';
 
 const Contact = () => {
   return (
     <>
-      <Header />
       <main>
         <div className={styles.contactContainer}>
           <motion.div
