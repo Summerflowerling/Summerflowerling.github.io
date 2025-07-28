@@ -6,21 +6,6 @@ import styles from './Header.module.css';
 const Header = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  useEffect(() => {
-    const hasAnimationPlayed = sessionStorage.getItem('hasAnimationPlayed');
-
-    if (!hasAnimationPlayed) {
-      setIsFullScreen(true);
-      const timer = setTimeout(() => {
-        setIsFullScreen(false);
-        sessionStorage.setItem('hasAnimationPlayed', 'true');
-      }, 1500);
-
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,22 +22,14 @@ const Header = () => {
   }, [scrolled]);
 
   const logoContainerVariants: Variants = {
-    fullScreen: {
-      height: '100vh',
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'rgba(var(--widget-background-color1-rgb), 0.8)',
-      backdropFilter: 'blur(5px)',
-    },
     header: {
-      height: '11rem',
-      width: '100%',
+      height: '5rem',
+      width: '50%',
+      maxWidth: '1200px',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'row',
       alignItems: 'center',
+      justifyContent: 'space-between',
       transition: {
         duration: 0.6,
         ease: 'easeInOut',
@@ -84,7 +61,6 @@ const Header = () => {
   };
 
   const navListVariants = {
-    fullScreen: { opacity: 0 },
     header: {
       opacity: 1,
       transition: {
@@ -97,16 +73,14 @@ const Header = () => {
   return (
     <motion.div
       className={`${styles.navBox} ${scrolled ? styles.scrolled : ''}`}
-      animate={isFullScreen ? 'fullScreen' : 'header'}
+      animate='header'
       variants={logoContainerVariants}
-      initial={isFullScreen ? 'fullScreen' : 'header'}
+      initial='header'
     >
       <motion.h1
-        className={`${styles.logo} ${
-          isFullScreen ? styles.fullScreenLogo : ''
-        }`}
+        className={styles.logo}
         variants={logoVariants}
-        initial={isFullScreen ? 'hidden' : 'visible'}
+        initial='visible'
         animate='visible'
       >
         {'Yuling'.split('').map((char, index) => (
@@ -115,11 +89,12 @@ const Header = () => {
           </motion.span>
         ))}
       </motion.h1>
+
       <motion.ul
         className={styles.navList}
         variants={navListVariants}
-        initial={isFullScreen ? 'fullScreen' : 'header'}
-        animate={isFullScreen ? 'fullScreen' : 'header'}
+        initial='header'
+        animate='header'
       >
         <li
           className={location.pathname === '/about' ? styles.currentPage : ''}

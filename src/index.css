@@ -7,6 +7,7 @@ body {
   line-height: 1.6;
   font-family: 'Prata', serif;
   background-color: var(--background-color);
+  padding-top: 8rem; /* Space for fixed header */
 }
 
 @keyframes gradientShift {
