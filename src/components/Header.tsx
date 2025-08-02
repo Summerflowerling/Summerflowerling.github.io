@@ -1,12 +1,27 @@
 import { useState, useEffect } from 'react';
 import { motion, type Variants } from 'framer-motion';
+import { User, Palette, Mail } from 'lucide-react';
 import styles from './Header.module.css';
 
-// Define sections for smooth scroll navigation
 const SECTIONS = [
-  { id: 'about', name: 'About me' },
-  { id: 'gallery', name: 'Gallery' },
-  { id: 'contact', name: 'Contact' },
+  {
+    id: 'about',
+    name: 'About me',
+    icon: User,
+    ariaLabel: 'Navigate to About me section',
+  },
+  {
+    id: 'gallery',
+    name: 'Gallery',
+    icon: Palette,
+    ariaLabel: 'Navigate to Gallery section',
+  },
+  {
+    id: 'contact',
+    name: 'Contact',
+    icon: Mail,
+    ariaLabel: 'Navigate to Contact section',
+  },
 ];
 
 const Header = () => {
@@ -14,7 +29,6 @@ const Header = () => {
   const [expanded, setExpanded] = useState(false);
   const [currentSection, setCurrentSection] = useState('about');
 
-  // Function to scroll to a section
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -22,30 +36,24 @@ const Header = () => {
         behavior: 'smooth',
         block: 'start',
       });
-      setExpanded(false); // Close menu after navigation
+      setExpanded(false);
 
-      // After navigation, check if we should hide the header
-      // Use a timeout to wait for the scroll to complete
       setTimeout(() => {
         setScrolled(window.scrollY > 100);
       }, 500);
     }
   };
 
-  // Set up scroll listener to track scroll position
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
 
-      // If menu is expanded and user scrolls, collapse it
       if (expanded) {
         setExpanded(false);
       }
 
-      // Update scrolled state based on scroll position
-      // Only when menu is not expanded to avoid conflicts
       if (!expanded) {
-        setScrolled(scrollY > 100); // Hide header after scrolling 100px
+        setScrolled(scrollY > 100);
       }
     };
 
@@ -55,7 +63,6 @@ const Header = () => {
     };
   }, [expanded]);
 
-  // Set up IntersectionObserver to track section visibility for navigation highlighting
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -72,13 +79,11 @@ const Header = () => {
       },
     );
 
-    // Observe all sections
     SECTIONS.forEach((section) => {
       const element = document.getElementById(section.id);
       if (element) observer.observe(element);
     });
 
-    // Cleanup observer on component unmount
     return () => {
       SECTIONS.forEach((section) => {
         const element = document.getElementById(section.id);
@@ -87,27 +92,23 @@ const Header = () => {
     };
   }, []);
 
-  // Handle header click to collapse expanded menu
   const handleHeaderClick = () => {
     if (expanded) {
       setExpanded(false);
-      // After collapsing, check scroll position to determine if header should be hidden
       setScrolled(window.scrollY > 100);
     }
   };
 
-  // Handle burger menu click to expand
   const handleBurgerClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
 
-    // Prevent multiple clicks by checking if already expanded
     if (expanded) {
       return;
     }
 
     setExpanded(true);
-    setScrolled(false); // Show full header when expanding
+    setScrolled(false);
   };
 
   const logoContainerVariants: Variants = {
@@ -159,7 +160,6 @@ const Header = () => {
 
   return (
     <>
-      {/* Main Header - hidden when scrolled */}
       <motion.div
         className={`${styles.navBox} ${scrolled ? styles.scrolled : ''} ${
           expanded ? styles.expanded : ''
@@ -183,7 +183,6 @@ const Header = () => {
           ))}
         </motion.h1>
 
-        {/* Navigation - visible when not scrolled OR when expanded */}
         {(!scrolled || expanded) && (
           <motion.ul
             className={styles.navList}
@@ -192,25 +191,50 @@ const Header = () => {
             animate='header'
             onClick={(e) => e.stopPropagation()}
           >
-            {SECTIONS.map((section) => (
-              <li
-                key={section.id}
-                className={
-                  currentSection === section.id ? styles.currentPage : ''
-                }
-              >
-                <button onClick={() => scrollToSection(section.id)}>
-                  {section.name}
-                </button>
-              </li>
-            ))}
+            {SECTIONS.map((section) => {
+              const IconComponent = section.icon;
+              return (
+                <li
+                  key={section.id}
+                  className={
+                    currentSection === section.id ? styles.currentPage : ''
+                  }
+                >
+                  <button
+                    onClick={() => scrollToSection(section.id)}
+                    aria-label={section.ariaLabel}
+                    className={styles.navButton}
+                  >
+                    <span className={styles.navIcon}>
+                      <IconComponent size={20} strokeWidth={2} />
+                    </span>
+                    <span className={styles.navText}>{section.name}</span>
+                  </button>
+                </li>
+              );
+            })}
           </motion.ul>
         )}
       </motion.div>
 
-      {/* Separate Burger Menu - only visible when scrolled AND not expanded */}
       {scrolled && !expanded && (
-        <div className={styles.burgerMenuFixed} onClick={handleBurgerClick}>
+        <div
+          className={styles.burgerMenuFixed}
+          onClick={handleBurgerClick}
+          role='button'
+          aria-label='Open navigation menu'
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!expanded) {
+                setExpanded(true);
+                setScrolled(false);
+              }
+            }
+          }}
+        >
           <div className={styles.burgerLine}></div>
           <div className={styles.burgerLine}></div>
           <div className={styles.burgerLine}></div>

@@ -86,6 +86,11 @@
   transform: scale(1.1);
 }
 
+.burgerMenuFixed:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
 /* Burger Menu Styles (Legacy - keeping for burger lines only) */
 .burgerLine {
   width: 24px;
@@ -129,6 +134,28 @@
   font-family: inherit;
 }
 
+.navButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navIcon {
+  font-size: 1.2rem;
+  display: none; /* Hidden by default on desktop */
+  color: currentColor;
+}
+
+.navIcon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+.navText {
+  display: inline; /* Shown by default on desktop */
+}
+
 .navBox.expanded .navList a,
 .navBox.expanded .navList button {
   padding: 0.5rem 1rem;
@@ -136,6 +163,13 @@
   text-align: left;
   width: auto;
   border-radius: 20px;
+}
+
+.navBox.expanded .navButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
 }
 
 .navList a:hover,
@@ -171,6 +205,29 @@
   text-shadow: none;
 }
 
+/* Tablet/Medium screens (768px - 1024px) */
+@media (min-width: 48rem) and (max-width: 64rem) {
+  .navBox {
+    width: 70%;
+    max-width: 800px;
+  }
+
+  .navBox.expanded {
+    width: 70%;
+    max-width: 800px;
+  }
+
+  .navList {
+    gap: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .navBox.expanded .navList {
+    gap: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
 @media (max-width: 48rem) {
   .navBox {
     width: 90%;
@@ -201,14 +258,40 @@
 
   .navList a,
   .navList button {
-    padding: 0.3rem 0.8rem;
+    padding: 0.5rem;
     font-size: 0.9rem;
+    min-width: 44px; /* Minimum touch target size */
+    min-height: 44px; /* Minimum touch target size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .navBox.expanded .navList a,
   .navBox.expanded .navList button {
-    padding: 0.3rem 0.8rem;
+    padding: 0.5rem;
     font-size: 0.9rem;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Show only icons on mobile */
+  .navIcon {
+    display: inline !important;
+    font-size: 1.5rem; /* Larger icons for better touch targets */
+  }
+
+  .navIcon svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: currentColor;
+  }
+
+  .navText {
+    display: none !important; /* Hide text on mobile */
   }
 
   .logo {
