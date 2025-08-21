@@ -28,7 +28,6 @@ const StorySection = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
   };
 
-  // Split restOfStory into segments for highlighting
   const getHighlightedText = (text: string) => {
     let result = text;
     storyContent.keyPhrases.forEach((phrase) => {
@@ -61,13 +60,13 @@ const StorySection = () => {
         >
           <TypewriterText
             text={storyContent.firstSentence}
-            speed={80}
+            speed={50}
             start={storyInView}
             showCursor={phase === 'firstSentence'}
             onComplete={() => {
               setTimeout(() => {
                 setPhase('restOfStory');
-              }, 1000); // 1 second delay like before
+              }, 1000);
             }}
           />
         </motion.p>
@@ -87,13 +86,14 @@ const StorySection = () => {
                   __html: getHighlightedText(storyContent.restOfStory),
                 }}
               />
-              {phase === 'lastWords' ? (
+              {phase === 'lastWords' && (
                 <TypewriterText
                   text={storyContent.lastWords}
-                  speed={150}
+                  speed={80}
                   start={true}
                 />
-              ) : (
+              )}
+              {phase === 'restOfStory' && (
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -104,7 +104,7 @@ const StorySection = () => {
                     }, 500);
                   }}
                 >
-                  {storyContent.lastWords}
+                  {/* Empty span to trigger the delay */}
                 </motion.span>
               )}
             </p>
