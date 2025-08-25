@@ -14,6 +14,9 @@
   background-size: 200% 200%;
   will-change: background-position;
   animation: gradientShift 10s ease infinite;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Asymmetrical grid layout */
+  gap: 2rem; /* Space between cards */
 }
 
 @keyframes gradientShift {
@@ -27,12 +30,26 @@
     background-position: 0% 50%;
   }
 }
+
 .hireMeWidget,
 .makeFriends {
   display: flex;
   flex-direction: column;
   margin: 3rem;
-  margin-bottom: 10rem;
+  padding: 2rem; /* Add padding for card effect */
+  background: var(
+    --card-bg,
+    rgba(255, 255, 255, 0.1)
+  ); /* Semi-transparent background */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
+  border-radius: 1rem; /* Rounded corners */
+  transition: transform 0.3s ease; /* Smooth transform for hover */
+}
+
+.hireMeWidget:hover,
+.makeFriends:hover {
+  transform: scale(1.02) translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .hireMeWidget img {
@@ -42,7 +59,7 @@
   object-fit: cover;
   border-radius: 50%;
   filter: brightness(1.03);
-  margin: 6rem auto 0;
+  margin: 2rem auto 0; /* Reduced margin for better card fit */
 }
 
 .hireMeWidget p,
@@ -54,7 +71,6 @@
   line-height: 1.8;
   padding: 1.5rem 0;
   margin: 0;
-  border-radius: 1.25rem;
 }
 
 .hireMeTitle,
@@ -149,16 +165,17 @@
   text-decoration: none;
 }
 
-@media (max-width: 415px) {
+@media (max-width: 768px) {
   .contactContainer {
-    padding: 1rem;
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    padding: 1.5rem;
     padding-top: 11rem;
   }
 
   .hireMeWidget,
   .makeFriends {
-    margin: 3rem;
-    margin-bottom: 8rem;
+    margin: 1.5rem;
+    margin-bottom: 4rem;
   }
 
   .hireMeTitle,
@@ -168,5 +185,24 @@
 
   .makeFriendsImg img {
     max-width: 5rem;
+  }
+}
+
+@media (max-width: 415px) {
+  .contactContainer {
+    padding: 1rem;
+    padding-top: 11rem;
+  }
+
+  .hireMeWidget,
+  .makeFriends {
+    margin: 1rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+  }
+
+  .hireMeWidget img {
+    width: 10rem;
+    height: 10rem;
   }
 }

@@ -1,12 +1,14 @@
 export const storyContent = {
   firstSentence:
-    'A few years ago, I stood at a crossroads, unsure of my path forward...',
+    "From firing up kids' interest in code back in Taiwan to tinkering with health tech apps in Sydney...",
   restOfStory:
-    "Coding was just a spark of curiosity, and the tech industry felt out of reach. Undeterred, I dove in, turning doubt into determination and teaching myself to code through countless challenges. Now, I'm a software developer shaping projects in Taiwan and Australia. I've embraced the AI era's transformation, crafting innovative solutions with tools like React and TypeScript that push what's possible. Driven by a love for learning, I thrive on new challenges. I'm excited to create impactful solutions and see where this",
-  lastWords: '\n coding journey leads next.',
+    "I like blending innovation with a global twist. I kicked things off as a STEM instructor, turning tricky tech into kid-friendly lessons while building a few async apps on the side. That path took me deeper into engineering, where I crafted React Native tools that boosted user engagement and whipped up quick prototypes alongside international teams. These days, I'm using Preact and TypeScript to create AI-powered tools that foster warm, human-like patient interactions, boosting retention through thoughtful, personalized experiences. Fluent in English, Japanese, and Mandarin, with helpline volunteer work sharpening my empathy and problem-solving skills, I thrive on the human side of tech, like listening to needs and coding solutions that stick.",
+  lastWords:
+    '\n Eager to dive into more AI-enhanced tools and team up on bigger projects soon.',
   keyPhrases: [
-    'React and TypeScript',
-    'software developer shaping projects in Taiwan and Australia',
-    "AI era's transformation",
+    'Preact and TypeScript',
+    'AI-powered tools',
+    'English, Japanese, and Mandarin',
+    'React Native tools',
   ],
 };

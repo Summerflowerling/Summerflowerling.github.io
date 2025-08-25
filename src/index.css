@@ -9,7 +9,9 @@ body {
   background-color: var(--background-color);
   padding-top: 8rem; /* Space for fixed header */
 }
-
+html {
+  scroll-behavior: smooth;
+}
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;

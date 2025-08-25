@@ -2,25 +2,39 @@ import { motion } from 'framer-motion';
 import styles from './Contact.module.css';
 
 const Contact = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <>
-      <main>
-        <div className={styles.contactContainer}>
-          <motion.div
-            className={styles.hireMeWidget}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+      <motion.main
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -100 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className={styles.contactContainer}
+          variants={containerVariants}
+          initial='hidden'
+          animate='visible'
+        >
+          <motion.div className={styles.hireMeWidget} variants={cardVariants}>
             <h1 className={styles.hireMeTitle}>
-              <span>Hire Me</span>
+              <span>Work With Me</span>
             </h1>
-            <img src='/img/myselfFilter.JPG' />
+            <img src='/img/myselfFilter.JPG' alt='Profile' />
             <p>
-              Think I may be a good fit in your company? <br />I am open to
-              different job opportunities.
+              Think I’d be a great fit for your team or project? <br />
+              I’m open to exciting opportunities!
             </p>
-
             <button id='resume-btn' className={styles.resumeBtn}>
               <motion.a
                 href='mailto:yulinglin@protonmail.com'
@@ -35,21 +49,16 @@ const Contact = () => {
                 transition={{ duration: 0.3 }}
                 style={{ display: 'block', width: '100%', height: '100%' }}
               >
-                Email Me
+                Let’s Talk
               </motion.a>
             </button>
           </motion.div>
 
-          <motion.div
-            className={styles.makeFriends}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+          <motion.div className={styles.makeFriends} variants={cardVariants}>
             <h1 className={styles.makeFriendsTitle}>
-              <span>Let's connect</span>
+              <span>Let's Connect</span>
             </h1>
-            <p>Feel free to say hi</p>
+            <p>Want to chat or collaborate? Say hi on social!</p>
             <div className={styles.makeFriendsImg}>
               <motion.a
                 href='https://www.instagram.com/anotherhuman124/?hl=zh-tw'
@@ -57,7 +66,7 @@ const Contact = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <img src='/img/instagram.png' alt='instagram icon' />
+                <img src='/img/instagram.png' alt='Instagram icon' />
               </motion.a>
               <motion.a
                 href='https://www.linkedin.com/in/phoebe-lin-7b5108106/'
@@ -65,11 +74,11 @@ const Contact = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <img src='/img/linkedin.png' alt='linkedin icon' />
+                <img src='/img/linkedin.png' alt='LinkedIn icon' />
               </motion.a>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
         <footer>
           <div className={styles.footerIconInfo}>
             <p>
@@ -92,7 +101,7 @@ const Contact = () => {
             </p>
           </div>
         </footer>
-      </main>
+      </motion.main>
     </>
   );
 };

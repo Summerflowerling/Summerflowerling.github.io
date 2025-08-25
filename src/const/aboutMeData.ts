@@ -1,38 +1,37 @@
 export const workExperiences = [
   {
     id: 1,
-    title: 'Software Engineer - Auggie Operations Pty Ltd',
+    title: 'Software Engineer - Health Tech',
     description:
-      'Developed a patient management platform for local dental clinics, integrating with a leading dental PMS to streamline patient data workflows. Built dynamic Preact components with fuzzy search and advanced filtering for accessible patient record tables. Implemented type-safe REST API integrations using TypeScript and React Hooks, with role-based access controls for secure data views. Ensured reliability with Vitest unit tests (80%+ coverage) and configured CI/CD pipelines for an admin portal.',
+      'Developed AI-powered tools to enhance patient retention for dental clinics, crafting Preact and TypeScript interfaces for personalized outreach and seamless data workflows. Integrated secure APIs with fuzzy search and role-based access, boosting engagement with 80%+ test coverage.',
     years: 'Feb 2025 - Present',
     colorClass: 'aboutMeWidgetColor2',
   },
   {
     id: 2,
-    title: 'Software Engineer - MobileDrive (Foxconn Technology Group)',
+    title: 'Software Engineer - Mobile Health Apps',
     description:
-      'Developed a React Native mobile app, enhancing user engagement and responsiveness. Collaborated with Amazon and Stellantis teams to integrate SDKs and deliver features on tight timelines. Built a proof-of-concept app in one month, securing new business. Ensured code quality with NuLint and 80%+ test coverage.',
+      'Crafted React Native apps to lift user engagement, delivering quick prototypes with global teams that won new business. Kept code sharp with 80%+ test coverage.',
     years: 'Feb 2022 - Aug 2024',
     colorClass: 'aboutMeWidgetColor1',
   },
   {
     id: 3,
-    title: 'STEM Coding Instructor - First Code Academy',
+    title: 'STEM Coding Instructor',
     description:
-      'Taught coding to students, tailoring methods for diverse learning needs. Developed front-end and back-end skills using JavaScript and Express.js, building asynchronous web applications with multiple API integrations. Fostered a passion for technology in young learners.',
+      'Ignited kids’ passion for coding, tailoring lessons for diverse learners while building async web apps with JavaScript and Express.js.',
     years: 'Mar 2019 - Feb 2022',
     colorClass: 'aboutMeWidgetColor2',
   },
   {
     id: 4,
-    title: 'Lifeline Helpline Operator - Lifeline',
+    title: 'Helpline Volunteer',
     description:
-      'Volunteered as a helpline operator, connecting with callers to address core issues and provide support. Developed plans to make a positive impact, leveraging empathy and problem-solving skills honed over five years of service.',
+      'Listened and supported callers with empathy, shaping my knack for human-centered solutions over five years.',
     years: 'Feb 2017 - Feb 2022',
     colorClass: 'aboutMeWidgetColor1',
   },
 ];
-
 export const books = [
   {
     id: 1,
