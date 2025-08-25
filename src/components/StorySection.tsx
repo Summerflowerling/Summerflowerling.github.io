@@ -1,4 +1,3 @@
-// src/components/StorySection.tsx
 import { useRef, useState } from 'react';
 import { motion, useInView, type Variants } from 'framer-motion';
 import { storyContent } from '../const/storyData';
@@ -28,6 +27,7 @@ const StorySection = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
   };
 
+  // Text highlighting with regex for dynamic phrase emphasis
   const getHighlightedText = (text: string) => {
     let result = text;
     storyContent.keyPhrases.forEach((phrase) => {

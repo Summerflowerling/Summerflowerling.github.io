@@ -122,6 +122,37 @@
 }
 
 /* Responsive breakpoints */
+/* iPad Air and tablet responsive design */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .galleryContainer {
+    padding: 1.5rem 2rem;
+    padding-top: calc(var(--header-height, 5rem) + 1rem);
+    margin: 2rem auto;
+  }
+
+  .combinedContainer {
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .imgWidget {
+    width: 14rem;
+    height: 18rem;
+  }
+
+  .fullGallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 65rem;
+  }
+
+  .paintingTitle {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+}
+
 @media (max-width: 768px) {
   .galleryContainer {
     padding: 0.75rem;

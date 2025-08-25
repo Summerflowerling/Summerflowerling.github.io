@@ -1,7 +1,6 @@
 import { useReducer, useEffect } from 'react';
 
-// Story state management
-interface StoryState {
+export interface StoryState {
   currentParagraph: number;
   isTyping: boolean;
   typedText: string;
@@ -33,7 +32,6 @@ const storyReducer = (state: StoryState, action: StoryAction): StoryState => {
   }
 };
 
-// Typewriter hook for accessibility-friendly typing effect
 export const useTypewriter = (
   text: string,
   speed: number = 50,

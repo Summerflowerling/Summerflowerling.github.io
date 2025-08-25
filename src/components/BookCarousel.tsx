@@ -29,7 +29,6 @@ const BookCarousel = () => {
       event.stopPropagation();
     }
     if (isMobile) {
-      // Mobile behavior: toggle review overlay
       if (showReview?.id === book.id) {
         setShowReview(null);
       } else {

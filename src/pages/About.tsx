@@ -12,15 +12,12 @@ import BookCarousel from '../components/BookCarousel';
 import { workExperiences } from '../const/aboutMeData';
 import styles from './About.module.css';
 
-// Memoized WorkExperienceItem for performance
 const MemoizedWorkExperienceItem = memo(WorkExperienceItem);
 
 const About = () => {
-  // Refs for sections
   const timelineRef = useRef<HTMLDivElement>(null);
   const bookRef = useRef<HTMLDivElement>(null);
 
-  // Scroll progress for sections
   const { scrollYProgress: timelineScrollYProgress } = useScroll({
     target: timelineRef,
     offset: ['start center', 'end center'],
@@ -31,7 +28,6 @@ const About = () => {
     offset: ['start end', 'end start'],
   });
 
-  // Transform values for timeline line extension
   const timelineLineHeight = useTransform(
     timelineScrollYProgress,
     [0, 0.9],
@@ -44,7 +40,6 @@ const About = () => {
     [0, 1, 1, 0.8],
   );
 
-  // Create transforms for each timeline item
   const item0Opacity = useTransform(
     timelineScrollYProgress,
     [0, 0.15, 0.85, 1],
@@ -110,7 +105,7 @@ const About = () => {
     { opacity: item4Opacity, x: item4X, scale: item4Scale },
   ];
 
-  // Create year-specific transforms with slightly earlier fade in for staggered effect
+  // Year-specific transforms with staggered effect for smooth sequential animation
   const year0Opacity = useTransform(
     timelineScrollYProgress,
     [0, 0.1, 0.8, 0.95],

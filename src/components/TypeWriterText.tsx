@@ -25,12 +25,11 @@ const TypewriterText = ({
     if (!start) {
       setIsTypingComplete(false);
       setHasAnimated(false);
-      // Reset all characters to invisible when not started
       controls.set({ opacity: 0 });
       return;
     }
 
-    // Prevent animation if already animated for this session
+    // Prevent re-animation if already completed
     if (hasAnimated) {
       return;
     }

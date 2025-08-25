@@ -66,7 +66,6 @@ const Gallery = () => {
     setModal({ isOpen: false, imgSrc: '', imgTitle: '' });
   };
 
-  // Variants for initial sequential image animation
   const imageVariants = {
     hidden: { opacity: 0, x: -100, y: 50 },
     visible: (i: number) => ({

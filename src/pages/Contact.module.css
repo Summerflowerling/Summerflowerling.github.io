@@ -188,6 +188,51 @@
   }
 }
 
+/* iPad Air and tablet responsive design */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contactContainer {
+    grid-template-columns: 1fr; /* Stack cards for better proportions */
+    gap: 2rem;
+    padding: 2rem 3rem;
+    padding-top: 8rem;
+    max-width: 50rem; /* Limit width to prevent cards from being too wide */
+    margin: 0 auto;
+  }
+
+  .hireMeWidget,
+  .makeFriends {
+    margin: 1rem 0;
+    padding: 2rem;
+    max-width: 100%;
+  }
+
+  .hireMeWidget img {
+    width: 10rem;
+    height: 10rem;
+    margin: 1rem auto 0;
+  }
+
+  .hireMeWidget p,
+  .makeFriends p {
+    font-size: 1.3rem;
+    padding: 1rem 0;
+  }
+
+  .hireMeTitle,
+  .makeFriendsTitle {
+    font-size: 1.8rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .makeFriendsImg {
+    gap: 1.5rem;
+  }
+
+  .makeFriendsImg img {
+    max-width: 4.5rem;
+  }
+}
+
 @media (max-width: 415px) {
   .contactContainer {
     padding: 1rem;
