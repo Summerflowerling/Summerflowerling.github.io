@@ -107,8 +107,6 @@
   }
 }
 
-/* Responsive Design */
-/* Large tablets and small desktops */
 @media (max-width: 1024px) {
   .storySection {
     padding: 2rem 1.5rem;
@@ -232,7 +230,6 @@
   }
 }
 
-/* Very small screens */
 @media (max-width: 360px) {
   .storySection {
     padding: 0.75rem 0.5rem;

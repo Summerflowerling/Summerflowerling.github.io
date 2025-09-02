@@ -62,6 +62,7 @@ const HomePage = () => {
         variants={containerVariants}
         initial='hidden'
         animate='visible'
+        style={{ position: 'relative' }}
       >
         <motion.div
           id='about'

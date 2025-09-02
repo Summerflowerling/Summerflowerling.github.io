@@ -17,6 +17,7 @@
   --white: white;
   --black: black;
   --shadow-color: rgba(0, 0, 0, 0.3);
+  --header-height: 5rem;
 
   /* New colors from the image palette */
   --color-dark-terracotta: rgba(90, 58, 51, 0.8);
@@ -51,5 +52,11 @@
     --color-desert-coral: #d99985;
     --color-light-peachy-pink: #715648;
     --color-pale-pink: #7b7b7b;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --header-height: 4rem;
   }
 }
