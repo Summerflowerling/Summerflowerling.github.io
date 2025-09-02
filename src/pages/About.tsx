@@ -1,4 +1,5 @@
 import { memo, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import {
   motion,
   AnimatePresence,
@@ -15,6 +16,7 @@ import styles from './About.module.css';
 const MemoizedWorkExperienceItem = memo(WorkExperienceItem);
 
 const About = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const timelineRef = useRef<HTMLDivElement>(null);
   const bookRef = useRef<HTMLDivElement>(null);
 
@@ -166,6 +168,18 @@ const About = () => {
     },
   };
 
+  const mobileTimelineItemVariants: Variants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
     <>
       <main
@@ -211,11 +225,21 @@ const About = () => {
                   <motion.div
                     key={experience.id}
                     className={styles.timelineItem}
-                    style={{
-                      opacity: transforms.opacity,
-                      x: transforms.x,
-                      scale: transforms.scale,
-                    }}
+                    variants={isMobile ? mobileTimelineItemVariants : undefined}
+                    initial={isMobile ? 'hidden' : undefined}
+                    whileInView={isMobile ? 'visible' : undefined}
+                    viewport={
+                      isMobile ? { once: true, amount: 0.3 } : undefined
+                    }
+                    style={
+                      !isMobile
+                        ? {
+                            opacity: transforms.opacity,
+                            x: transforms.x,
+                            scale: transforms.scale,
+                          }
+                        : {}
+                    }
                     role='article'
                     aria-label={`Work experience: ${experience.title}`}
                     tabIndex={0}
