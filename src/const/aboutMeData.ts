@@ -3,7 +3,7 @@ export const workExperiences = [
     id: 1,
     title: 'Software Engineer - Health Tech',
     description:
-      'Developed AI-powered tools to enhance patient retention for dental clinics, crafting Preact and TypeScript interfaces for personalized outreach and seamless data workflows. Integrated secure APIs with fuzzy search and role-based access, boosting engagement with 80%+ test coverage.',
+      'Developed AI-powered tools to enhance patient retention for dental clinics, crafting React and TypeScript interfaces for personalized outreach and seamless data workflows. Integrated secure APIs with fuzzy search and role-based access, boosting engagement with 80%+ test coverage.',
     years: 'Feb 2025 - Present',
     colorClass: 'aboutMeWidgetColor2',
   },

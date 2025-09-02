@@ -12,7 +12,6 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  /* Enhanced glass effect */
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -62,7 +61,6 @@
   pointer-events: auto;
 }
 
-/* Fixed Burger Menu - appears when scrolled */
 .burgerMenuFixed {
   position: fixed;
   top: 2rem;
@@ -91,7 +89,6 @@
   outline-offset: 2px;
 }
 
-/* Burger Menu Styles (Legacy - keeping for burger lines only) */
 .burgerLine {
   width: 24px;
   height: 2px;
@@ -142,7 +139,7 @@
 
 .navIcon {
   font-size: 1.2rem;
-  display: none; /* Hidden by default on desktop */
+  display: none;
   color: currentColor;
 }
 
@@ -153,7 +150,7 @@
 }
 
 .navText {
-  display: inline; /* Shown by default on desktop */
+  display: inline;
 }
 
 .navBox.expanded .navList a,
@@ -260,8 +257,8 @@
   .navList button {
     padding: 0.5rem;
     font-size: 0.9rem;
-    min-width: 44px; /* Minimum touch target size */
-    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -278,10 +275,9 @@
     justify-content: center;
   }
 
-  /* Show only icons on mobile */
   .navIcon {
     display: inline !important;
-    font-size: 1.5rem; /* Larger icons for better touch targets */
+    font-size: 1.5rem;
   }
 
   .navIcon svg {
@@ -291,7 +287,7 @@
   }
 
   .navText {
-    display: none !important; /* Hide text on mobile */
+    display: none !important;
   }
 
   .logo {

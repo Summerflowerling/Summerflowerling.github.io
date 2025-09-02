@@ -30,7 +30,7 @@
 }
 
 .bookItem:hover::before {
-  top: 0; /* Slide up to fill container */
+  top: 0;
 }
 
 .bookItem:hover .bookTitle,
