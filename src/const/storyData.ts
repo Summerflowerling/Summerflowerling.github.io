@@ -6,7 +6,7 @@ export const storyContent = {
   lastWords:
     '\n Eager to dive into more AI-enhanced tools and team up on bigger projects soon.',
   keyPhrases: [
-    'Preact and TypeScript',
+    'React and TypeScript',
     'AI-powered tools',
     'English, Japanese, and Mandarin',
     'React Native tools',
