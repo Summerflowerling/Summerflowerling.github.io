@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion, useInView, type Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { storyContent } from '../const/storyData';
 import styles from './StorySection.module.css';
 import TypewriterText from './TypeWriterText';
@@ -10,8 +10,6 @@ const StorySection = () => {
   const [phase, setPhase] = useState<'firstSentence' | 'restOfStory'>(
     'firstSentence',
   );
-
-  const storyInView = useInView(storyRef, { amount: 0.3, once: true });
 
   const storyVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
@@ -47,7 +45,7 @@ const StorySection = () => {
       ref={storyRef}
       className={styles.storySection}
       initial='hidden'
-      animate={storyInView ? 'visible' : 'hidden'}
+      animate={'visible'}
       variants={storyVariants}
       aria-label='My professional journey'
     >
@@ -60,7 +58,7 @@ const StorySection = () => {
           <TypewriterText
             text={storyContent.firstSentence}
             speed={50}
-            start={storyInView}
+            start={true}
             showCursor={phase === 'firstSentence'}
             onComplete={() => {
               setTimeout(() => {
