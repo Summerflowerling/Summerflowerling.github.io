@@ -7,9 +7,9 @@ import TypewriterText from './TypeWriterText';
 const StorySection = () => {
   const storyRef = useRef<HTMLDivElement>(null);
   const restOfStoryRef = useRef<HTMLDivElement>(null);
-  const [phase, setPhase] = useState<
-    'firstSentence' | 'restOfStory' | 'lastWords'
-  >('firstSentence');
+  const [phase, setPhase] = useState<'firstSentence' | 'restOfStory'>(
+    'firstSentence',
+  );
 
   const storyInView = useInView(storyRef, { amount: 0.3, once: true });
 
@@ -27,7 +27,6 @@ const StorySection = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
   };
 
-  // Text highlighting with regex for dynamic phrase emphasis
   const getHighlightedText = (text: string) => {
     let result = text;
     storyContent.keyPhrases.forEach((phrase) => {
@@ -86,27 +85,14 @@ const StorySection = () => {
                   __html: getHighlightedText(storyContent.restOfStory),
                 }}
               />
-              {phase === 'lastWords' && (
-                <TypewriterText
-                  text={storyContent.lastWords}
-                  speed={80}
-                  start={true}
-                />
-              )}
-              {phase === 'restOfStory' && (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  onAnimationComplete={() => {
-                    setTimeout(() => {
-                      setPhase('lastWords');
-                    }, 500);
-                  }}
-                >
-                  {/* Empty span to trigger the delay */}
-                </motion.span>
-              )}
+              <span> {storyContent.lastWords}</span>
+              <motion.span
+                className={styles.cursor}
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 1 }}
+              >
+                |
+              </motion.span>
             </p>
           </motion.div>
         )}
