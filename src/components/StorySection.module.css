@@ -1,11 +1,12 @@
 @import '../styles/variables.css';
 
 .storySection {
-  min-height: 80vh;
+  min-height: 35rem;
+  margin: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   background: linear-gradient(
     135deg,
     var(--background-light),
@@ -107,11 +108,11 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .storySection {
-    padding: 2rem 1.5rem;
-    min-height: 70vh;
-    margin-top: 5rem;
+    padding: 1.5rem 1rem;
+    min-height: 50rem;
+    margin-top: -2rem;
   }
 
   .storyContainer {
@@ -128,14 +129,13 @@
   }
 }
 
-/* Tablets */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .storySection {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
     min-height: auto;
     align-items: flex-start;
-    padding-top: 3rem;
-    margin-top: 5rem;
+    padding-top: 2rem;
+    margin-top: -1rem;
   }
 
   .storyContainer {
@@ -177,10 +177,11 @@
 }
 
 /* Mobile phones */
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .storySection {
     padding: 1rem 0.75rem;
     padding-top: 2rem;
+    margin-top: 0;
   }
 
   .storyContainer {
@@ -230,7 +231,7 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 22.5rem) {
   .storySection {
     padding: 0.75rem 0.5rem;
     padding-top: 1.5rem;

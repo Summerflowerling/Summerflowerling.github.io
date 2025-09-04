@@ -4,8 +4,6 @@
   position: relative;
   max-width: 75rem;
   margin: 0 auto;
-  padding-top: calc(var(--header-height) + 2rem);
-  min-height: 100vh;
 }
 
 .timelineSection {
@@ -157,10 +155,9 @@
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .aboutMePage {
-    padding-top: calc(var(--header-height) + 1rem);
+    padding-top: calc(var(--header-height, 5rem) + 1rem);
   }
 
   .timelineSection {
@@ -231,7 +228,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .sectionTitle {
     font-size: 1.5rem;
   }

@@ -132,8 +132,8 @@
   background: var(--accent-color);
 }
 
-/* Mobile and tablet styles (<768px) */
-@media (max-width: 767px) {
+/* Mobile and tablet styles */
+@media (max-width: 47.9375rem) {
   .carouselContainer {
     max-width: 100%;
     margin: 0.75rem auto;
@@ -174,7 +174,7 @@
 }
 
 /* Original desktop and tablet styles */
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .carouselTrack {
     gap: 0.5rem;
     overflow-x: visible;

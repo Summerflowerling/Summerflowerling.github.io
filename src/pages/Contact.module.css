@@ -165,9 +165,9 @@
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .contactContainer {
-    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    grid-template-columns: 1fr;
     padding: 1.5rem;
     padding-top: 11rem;
   }
@@ -189,13 +189,13 @@
 }
 
 /* iPad Air and tablet responsive design */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 48.0625rem) and (max-width: 64rem) {
   .contactContainer {
-    grid-template-columns: 1fr; /* Stack cards for better proportions */
+    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 2rem 3rem;
     padding-top: 8rem;
-    max-width: 50rem; /* Limit width to prevent cards from being too wide */
+    max-width: 50rem;
     margin: 0 auto;
   }
 
@@ -233,7 +233,7 @@
   }
 }
 
-@media (max-width: 415px) {
+@media (max-width: 25.9375rem) {
   .contactContainer {
     padding: 1rem;
     padding-top: 11rem;
