@@ -157,6 +157,7 @@
 @media (max-width: 48rem) {
   .aboutMePage {
     padding-top: calc(var(--header-height, 5rem) + 1rem);
+    opacity: 1 !important;
   }
 
   .timelineSection {
