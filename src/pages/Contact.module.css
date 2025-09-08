@@ -15,8 +15,8 @@
   will-change: background-position;
   animation: gradientShift 10s ease infinite;
   display: grid;
-  grid-template-columns: 2fr 1fr; /* Asymmetrical grid layout */
-  gap: 2rem; /* Space between cards */
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
 }
 
 @keyframes gradientShift {
@@ -36,14 +36,11 @@
   display: flex;
   flex-direction: column;
   margin: 3rem;
-  padding: 2rem; /* Add padding for card effect */
-  background: var(
-    --card-bg,
-    rgba(255, 255, 255, 0.1)
-  ); /* Semi-transparent background */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
-  border-radius: 1rem; /* Rounded corners */
-  transition: transform 0.3s ease; /* Smooth transform for hover */
+  padding: 2rem;
+  background: var(--card-bg, rgba(255, 255, 255, 0.1));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
 }
 
 .hireMeWidget:hover,
@@ -59,7 +56,7 @@
   object-fit: cover;
   border-radius: 50%;
   filter: brightness(1.03);
-  margin: 2rem auto 0; /* Reduced margin for better card fit */
+  margin: 2rem auto 0;
 }
 
 .hireMeWidget p,
@@ -188,7 +185,6 @@
   }
 }
 
-/* iPad Air and tablet responsive design */
 @media (min-width: 48.0625rem) and (max-width: 64rem) {
   .contactContainer {
     grid-template-columns: 1fr;

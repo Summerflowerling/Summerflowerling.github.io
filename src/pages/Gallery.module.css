@@ -121,8 +121,6 @@
   color: var(--text-color);
 }
 
-/* Responsive breakpoints */
-/* iPad Air and tablet responsive design */
 @media (min-width: 48.0625rem) and (max-width: 64rem) {
   .galleryContainer {
     padding: 1.5rem 2rem;

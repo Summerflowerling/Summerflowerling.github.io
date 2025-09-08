@@ -93,7 +93,7 @@
   transform: translateX(-50%);
   width: 1rem;
   height: 1rem;
-  background: #ffc0cb; /* Light pink color */
+  background: #ffc0cb;
   border-radius: 50%;
   border: 0.25rem solid var(--background-color);
   box-shadow: 0 0 0 0.125rem #ffc0cb;
@@ -144,7 +144,6 @@
   border: 1px solid var(--color-desert-coral);
 }
 
-/* Accessibility: Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .timelineSection,
   .bookSection,
@@ -247,7 +246,6 @@
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .timelineLine {
     background: var(--text-color);
@@ -270,7 +268,6 @@
   }
 }
 
-/* Focus styles for keyboard navigation */
 .timelineItem:focus {
   outline: 0.125rem solid var(--highlight-color);
   outline-offset: 0.25rem;

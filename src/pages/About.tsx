@@ -98,7 +98,6 @@ const About = () => {
     [0.9, 1],
   );
 
-  // Array of transforms for easy access
   const itemTransforms = [
     { opacity: item0Opacity, x: item0X, scale: item0Scale },
     { opacity: item1Opacity, x: item1X, scale: item1Scale },
@@ -107,7 +106,6 @@ const About = () => {
     { opacity: item4Opacity, x: item4X, scale: item4Scale },
   ];
 
-  // Year-specific transforms with staggered effect for smooth sequential animation
   const year0Opacity = useTransform(
     timelineScrollYProgress,
     [0, 0.1, 0.8, 0.95],
@@ -187,10 +185,8 @@ const About = () => {
         role='main'
         aria-label='About Yuling'
       >
-        {/* Section 1: Interactive Story */}
         <StorySection />
 
-        {/* Section 2: Work Experience Timeline */}
         <section
           ref={timelineRef}
           className={styles.timelineSection}
@@ -269,7 +265,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Section 3: Hobbies with BookCarousel */}
         <motion.h2
           className={styles.sectionTitle}
           initial={{ opacity: 0, y: 30 }}

@@ -29,7 +29,6 @@ const TypewriterText = ({
       return;
     }
 
-    // Prevent re-animation if already completed
     if (hasAnimated) {
       return;
     }

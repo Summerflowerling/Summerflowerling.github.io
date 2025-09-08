@@ -176,7 +176,6 @@
   }
 }
 
-/* Mobile phones */
 @media (max-width: 30rem) {
   .storySection {
     padding: 1rem 0.75rem;
@@ -253,7 +252,6 @@
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .storySection {
     background: var(--background-color);
