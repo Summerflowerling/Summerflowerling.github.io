@@ -11,28 +11,6 @@
   margin-bottom: 4rem;
 }
 
-.sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--text-color);
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-  font-family: 'Cormorant Infant', serif;
-}
-
-.sectionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4rem;
-  height: 0.25rem;
-  background: var(--highlight-color);
-  border-radius: 0.125rem;
-}
-
 .timelineContainer {
   position: relative;
   max-width: 60rem;
@@ -161,7 +139,7 @@
   }
 
   .timelineSection {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1.25rem;
     margin-bottom: 2rem;
   }
 
@@ -176,7 +154,7 @@
   }
 
   .timelineItem {
-    padding-left: 3rem;
+    padding-left: 3.5rem;
     padding-right: 1rem;
     margin: 5rem 0;
     display: block;
@@ -201,7 +179,7 @@
   }
 
   .timelineMarker {
-    left: 1.25rem;
+    left: 1.75rem;
     top: 2rem;
     transform: none;
     width: 0.75rem;
@@ -211,7 +189,7 @@
   .timelineYear {
     left: 0;
     top: -2rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 0.5rem 0.75rem;
     text-align: left;
     transform: rotate(-1deg);
@@ -219,7 +197,7 @@
 
   .bookSection {
     padding: 2rem 1rem;
-    margin: 2rem 0;
+    margin: 2rem 0rem;
     border-radius: 1rem;
   }
 
@@ -234,12 +212,12 @@
   }
 
   .timelineItem {
-    padding-left: 2.5rem;
+    padding-left: 3rem;
     margin: 5rem 0;
   }
 
   .timelineMarker {
-    left: 1rem;
+    left: 1.75rem;
   }
 
   .workExperienceItem {

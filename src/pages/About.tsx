@@ -12,6 +12,7 @@ import WorkExperienceItem from '../components/WorkExperienceItem';
 import BookCarousel from '../components/BookCarousel';
 import { workExperiences } from '../const/aboutMeData';
 import styles from './About.module.css';
+import { SectionTitle } from '../components/SectionTitle/SectionTitle';
 
 const MemoizedWorkExperienceItem = memo(WorkExperienceItem);
 
@@ -35,7 +36,6 @@ const About = () => {
     [0, 0.9],
     ['0%', '100%'],
   );
-
   const timelineOpacity = useTransform(
     timelineScrollYProgress,
     [0, 0.2, 0.8, 1],
@@ -171,128 +171,93 @@ const About = () => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut',
-      },
+      transition: { duration: 0.5, ease: 'easeOut' },
     },
   };
 
   return (
-    <>
-      <main
-        className={styles.aboutMePage}
-        role='main'
-        aria-label='About Yuling'
+    <main className={styles.aboutMePage} role='main' aria-label='About Yuling'>
+      <StorySection />
+
+      <section
+        ref={timelineRef}
+        className={styles.timelineSection}
+        aria-label='Work experience timeline'
       >
-        <StorySection />
+        <SectionTitle>Professional Timeline</SectionTitle>
 
-        <section
-          ref={timelineRef}
-          className={styles.timelineSection}
-          aria-label='Work experience timeline'
-        >
-          <motion.h2
-            className={styles.sectionTitle}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Professional Timeline
-          </motion.h2>
+        <div className={styles.timelineContainer}>
+          <motion.div
+            className={styles.timelineLine}
+            style={{ height: timelineLineHeight, opacity: timelineOpacity }}
+            aria-hidden='true'
+          />
 
-          <div className={styles.timelineContainer}>
-            <motion.div
-              className={styles.timelineLine}
-              style={{
-                height: timelineLineHeight,
-                opacity: timelineOpacity,
-              }}
-              aria-hidden='true'
-            />
+          <AnimatePresence>
+            {workExperiences.map((experience, index) => {
+              const transforms = itemTransforms[index];
+              const yearOpacity = yearTransforms[index];
 
-            <AnimatePresence>
-              {workExperiences.map((experience, index) => {
-                const transforms = itemTransforms[index] || itemTransforms[0];
-                const yearOpacity = yearTransforms[index] || yearTransforms[0];
+              return (
+                <motion.div
+                  key={experience.id}
+                  className={styles.timelineItem}
+                  variants={isMobile ? mobileTimelineItemVariants : undefined}
+                  initial={isMobile ? 'hidden' : undefined}
+                  whileInView={isMobile ? 'visible' : undefined}
+                  viewport={isMobile ? { once: true, amount: 0.3 } : undefined}
+                  style={
+                    !isMobile
+                      ? {
+                          opacity: transforms.opacity,
+                          x: transforms.x,
+                          scale: transforms.scale,
+                        }
+                      : undefined
+                  }
+                  role='article'
+                  aria-label={`Work experience: ${experience.title}`}
+                  tabIndex={0}
+                >
+                  <div className={styles.timelineMarker} aria-hidden='true' />
+                  <div className={styles.timelineContent}>
+                    <motion.div
+                      className={`${styles.timelineYear} ${
+                        styles[`timelineYear${experience.colorClass.slice(-1)}`]
+                      }`}
+                      style={{ opacity: yearOpacity }}
+                    >
+                      {experience.years}
+                    </motion.div>
+                    <MemoizedWorkExperienceItem
+                      title={experience.title}
+                      description={experience.description}
+                      colorClass={experience.colorClass}
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+      </section>
 
-                return (
-                  <motion.div
-                    key={experience.id}
-                    className={styles.timelineItem}
-                    variants={isMobile ? mobileTimelineItemVariants : undefined}
-                    initial={isMobile ? 'hidden' : undefined}
-                    whileInView={isMobile ? 'visible' : undefined}
-                    viewport={
-                      isMobile ? { once: true, amount: 0.3 } : undefined
-                    }
-                    style={
-                      !isMobile
-                        ? {
-                            opacity: transforms.opacity,
-                            x: transforms.x,
-                            scale: transforms.scale,
-                          }
-                        : {}
-                    }
-                    role='article'
-                    aria-label={`Work experience: ${experience.title}`}
-                    tabIndex={0}
-                  >
-                    <div className={styles.timelineMarker} aria-hidden='true' />
-                    <div className={styles.timelineContent}>
-                      <motion.div
-                        className={`${styles.timelineYear} ${
-                          styles[
-                            `timelineYear${experience.colorClass.slice(-1)}`
-                          ]
-                        }`}
-                        style={{ opacity: yearOpacity }}
-                      >
-                        {experience.years}
-                      </motion.div>
-                      <MemoizedWorkExperienceItem
-                        title={experience.title}
-                        description={experience.description}
-                        colorClass={experience.colorClass}
-                      />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-        </section>
-
-        <motion.h2
-          className={styles.sectionTitle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          Currently Reading
-        </motion.h2>
-        <motion.section
-          ref={bookRef}
-          className={styles.bookSection}
-          style={{
-            scale: bookScale,
-            opacity: bookOpacity,
-          }}
-          initial='hidden'
-          whileInView='visible'
-          variants={bookVariants}
-          viewport={{ once: true, amount: 0.3 }}
-          aria-label='My hobbies and interests'
-        >
-          <div className={styles.carouselWrapper}>
-            <BookCarousel />
-          </div>
-        </motion.section>
-      </main>
-    </>
+      <SectionTitle>Currently Reading</SectionTitle>
+      <motion.section
+        ref={bookRef}
+        className={styles.bookSection}
+        style={{ scale: bookScale, opacity: bookOpacity }}
+        initial='hidden'
+        whileInView='visible'
+        variants={bookVariants}
+        viewport={{ once: true, amount: 0.3 }}
+        aria-label='My hobbies and interests'
+      >
+        <div className={styles.carouselWrapper}>
+          <BookCarousel />
+        </div>
+      </motion.section>
+    </main>
   );
 };
 
