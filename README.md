@@ -5,12 +5,12 @@ Check here: https://summerflowerling.github.io/
 
 ## Technologies Used
 
-- **React:**
-- **TypeScript:**
-- **Vite:**
-- **React Router DOM:**
-- **CSS Modules:**
-- **Google Fonts:**
+- **React**
+- **TypeScript**
+- **Vite**
+- **React Router DOM**
+- **CSS Modules**
+- **Google Fonts**
 
 ## Credits
 
