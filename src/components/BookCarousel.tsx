@@ -18,15 +18,18 @@ const BookCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showReview, setShowReview] = useState<Book | null>(null);
 
-  // Use (hover: hover) to detect devices with hover capability, not just screen width
   const canHover = useMediaQuery({ query: '(hover: hover)' });
 
   const handleBookTap = (
     index: number,
     book: Book,
-    event?: React.MouseEvent | React.TouchEvent,
+    event?: MouseEvent | TouchEvent | PointerEvent,
   ) => {
-    if (event) {
+    if (
+      event &&
+      'stopPropagation' in event &&
+      typeof event.stopPropagation === 'function'
+    ) {
       event.stopPropagation();
     }
     if (!canHover) {
@@ -48,6 +51,17 @@ const BookCarousel = () => {
 
   const handleBookLeave = () => {
     if (canHover) {
+      setShowReview(null);
+    }
+  };
+
+  const handleBookFocus = (index: number, book: Book) => {
+    setSelectedIndex(index);
+    setShowReview(book);
+  };
+
+  const handleBookBlur = () => {
+    if (!canHover) {
       setShowReview(null);
     }
   };
@@ -133,9 +147,14 @@ const BookCarousel = () => {
               initial='inactive'
               animate={selectedIndex === index ? 'active' : 'inactive'}
               whileHover={canHover ? 'hover' : undefined}
-              onTap={() => handleBookTap(index, book)}
+              onTap={(e) => handleBookTap(index, book, e)}
               onMouseEnter={() => handleBookHover(index, book)}
               onMouseLeave={handleBookLeave}
+              onFocus={() => handleBookFocus(index, book)}
+              onBlur={handleBookBlur}
+              tabIndex={0}
+              role='button'
+              aria-label={`Select ${book.title} for review`}
               data-active={selectedIndex === index}
             >
               <BookItem
