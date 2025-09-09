@@ -1,10 +1,12 @@
 import { motion, type Variants } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 import Header from '../components/Header';
 import About from './About';
 import Gallery from './Gallery';
 import Contact from './Contact';
 
 const HomePage = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 48rem)' });
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -67,9 +69,10 @@ const HomePage = () => {
         <motion.div
           id='about'
           variants={aboutVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          initial={isMobile ? 'visible' : 'hidden'}
+          animate={isMobile ? 'visible' : undefined}
+          whileInView={isMobile ? undefined : 'visible'}
+          viewport={{ once: true, amount: 0.1 }}
           style={{ position: 'relative' }}
         >
           <About />
@@ -78,9 +81,10 @@ const HomePage = () => {
         <motion.div
           id='gallery'
           variants={galleryVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          initial={isMobile ? 'visible' : 'hidden'}
+          animate={isMobile ? 'visible' : undefined}
+          whileInView={isMobile ? undefined : 'visible'}
+          viewport={{ once: true, amount: 0.1 }}
           style={{ position: 'relative' }}
         >
           <Gallery />
@@ -89,9 +93,10 @@ const HomePage = () => {
         <motion.div
           id='contact'
           variants={contactVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          initial={isMobile ? 'visible' : 'hidden'}
+          animate={isMobile ? 'visible' : undefined}
+          whileInView={isMobile ? undefined : 'visible'}
+          viewport={{ once: true, amount: 0.1 }}
           style={{ position: 'relative' }}
         >
           <Contact />
