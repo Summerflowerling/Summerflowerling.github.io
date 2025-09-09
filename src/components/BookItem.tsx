@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import styles from './BookItem.module.css';
@@ -14,7 +14,7 @@ interface BookItemProps {
 
 const ANIMATION_DURATION = 0.4;
 const ANIMATION_EASE = 'easeInOut';
-const MOBILE_MAX_WIDTH = 47.9375; // rem
+
 const IPAD_MINI_MIN_WIDTH = 24; // rem
 const IPAD_MINI_MAX_WIDTH = 29.9375; // rem
 const IPAD_AIR_MIN_WIDTH = 37.5; // rem
@@ -28,7 +28,7 @@ const BookItem: FC<BookItemProps> = ({
   isHovered,
   onAmazonClick,
 }) => {
-  const isMobile = useMediaQuery({ maxWidth: MOBILE_MAX_WIDTH });
+  const canHover = useMediaQuery({ query: '(hover: hover)' });
   const isIPadMini = useMediaQuery({
     minWidth: IPAD_MINI_MIN_WIDTH,
     maxWidth: IPAD_MINI_MAX_WIDTH,
@@ -68,6 +68,10 @@ const BookItem: FC<BookItemProps> = ({
     },
   };
 
+  useEffect(() => {
+    console.log(`isHovered changed: ${isHovered}`);
+  }, [isHovered]);
+
   return (
     <motion.div
       className={styles.bookItem}
@@ -92,7 +96,7 @@ const BookItem: FC<BookItemProps> = ({
       <motion.div
         className={styles.reviewContainer}
         initial='hidden'
-        animate={isHovered && !isMobile ? 'visible' : 'hidden'}
+        animate={canHover && isHovered ? 'visible' : 'hidden'} // Show review only on hover-capable devices when isHovered is true
         variants={reviewVariants}
         transition={{
           duration: ANIMATION_DURATION - 0.1,
@@ -100,16 +104,17 @@ const BookItem: FC<BookItemProps> = ({
         }}
       >
         <p className={styles.reviewText}>{review}</p>
-        {!isMobile && onAmazonClick && (
-          <button
-            className={styles.amazonButton}
-            onClick={onAmazonClick}
-            aria-label={`View ${title} on Amazon`}
-            role='button'
-          >
-            View on Amazon
-          </button>
-        )}
+        {canHover &&
+          onAmazonClick && ( // Show Amazon button only on hover-capable devices
+            <button
+              className={styles.amazonButton}
+              onClick={onAmazonClick}
+              aria-label={`View ${title} on Amazon`}
+              role='button'
+            >
+              View on Amazon
+            </button>
+          )}
       </motion.div>
     </motion.div>
   );

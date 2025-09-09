@@ -10,8 +10,8 @@
   padding: 1.2rem;
   background: var(--glass-background);
   border-radius: 1rem;
-  width: 15.625rem; /* 250px */
-  height: 21.875rem; /* 350px, aspect ratio 5:7 */
+  width: 15.625rem;
+  height: 21.875rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
   position: relative;
@@ -105,8 +105,15 @@
   background: var(--glass-background);
   z-index: 3;
   border-radius: 1rem;
+  -webkit-backdrop-filter: blur(0.75rem);
   backdrop-filter: blur(0.75rem);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@supports not (backdrop-filter: blur(0.75rem)) {
+  .reviewContainer {
+    background-color: var(--glass-background);
+  }
 }
 
 .reviewText {
@@ -145,7 +152,7 @@
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 
-/* Mobile styles (unchanged, ≤479px or 29.9375rem) */
+/* Mobile styles (≤479px or 29.9375rem) */
 @media (max-width: 29.9375rem) {
   .bookItem {
     width: 16rem;
@@ -226,7 +233,14 @@
     box-sizing: border-box;
     border-radius: 1rem;
     background: var(--glass-background);
+    -webkit-backdrop-filter: blur(0.75rem);
     backdrop-filter: blur(0.75rem);
+  }
+
+  @supports not (backdrop-filter: blur(0.75rem)) {
+    .bookItem {
+      background-color: var(--glass-background);
+    }
   }
 
   .bookImageContainer {

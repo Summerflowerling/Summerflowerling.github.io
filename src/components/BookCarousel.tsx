@@ -18,7 +18,8 @@ const BookCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showReview, setShowReview] = useState<Book | null>(null);
 
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  // Use (hover: hover) to detect devices with hover capability, not just screen width
+  const canHover = useMediaQuery({ query: '(hover: hover)' });
 
   const handleBookTap = (
     index: number,
@@ -28,7 +29,7 @@ const BookCarousel = () => {
     if (event) {
       event.stopPropagation();
     }
-    if (isMobile) {
+    if (!canHover) {
       if (showReview?.id === book.id) {
         setShowReview(null);
       } else {
@@ -39,14 +40,14 @@ const BookCarousel = () => {
   };
 
   const handleBookHover = (index: number, book: Book) => {
-    if (!isMobile) {
+    if (canHover) {
       setSelectedIndex(index);
       setShowReview(book);
     }
   };
 
   const handleBookLeave = () => {
-    if (!isMobile) {
+    if (canHover) {
       setShowReview(null);
     }
   };
@@ -60,15 +61,15 @@ const BookCarousel = () => {
   const containerVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: isMobile ? 30 : 50,
-      scale: isMobile ? 0.9 : 0.8,
+      y: canHover ? 50 : 30,
+      scale: canHover ? 0.8 : 0.9,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: isMobile ? 0.6 : 0.8,
+        duration: canHover ? 0.8 : 0.6,
         ease: 'easeOut',
         when: 'beforeChildren',
         staggerChildren: 0.1,
@@ -78,23 +79,23 @@ const BookCarousel = () => {
 
   const bookVariants: Variants = {
     active: {
-      scale: isMobile ? 1.1 : 1,
+      scale: canHover ? 1 : 1.1,
       opacity: 1,
-      y: isMobile ? -10 : 0,
+      y: canHover ? 0 : -10,
       zIndex: 10,
-      transition: { duration: isMobile ? 0.4 : 0.6, ease: 'easeOut' },
+      transition: { duration: canHover ? 0.6 : 0.4, ease: 'easeOut' },
     },
     inactive: {
-      scale: isMobile ? 0.85 : 0.8,
-      opacity: isMobile ? 0.5 : 0.6,
+      scale: canHover ? 0.8 : 0.85,
+      opacity: canHover ? 0.6 : 0.5,
       y: 0,
       zIndex: 1,
-      transition: { duration: isMobile ? 0.4 : 0.6, ease: 'easeOut' },
+      transition: { duration: canHover ? 0.6 : 0.4, ease: 'easeOut' },
     },
     hover: {
-      scale: isMobile ? 1.1 : 1.05,
+      scale: canHover ? 1.05 : 1.1,
       opacity: 1,
-      y: isMobile ? -10 : 0,
+      y: canHover ? 0 : -10,
       transition: { duration: 0.3, ease: 'easeOut' },
     },
   };
@@ -131,8 +132,8 @@ const BookCarousel = () => {
               variants={bookVariants}
               initial='inactive'
               animate={selectedIndex === index ? 'active' : 'inactive'}
-              whileHover={!isMobile ? 'hover' : undefined}
-              onTap={() => isMobile && handleBookTap(index, book)}
+              whileHover={canHover ? 'hover' : undefined}
+              onTap={() => handleBookTap(index, book)}
               onMouseEnter={() => handleBookHover(index, book)}
               onMouseLeave={handleBookLeave}
               data-active={selectedIndex === index}
@@ -142,11 +143,11 @@ const BookCarousel = () => {
                 subtitle={book.subtitle}
                 image={book.image}
                 review={book.review}
-                isHovered={showReview?.id === book.id && !isMobile}
+                isHovered={showReview?.id === book.id}
                 onAmazonClick={() => handleAmazonClick(book)}
               />
               <AnimatePresence>
-                {showReview?.id === book.id && isMobile && (
+                {showReview?.id === book.id && !canHover && (
                   <motion.div
                     className={styles.reviewOverlay}
                     variants={reviewVariants}

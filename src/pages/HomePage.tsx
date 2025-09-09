@@ -1,4 +1,5 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion, type Variants, useAnimation } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Header from '../components/Header';
 import About from './About';
@@ -7,6 +8,17 @@ import Contact from './Contact';
 
 const HomePage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 48rem)' });
+  const animationControls = useAnimation();
+  const aboutRef = useRef<HTMLDivElement>(
+    null,
+  ) as React.RefObject<HTMLDivElement>;
+  const galleryRef = useRef<HTMLDivElement>(
+    null,
+  ) as React.RefObject<HTMLDivElement>;
+  const contactRef = useRef<HTMLDivElement>(
+    null,
+  ) as React.RefObject<HTMLDivElement>;
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -57,6 +69,31 @@ const HomePage = () => {
     },
   };
 
+  // Custom scroll detection to trigger animations
+  useEffect(() => {
+    const handleScroll = () => {
+      const checkVisibility = (
+        ref: React.RefObject<HTMLDivElement>,
+        control: ReturnType<typeof useAnimation>,
+      ) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const isInView = rect.top >= 0 && rect.top < window.innerHeight * 0.5;
+          if (isInView && !isMobile) {
+            control.start('visible');
+          }
+        }
+      };
+
+      checkVisibility(aboutRef, animationControls);
+      checkVisibility(galleryRef, animationControls);
+      checkVisibility(contactRef, animationControls);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile, animationControls]);
+
   return (
     <>
       <Header />
@@ -67,36 +104,33 @@ const HomePage = () => {
         style={{ position: 'relative' }}
       >
         <motion.div
+          ref={aboutRef}
           id='about'
           variants={aboutVariants}
           initial={isMobile ? 'visible' : 'hidden'}
-          animate={isMobile ? 'visible' : undefined}
-          whileInView={isMobile ? undefined : 'visible'}
-          viewport={{ once: true, amount: 0.1 }}
+          animate={isMobile ? 'visible' : animationControls}
           style={{ position: 'relative' }}
         >
           <About />
         </motion.div>
 
         <motion.div
+          ref={galleryRef}
           id='gallery'
           variants={galleryVariants}
           initial={isMobile ? 'visible' : 'hidden'}
-          animate={isMobile ? 'visible' : undefined}
-          whileInView={isMobile ? undefined : 'visible'}
-          viewport={{ once: true, amount: 0.1 }}
+          animate={isMobile ? 'visible' : animationControls}
           style={{ position: 'relative' }}
         >
           <Gallery />
         </motion.div>
 
         <motion.div
+          ref={contactRef}
           id='contact'
           variants={contactVariants}
           initial={isMobile ? 'visible' : 'hidden'}
-          animate={isMobile ? 'visible' : undefined}
-          whileInView={isMobile ? undefined : 'visible'}
-          viewport={{ once: true, amount: 0.1 }}
+          animate={isMobile ? 'visible' : animationControls}
           style={{ position: 'relative' }}
         >
           <Contact />

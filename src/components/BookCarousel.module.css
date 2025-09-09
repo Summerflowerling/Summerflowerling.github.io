@@ -233,6 +233,33 @@
   }
 }
 
+/* Below 740px (46.25rem)  */
+@media (max-width: 46.25rem) and (min-width: 30rem) {
+  .carouselTrack {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0.75rem 0;
+    align-items: center;
+    scroll-snap-type: none;
+    overflow-x: visible;
+  }
+
+  .carouselItem {
+    width: 13rem;
+    height: 20rem;
+    max-width: calc(100vw - 4rem);
+    margin: 0 auto;
+  }
+
+  .carouselContainer {
+    padding: 1.5rem 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 0.9375rem;
+  }
+}
+
 /* Desktop styles (≥1024px or 64rem) */
 @media (min-width: 64rem) {
   .carouselContainer {
@@ -266,33 +293,6 @@
   .closeButton {
     padding: 0.625rem 1.25rem;
     font-size: 0.9rem;
-  }
-}
-
-/* Below 740px (46.25rem)  */
-@media (max-width: 46.25rem) and (min-width: 30rem) {
-  .carouselTrack {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 0.75rem 0;
-    align-items: center;
-    scroll-snap-type: none;
-    overflow-x: visible;
-  }
-
-  .carouselItem {
-    width: 13rem;
-    height: 20rem;
-    max-width: calc(100vw - 4rem);
-    margin: 0 auto;
-  }
-
-  .carouselContainer {
-    padding: 1.5rem 2rem;
-  }
-
-  .sectionTitle {
-    font-size: 0.9375rem;
   }
 }
 
