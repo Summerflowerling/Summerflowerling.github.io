@@ -12,6 +12,14 @@ interface BookItemProps {
   onAmazonClick?: () => void;
 }
 
+const ANIMATION_DURATION = 0.4;
+const ANIMATION_EASE = 'easeInOut';
+const MOBILE_MAX_WIDTH = 47.9375; // rem
+const IPAD_MINI_MIN_WIDTH = 24; // rem
+const IPAD_MINI_MAX_WIDTH = 29.9375; // rem
+const IPAD_AIR_MIN_WIDTH = 37.5; // rem
+const IPAD_AIR_MAX_WIDTH = 47.9375; // rem
+
 const BookItem: FC<BookItemProps> = ({
   title,
   subtitle,
@@ -20,51 +28,59 @@ const BookItem: FC<BookItemProps> = ({
   isHovered,
   onAmazonClick,
 }) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: MOBILE_MAX_WIDTH });
+  const isIPadMini = useMediaQuery({
+    minWidth: IPAD_MINI_MIN_WIDTH,
+    maxWidth: IPAD_MINI_MAX_WIDTH,
+  });
+  const isIPadAir = useMediaQuery({
+    minWidth: IPAD_AIR_MIN_WIDTH,
+    maxWidth: IPAD_AIR_MAX_WIDTH,
+  });
 
   const contentVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: -50,
-      transition: { duration: 0.4, ease: 'easeInOut' },
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: 'easeInOut' },
-    },
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const reviewVariants: Variants = {
+    hidden: { opacity: 0, y: '100%' },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const bookItemVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: '100%',
-      transition: { duration: 0.3, ease: 'easeInOut' },
+      scale: isIPadMini || isIPadAir ? 0.9 : 0.8, // Conservative scale for both iPad types
     },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: 'easeInOut' },
+      scale: 1,
+      transition: {
+        duration: ANIMATION_DURATION,
+        ease: ANIMATION_EASE,
+        scale: {
+          type: 'spring',
+          damping: isIPadMini || isIPadAir ? 28 : 20, // More damping for iPads
+          stiffness: isIPadMini || isIPadAir ? 180 : 300, // Less stiffness for iPads
+        },
+      },
     },
   };
 
   return (
     <motion.div
       className={styles.bookItem}
-      variants={{
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 0.6, ease: 'easeOut' },
-        },
-      }}
+      variants={bookItemVariants}
+      initial='hidden'
+      animate='visible'
     >
       <motion.div
         className={styles.contentContainer}
         initial='visible'
         animate='visible'
         variants={contentVariants}
+        transition={{ duration: ANIMATION_DURATION, ease: ANIMATION_EASE }}
       >
         <div className={styles.bookImageContainer}>
           <img src={image} alt={title} className={styles.bookImage} />
@@ -78,6 +94,10 @@ const BookItem: FC<BookItemProps> = ({
         initial='hidden'
         animate={isHovered && !isMobile ? 'visible' : 'hidden'}
         variants={reviewVariants}
+        transition={{
+          duration: ANIMATION_DURATION - 0.1,
+          ease: ANIMATION_EASE,
+        }}
       >
         <p className={styles.reviewText}>{review}</p>
         {!isMobile && onAmazonClick && (
@@ -85,6 +105,7 @@ const BookItem: FC<BookItemProps> = ({
             className={styles.amazonButton}
             onClick={onAmazonClick}
             aria-label={`View ${title} on Amazon`}
+            role='button'
           >
             View on Amazon
           </button>

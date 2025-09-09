@@ -86,7 +86,7 @@
   line-height: 1.4;
   box-shadow: 0.125rem 0.125rem 0.375rem var(--shadow-color),
     -0.125rem -0.125rem 0.375rem rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(0.5rem); /* Using rem unit */
+  backdrop-filter: blur(0.5rem);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -132,27 +132,59 @@
   background: var(--accent-color);
 }
 
-/* Mobile and tablet styles */
-@media (max-width: 47.9375rem) {
+/* Mobile styles (≤479px or 29.9375rem) */
+@media (max-width: 29.9375rem) {
   .carouselContainer {
     max-width: 100%;
-    margin: 0.75rem auto;
-    padding: 0.75rem;
+    margin: 0.5rem auto;
+    padding: 1rem 2rem;
+    overflow-x: hidden;
   }
 
   .carouselTrack {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 0.75rem;
+    flex-direction: column;
     padding: 0.5rem 0;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .carouselItem {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    max-width: calc(100vw - 8rem);
+  }
+
+  .sectionTitle {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Tablet styles (480px–1023px, covering iPad Mini, iPad, and similar) */
+@media (max-width: 63.9375rem) and (min-width: 30rem) {
+  .carouselContainer {
+    max-width: 100%;
+    margin: 1rem auto;
+    padding: 1.5rem 2rem;
+    overflow-x: hidden;
+  }
+
+  .carouselTrack {
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    align-items: center;
     -webkit-overflow-scrolling: touch;
   }
 
   .carouselItem {
-    width: 16rem;
+    width: 14rem;
     height: 22rem;
     aspect-ratio: 8 / 11;
     scroll-snap-align: center;
+    max-width: calc(100vw - 4rem);
+    margin: 0 0.5rem;
   }
 
   .sectionTitle {
@@ -171,22 +203,7 @@
   .carouselTrack::-webkit-scrollbar-track {
     background: transparent;
   }
-}
 
-/* Original desktop and tablet styles */
-@media (min-width: 48rem) {
-  .carouselTrack {
-    gap: 0.5rem;
-    overflow-x: visible;
-    scroll-snap-type: none;
-  }
-
-  .carouselItem {
-    width: auto;
-    height: auto;
-  }
-
-  /* Enable review overlay for desktop too */
   .reviewOverlay {
     font-size: 0.9rem;
     padding: 1.25rem;
@@ -200,76 +217,86 @@
   }
 }
 
-@media (max-width: 63.9375rem) and (min-width: 48rem) {
+/* Specific tweak for iPad Mini portrait (~768px or 48rem) */
+@media (max-width: 48rem) and (min-width: 30rem) {
+  .carouselContainer {
+    padding: 1.5rem 2rem;
+  }
+
+  .carouselTrack {
+    gap: 1rem;
+  }
+
+  .carouselItem {
+    width: 13rem;
+    height: 20rem;
+  }
+}
+
+/* Desktop styles (≥1024px or 64rem) */
+@media (min-width: 64rem) {
   .carouselContainer {
     max-width: 75rem;
     padding: 1rem;
   }
 
   .carouselTrack {
+    overflow-x: visible;
+    scroll-snap-type: none;
     gap: 0.375rem;
+  }
+
+  .carouselItem {
+    width: auto;
+    height: auto;
+    margin: 0 1rem;
   }
 
   .sectionTitle {
     font-size: 1.125rem;
   }
-}
 
-@media (max-width: 47.9375rem) and (min-width: 37.5rem) {
-  .carouselContainer {
-    max-width: 75rem;
-    margin: 1rem auto;
-    padding: 0.875rem;
+  .reviewOverlay {
+    font-size: 0.9rem;
+    padding: 1.25rem;
+    backdrop-filter: blur(0.625rem);
   }
 
-  .carouselTrack {
-    flex-direction: column;
-    padding: 0.5rem 0;
-    gap: 1rem;
-  }
-
-  .sectionTitle {
-    font-size: 1rem;
+  .amazonButton,
+  .closeButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 37.4375rem) and (min-width: 30rem) {
-  .carouselContainer {
-    max-width: 100%;
-    margin: 0.75rem auto;
-    padding: 0.75rem;
-  }
-
+/* Below 740px (46.25rem)  */
+@media (max-width: 46.25rem) and (min-width: 30rem) {
   .carouselTrack {
     flex-direction: column;
-    padding: 0.375rem 0;
-    gap: 0.75rem;
-  }
-
-  .sectionTitle {
-    font-size: 0.875rem;
-  }
-}
-
-@media (max-width: 29.9375rem) {
-  .carouselContainer {
-    max-width: 100%;
-    margin: 0.5rem auto;
-    padding: 0.5rem;
-  }
-
-  .carouselTrack {
-    flex-direction: column;
-    padding: 0.25rem 0;
-    gap: 0.5rem;
+    gap: 1.5rem;
+    padding: 0.75rem 0;
     align-items: center;
+    scroll-snap-type: none;
+    overflow-x: visible;
+  }
+
+  .carouselItem {
+    width: 13rem;
+    height: 20rem;
+    max-width: calc(100vw - 4rem);
+    margin: 0 auto;
+  }
+
+  .carouselContainer {
+    padding: 1.5rem 2rem;
   }
 
   .sectionTitle {
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
   }
 }
 
+/* Large desktop styles */
 @media (min-width: 90rem) {
   .carouselContainer {
     max-width: calc(75rem + 20rem);
