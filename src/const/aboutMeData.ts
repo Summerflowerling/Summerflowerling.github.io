@@ -9,9 +9,9 @@ export const workExperiences = [
   },
   {
     id: 2,
-    title: 'Software Engineer - Mobile Health Apps',
+    title: 'Software Engineer - Mobile App and Digital Cockpit Systems',
     description:
-      'Crafted React Native apps to lift user engagement, delivering quick prototypes with global teams that won new business. Kept code sharp with 80%+ test coverage.',
+      'Crafted React Native app to lift user engagement, delivering quick prototypes with global teams that won new business. Kept code sharp with 80%+ test coverage.',
     years: 'Feb 2022 - Aug 2024',
     colorClass: 'aboutMeWidgetColor1',
   },
