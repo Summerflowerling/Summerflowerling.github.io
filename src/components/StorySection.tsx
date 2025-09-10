@@ -12,7 +12,7 @@ const StorySection = () => {
   );
 
   const storyVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 0 },
     visible: {
       opacity: 1,
       y: 0,

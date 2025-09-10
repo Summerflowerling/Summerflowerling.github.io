@@ -8,16 +8,20 @@ import Contact from './Contact';
 
 const HomePage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 48rem)' });
-  const animationControls = useAnimation();
-  const aboutRef = useRef<HTMLDivElement>(
-    null,
-  ) as React.RefObject<HTMLDivElement>;
-  const galleryRef = useRef<HTMLDivElement>(
-    null,
-  ) as React.RefObject<HTMLDivElement>;
-  const contactRef = useRef<HTMLDivElement>(
-    null,
-  ) as React.RefObject<HTMLDivElement>;
+  const aboutAnimationControls = useAnimation();
+  const galleryAnimationControls = useAnimation();
+  const contactAnimationControls = useAnimation();
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const VIEWPORT_THRESHOLD = 0.5;
+
+  useEffect(() => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      aboutAnimationControls.start('visible');
+    }
+  }, [aboutAnimationControls]);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -31,7 +35,7 @@ const HomePage = () => {
   };
 
   const aboutVariants: Variants = {
-    hidden: { opacity: 0, x: -100, rotateY: -15 },
+    hidden: { opacity: 0, x: -100, rotateY: 0 },
     visible: {
       opacity: 1,
       x: 0,
@@ -69,30 +73,29 @@ const HomePage = () => {
     },
   };
 
-  // Custom scroll detection to trigger animations
   useEffect(() => {
-    const handleScroll = () => {
-      const checkVisibility = (
-        ref: React.RefObject<HTMLDivElement>,
-        control: ReturnType<typeof useAnimation>,
-      ) => {
-        if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          const isInView = rect.top >= 0 && rect.top < window.innerHeight * 0.5;
-          if (isInView && !isMobile) {
-            control.start('visible');
-          }
+    const checkVisibility = (
+      ref: React.RefObject<HTMLDivElement | null>,
+      control: ReturnType<typeof useAnimation>,
+    ) => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const isInView =
+          rect.top >= 0 && rect.top < window.innerHeight * VIEWPORT_THRESHOLD;
+        if (isInView && !isMobile) {
+          control.start('visible');
         }
-      };
+      }
+    };
 
-      checkVisibility(aboutRef, animationControls);
-      checkVisibility(galleryRef, animationControls);
-      checkVisibility(contactRef, animationControls);
+    const handleScroll = () => {
+      checkVisibility(galleryRef, galleryAnimationControls);
+      checkVisibility(contactRef, contactAnimationControls);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile, animationControls]);
+  }, [isMobile, galleryAnimationControls, contactAnimationControls]);
 
   return (
     <>
@@ -108,7 +111,7 @@ const HomePage = () => {
           id='about'
           variants={aboutVariants}
           initial={isMobile ? 'visible' : 'hidden'}
-          animate={isMobile ? 'visible' : animationControls}
+          animate={isMobile ? 'visible' : aboutAnimationControls}
           style={{ position: 'relative' }}
         >
           <About />
@@ -119,7 +122,7 @@ const HomePage = () => {
           id='gallery'
           variants={galleryVariants}
           initial={isMobile ? 'visible' : 'hidden'}
-          animate={isMobile ? 'visible' : animationControls}
+          animate={isMobile ? 'visible' : galleryAnimationControls}
           style={{ position: 'relative' }}
         >
           <Gallery />
@@ -130,7 +133,7 @@ const HomePage = () => {
           id='contact'
           variants={contactVariants}
           initial={isMobile ? 'visible' : 'hidden'}
-          animate={isMobile ? 'visible' : animationControls}
+          animate={isMobile ? 'visible' : contactAnimationControls}
           style={{ position: 'relative' }}
         >
           <Contact />
