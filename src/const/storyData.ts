@@ -11,6 +11,6 @@ export const storyContent = {
     'English',
     'Mandarin',
     'Japanese',
-    'React Native tools',
+    'React Native',
   ],
 };
