@@ -15,10 +15,11 @@ interface BookItemProps {
 const ANIMATION_DURATION = 0.4;
 const ANIMATION_EASE = 'easeInOut';
 
-const IPAD_MINI_MIN_WIDTH = 24; // rem
-const IPAD_MINI_MAX_WIDTH = 29.9375; // rem
-const IPAD_AIR_MIN_WIDTH = 37.5; // rem
-const IPAD_AIR_MAX_WIDTH = 47.9375; // rem
+// rem
+const IPAD_MINI_MIN_WIDTH = 24;
+const IPAD_MINI_MAX_WIDTH = 29.9375;
+const IPAD_AIR_MIN_WIDTH = 37.5;
+const IPAD_AIR_MAX_WIDTH = 47.9375;
 
 const BookItem: FC<BookItemProps> = ({
   title,
@@ -51,7 +52,7 @@ const BookItem: FC<BookItemProps> = ({
   const bookItemVariants: Variants = {
     hidden: {
       opacity: 0,
-      scale: isIPadMini || isIPadAir ? 0.9 : 0.8, // Conservative scale for both iPad types
+      scale: isIPadMini || isIPadAir ? 0.9 : 0.8,
     },
     visible: {
       opacity: 1,
@@ -61,8 +62,8 @@ const BookItem: FC<BookItemProps> = ({
         ease: ANIMATION_EASE,
         scale: {
           type: 'spring',
-          damping: isIPadMini || isIPadAir ? 28 : 20, // More damping for iPads
-          stiffness: isIPadMini || isIPadAir ? 180 : 300, // Less stiffness for iPads
+          damping: isIPadMini || isIPadAir ? 28 : 20,
+          stiffness: isIPadMini || isIPadAir ? 180 : 300,
         },
       },
     },
@@ -96,7 +97,7 @@ const BookItem: FC<BookItemProps> = ({
       <motion.div
         className={styles.reviewContainer}
         initial='hidden'
-        animate={canHover && isHovered ? 'visible' : 'hidden'} // Show review only on hover-capable devices when isHovered is true
+        animate={canHover && isHovered ? 'visible' : 'hidden'}
         variants={reviewVariants}
         transition={{
           duration: ANIMATION_DURATION - 0.1,
@@ -104,17 +105,16 @@ const BookItem: FC<BookItemProps> = ({
         }}
       >
         <p className={styles.reviewText}>{review}</p>
-        {canHover &&
-          onAmazonClick && ( // Show Amazon button only on hover-capable devices
-            <button
-              className={styles.amazonButton}
-              onClick={onAmazonClick}
-              aria-label={`View ${title} on Amazon`}
-              role='button'
-            >
-              View on Amazon
-            </button>
-          )}
+        {canHover && onAmazonClick && (
+          <button
+            className={styles.amazonButton}
+            onClick={onAmazonClick}
+            aria-label={`View ${title} on Amazon`}
+            role='button'
+          >
+            View on Amazon
+          </button>
+        )}
       </motion.div>
     </motion.div>
   );

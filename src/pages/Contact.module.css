@@ -66,8 +66,8 @@
   color: var(--text-color);
   text-align: center;
   line-height: 1.8;
-  padding: 1.5rem 0;
-  margin: 0;
+  padding: 0.5rem 0;
+  margin-bottom: 0;
 }
 
 .hireMeTitle,
@@ -95,6 +95,20 @@
   height: 0.2rem;
   background: var(--highlight-color);
   z-index: -1;
+}
+
+.hireMeWidget .hireMeDescription:first-of-type {
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+}
+
+.hireMeWidget .hireMeDescription {
+  margin: 0rem;
+  padding: 0;
+}
+
+.hireMeWidget .hireMeDescription:last-of-type {
+  margin-bottom: 1.5rem;
 }
 
 .resumeBtn {

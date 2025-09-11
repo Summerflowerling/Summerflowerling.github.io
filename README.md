@@ -4,23 +4,24 @@ This is my personal portfolio and art gallery — a place where I showcase both 
 
 👉 [Check it out here](https://summerflowerling.github.io/)
 
-## 🛠 Tech Stack
+## Tech Stack
+
 - React
 - TypeScript
 - React Router DOM
 - CSS Modules
 - Google Fonts
 
-## 🎨 My Design Process
+## My Design Process
 
-I didn’t just throw code together — I wanted the site to feel like *me*. Here’s how I approached it:
+I didn’t just throw code together — I wanted the site to feel like _me_. Here’s how I approached it:
 
 1. **Inspiration Hunt**: Started with Pinterest for layout ideas and color palettes that felt right.
 2. **Trend Check**: Googled 2025 web design trends and explored a bunch of aesthetic websites. Glassmorphism and scroll-triggered animations instantly caught my attention — clean, modern, and fun to implement.
 3. **Build + Refine**: Picked the elements I liked and made them work together, always balancing looks with usability.
 4. **Dark Mode**: I also added dark mode — because sometimes our eyes deserve a coffee break too.
 
-## 🚧 What’s Next
+## What’s Next
 
 This project is still evolving. Here’s what I’m planning:
 

@@ -1,17 +1,14 @@
 import { motion } from 'framer-motion';
+import {
+  containerVariants,
+  cardVariants,
+  buttonVariants,
+} from '../components/Contact/contactAnimation';
 import styles from './Contact.module.css';
+import contactData from '../const/contactMeData';
+import SocialLink from '../components/Contact/SocialLink/SocialLink';
 
 const Contact = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
   return (
     <>
       <motion.main
@@ -30,73 +27,67 @@ const Contact = () => {
             <h1 className={styles.hireMeTitle}>
               <span>Work With Me</span>
             </h1>
-            <img src='/img/myselfFilter.JPG' alt='Profile' />
-            <p>
-              Think I’d be a great fit for your team or project? <br />
-              I’m open to exciting opportunities!
-            </p>
+            <img
+              src={contactData.hireMe.image}
+              alt={contactData.hireMe.imageAlt}
+            />
+            {contactData.hireMe.description.map((line, index) => (
+              <p className={styles.hireMeDescription} key={index}>
+                {line}
+              </p>
+            ))}
             <button id='resume-btn' className={styles.resumeBtn}>
               <motion.a
-                href='mailto:yulinglin@protonmail.com'
+                href={contactData.hireMe.button.href}
                 target='_blank'
-                whileHover={{
-                  scale: 1.05,
-                  background:
-                    'linear-gradient(90deg, var(--highlight-color), var(--contactMe-btn-hover-bg))',
-                  color: 'var(--button-text-color)',
-                }}
-                whileTap={{ scale: 0.95 }}
+                variants={buttonVariants}
+                whileHover='hover'
+                whileTap='tap'
                 transition={{ duration: 0.3 }}
                 style={{ display: 'block', width: '100%', height: '100%' }}
               >
-                Let’s Talk
+                {contactData.hireMe.button.text}
               </motion.a>
             </button>
           </motion.div>
 
           <motion.div className={styles.makeFriends} variants={cardVariants}>
             <h1 className={styles.makeFriendsTitle}>
-              <span>Let's Connect</span>
+              <span>{contactData.connect.title}</span>
             </h1>
-            <p>Want to chat or collaborate? Say hi on social!</p>
+            <p>{contactData.connect.description}</p>
             <div className={styles.makeFriendsImg}>
-              <motion.a
-                href='https://www.instagram.com/anotherhuman124/?hl=zh-tw'
-                target='_blank'
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <img src='/img/instagram.png' alt='Instagram icon' />
-              </motion.a>
-              <motion.a
-                href='https://www.linkedin.com/in/phoebe-lin-7b5108106/'
-                target='_blank'
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <img src='/img/linkedin.png' alt='LinkedIn icon' />
-              </motion.a>
+              {contactData.connect.socialLinks.map((link, index) => (
+                <SocialLink
+                  key={index}
+                  href={link.href}
+                  icon={link.icon}
+                  alt={link.alt}
+                />
+              ))}
             </div>
           </motion.div>
         </motion.div>
         <footer>
           <div className={styles.footerIconInfo}>
             <p>
-              Icons made by
+              {contactData.footer.credit.text}{' '}
               <a
-                href='https://www.flaticon.com/authors/pixel-perfect'
-                title='Pixel perfect'
+                href={contactData.footer.credit.authorUrl}
+                title={contactData.footer.credit.author}
                 target='_blank'
+                rel='noopener noreferrer'
               >
-                Pixel perfect
-              </a>
-              from
+                {contactData.footer.credit.author}
+              </a>{' '}
+              from{' '}
               <a
-                href='https://www.flaticon.com/'
-                title='Flaticon'
+                href={contactData.footer.credit.sourceUrl}
+                title={contactData.footer.credit.source}
                 target='_blank'
+                rel='noopener noreferrer'
               >
-                www.flaticon.com
+                {contactData.footer.credit.source}
               </a>
             </p>
           </div>
