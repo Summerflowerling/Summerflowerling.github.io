@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import HomePage from './pages/HomePage';
+import { lazy, Suspense } from 'react';
 import './styles/variables.css';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
 
 function App() {
   return (
@@ -9,7 +11,24 @@ function App() {
       animate={{ opacity: 1 }}
       style={{ position: 'relative' }}
     >
-      <HomePage />
+      <Suspense
+        fallback={
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+              fontFamily: 'Prata, Times, serif',
+              fontSize: '1.2rem',
+            }}
+          >
+            Loading...
+          </div>
+        }
+      >
+        <HomePage />
+      </Suspense>
     </motion.div>
   );
 }

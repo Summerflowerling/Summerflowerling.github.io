@@ -1,10 +1,11 @@
 import { motion, type Variants, useAnimation } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, lazy, Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Header from '../components/Header';
 import About from './About';
-import Gallery from './Gallery';
 import Contact from './Contact';
+
+const Gallery = lazy(() => import('./Gallery'));
 
 const HomePage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 48rem)' });
@@ -124,7 +125,25 @@ const HomePage = () => {
           animate={isMobile ? 'visible' : galleryAnimationControls}
           style={{ position: 'relative' }}
         >
-          <Gallery />
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '50vh',
+                  fontFamily: 'Prata, Times, serif',
+                  fontSize: '1.1rem',
+                  color: '#666',
+                }}
+              >
+                Loading Gallery...
+              </div>
+            }
+          >
+            <Gallery />
+          </Suspense>
         </motion.div>
 
         <motion.div

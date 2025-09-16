@@ -4,31 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Performance and caching hints -->
+    <meta http-equiv="cache-control" content="public, max-age=31536000" />
+    <meta name="theme-color" content="#f5f3f0" />
+
     <title>Yuling's Portfolio</title>
 
     <!-- Preload critical fonts for immediate availability -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Preload the most critical font (Prata - body font) -->
+    <!-- Preload only the most critical font (Prata - body font) -->
     <link
       rel="preload"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
     />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&display=swap"
-    />
 
-    <!-- Non-blocking font loading -->
+    <!-- Load critical font immediately -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
-      media="print"
-      onload="this.media='all'"
     />
+
+    <!-- Non-blocking font loading for secondary fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&display=swap"
@@ -72,24 +72,45 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
-    <!-- Preload critical above-the-fold images -->
+    <!-- Preload only the hero image (first visible image) -->
     <link rel="preload" as="image" href="/img/myselfFilter.JPG" />
-    <link rel="preload" as="image" href="/img/allEyes.JPG" />
-    <link rel="preload" as="image" href="/img/girlWithFlowers.JPG" />
 
     <!-- Performance hint for LCP -->
     <style>
-      /* Ensure root container is immediately available for LCP measurement */
+      /* Critical CSS for immediate rendering */
       #root {
         min-height: 100vh;
         display: block;
       }
+
       /* Immediate text styling to ensure LCP candidacy */
       .story-first-sentence {
         font-size: 1.6rem !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
+      }
+
+      /* Prevent layout shifts */
+      body {
+        margin: 0;
+        line-height: 1.6;
+        font-family: 'Prata', 'Times New Roman', Times, serif;
+        background-color: #f5f3f0;
+        padding-top: 7rem;
+        font-display: swap;
+      }
+
+      /* Critical header styles to prevent CLS */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5rem;
+        z-index: 1000;
+        background: rgba(245, 243, 240, 0.95);
+        backdrop-filter: blur(10px);
       }
     </style>
   </head>
@@ -109,12 +130,13 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- LCP Performance Monitoring -->
+    <!-- Performance Monitoring Script -->
     <script>
       if ('PerformanceObserver' in window) {
+        // Monitor LCP
         new PerformanceObserver((entryList) => {
           for (const entry of entryList.getEntries()) {
-            console.log('LCP candidate:', {
+            console.log('LCP:', {
               element: entry.element,
               size: entry.size,
               loadTime: entry.loadTime,
@@ -123,6 +145,22 @@
             });
           }
         }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+        // Monitor CLS
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            if (!entry.hadRecentInput) {
+              console.log('CLS:', entry.value);
+            }
+          }
+        }).observe({ entryTypes: ['layout-shift'] });
+
+        // Monitor FID
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            console.log('FID:', entry.processingStart - entry.startTime);
+          }
+        }).observe({ entryTypes: ['first-input'] });
       }
     </script>
   </body>
