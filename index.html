@@ -5,20 +5,126 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yuling's Portfolio</title>
+
+    <!-- Preload critical fonts for immediate availability -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload the most critical font (Prata - body font) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&family=Prata&family=Tangerine:wght@400;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
     />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&display=swap"
+    />
+
+    <!-- Non-blocking font loading -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
-      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <script type="module" crossorigin src="/assets/index-CphLCVQN.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-vu31SQaK.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&display=swap"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap"
+      />
+    </noscript>
+
+    <!-- DNS prefetch for faster font loading -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+    <!-- Preload critical above-the-fold images -->
+    <link rel="preload" as="image" href="/img/myselfFilter.JPG" />
+    <link rel="preload" as="image" href="/img/allEyes.JPG" />
+    <link rel="preload" as="image" href="/img/girlWithFlowers.JPG" />
+
+    <!-- Performance hint for LCP -->
+    <style>
+      /* Ensure root container is immediately available for LCP measurement */
+      #root {
+        min-height: 100vh;
+        display: block;
+      }
+      /* Immediate text styling to ensure LCP candidacy */
+      .story-first-sentence {
+        font-size: 1.6rem !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CWDw4CyL.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PcjfOEu9.css">
   </head>
   <body>
+    <noscript>
+      <div
+        style="
+          padding: 2rem;
+          font-size: 1.2rem;
+          text-align: center;
+          font-family: Times, serif;
+        "
+      >
+        Welcome to Yuling's Portfolio - Frontend Developer & Engineer
+      </div>
+    </noscript>
     <div id="root"></div>
+
+    <!-- LCP Performance Monitoring -->
+    <script>
+      if ('PerformanceObserver' in window) {
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            console.log('LCP candidate:', {
+              element: entry.element,
+              size: entry.size,
+              loadTime: entry.loadTime,
+              renderTime: entry.renderTime,
+              startTime: entry.startTime,
+            });
+          }
+        }).observe({ entryTypes: ['largest-contentful-paint'] });
+      }
+    </script>
   </body>
 </html>
