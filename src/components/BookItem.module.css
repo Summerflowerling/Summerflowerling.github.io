@@ -117,7 +117,8 @@
 }
 
 .reviewText {
-  font-family: 'Lora', Georgia, serif;
+  font-family: 'Lora', 'Baskerville', Georgia, serif;
+  font-display: swap;
   font-size: 0.85rem;
   font-weight: 400;
   color: var(--text-color);
@@ -209,7 +210,8 @@
   }
 
   .reviewText {
-    font-family: 'Lora', Georgia, serif;
+    font-family: 'Lora', 'Baskerville', Georgia, serif;
+    font-display: swap;
     font-size: 0.75rem;
     line-height: 1.4;
     padding: 0.5rem;

@@ -18,30 +18,29 @@ const HomePage = () => {
 
   useEffect(() => {
     if (aboutRef.current) {
-      aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       aboutAnimationControls.start('visible');
     }
   }, [aboutAnimationControls]);
 
   const containerVariants: Variants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        delayChildren: 0,
       },
     },
   };
 
   const aboutVariants: Variants = {
-    hidden: { opacity: 0, x: -100, rotateY: 0 },
+    hidden: { opacity: 1, x: 0, rotateY: 0 },
     visible: {
       opacity: 1,
       x: 0,
       rotateY: 0,
       transition: {
-        duration: 1,
+        duration: 0.3,
         ease: 'easeOut',
       },
     },

@@ -1,13 +1,39 @@
 @import '../src/styles/variables.css';
+
+@font-face {
+  font-family: 'Prata';
+  font-display: swap;
+  src: local('Prata');
+}
+
+@font-face {
+  font-family: 'Cormorant Infant';
+  font-display: swap;
+  src: local('Cormorant Infant');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-display: swap;
+  src: local('Lora');
+}
+
+@font-face {
+  font-family: 'Tangerine';
+  font-display: swap;
+  src: local('Tangerine');
+}
+
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
   line-height: 1.6;
-  font-family: 'Prata', serif;
+  font-family: 'Prata', 'Times New Roman', Times, serif;
+  font-display: swap;
   background-color: var(--background-color);
-  padding-top: 8rem;
+  padding-top: 7rem;
 }
 html {
   scroll-behavior: smooth;

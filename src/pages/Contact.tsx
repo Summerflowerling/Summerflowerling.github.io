@@ -30,6 +30,7 @@ const Contact = () => {
             <img
               src={contactData.hireMe.image}
               alt={contactData.hireMe.imageAlt}
+              loading='lazy'
             />
             {contactData.hireMe.description.map((line, index) => (
               <p className={styles.hireMeDescription} key={index}>

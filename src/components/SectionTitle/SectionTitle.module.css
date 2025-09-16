@@ -5,7 +5,8 @@
   text-align: center;
   margin-bottom: 5rem;
   position: relative;
-  font-family: 'Cormorant Infant', serif;
+  font-family: 'Cormorant Infant', 'Baskerville', 'Times New Roman', serif;
+  font-display: swap;
 }
 
 .sectionTitle::after {

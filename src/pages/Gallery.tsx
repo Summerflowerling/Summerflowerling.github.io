@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Gallery.module.css';
 import { paintings } from '../const/paintingData';
@@ -12,82 +12,56 @@ const Gallery = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimationComplete(true);
-    }, 1500);
+    const timer = setTimeout(() => setAnimationComplete(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  const displayModal = (imgSrc: string, imgTitle: string) => {
-    if (animationComplete) {
-      setModal({ isOpen: true, imgSrc, imgTitle });
-    }
-  };
+  const displayModal = useCallback(
+    (imgSrc: string, imgTitle: string) => {
+      if (animationComplete) {
+        setModal({ isOpen: true, imgSrc, imgTitle });
+      }
+    },
+    [animationComplete],
+  );
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModal({ isOpen: false, imgSrc: '', imgTitle: '' });
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, x: -100, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: { delay: i * 0.3, duration: 0.4 },
-    }),
-  };
+  }, []);
 
   return (
     <>
       <main className={styles.galleryContainer}>
-        {!animationComplete && (
-          <motion.div className={styles.combinedContainer}>
-            {/* Initial 4 images in a vertical stack on mobile */}
-            {paintings.slice(0, 4).map(({ id, src, alt, title }, index) => (
-              <motion.div
-                key={id}
-                className={styles.imgWidget}
-                custom={index}
-                initial='hidden'
-                animate='visible'
-                variants={imageVariants}
-                onClick={() => displayModal(src, title)}
-              >
-                <img src={src} alt={alt} className={styles.imgThumb} />
-                <div className={styles.paintingTitle}>
-                  <h3 className={styles.title}>{title}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-
-        {/* Full gallery grid after animation */}
-        {animationComplete && (
-          <motion.div
-            className={styles.fullGallery}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {paintings.map(({ id, src, alt, title }, index) => (
-              <motion.div
-                key={id}
-                className={styles.imgWidget}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                whileHover={{ scale: 1.05 }}
-                onClick={() => displayModal(src, title)}
-              >
-                <img src={src} alt={alt} className={styles.imgThumb} />
-                <div className={styles.paintingTitle}>
-                  <h3 className={styles.title}>{title}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          className={styles.fullGallery}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          {paintings.map(({ id, src, alt, title, width, height }, index) => (
+            <motion.div
+              key={id}
+              className={styles.imgWidget}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              whileHover={{ scale: 1.05 }}
+              onClick={() => displayModal(src, title)}
+            >
+              <img
+                src={src}
+                alt={alt}
+                className={styles.imgThumb}
+                width={width || 300}
+                height={height || 400}
+                loading={index < 3 ? 'eager' : 'lazy'}
+              />
+              <div className={styles.paintingTitle}>
+                <h3 className={styles.title}>{title}</h3>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </main>
 
       <AnimatePresence>
@@ -98,14 +72,17 @@ const Gallery = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
+            role='dialog'
+            aria-modal='true'
+            aria-labelledby='modal-title'
           >
             <motion.span
               className={styles.close}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={closeModal}
               role='button'
+              aria-label='Close modal'
             >
               ×
             </motion.span>
@@ -113,9 +90,12 @@ const Gallery = () => {
               className={styles.modalImg}
               src={modal.imgSrc}
               alt={modal.imgTitle}
-              initial={{ scale: 0.8 }}
+              width={600}
+              height={800}
+              loading='eager'
+              initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
+              exit={{ scale: 0.9 }}
             />
             <motion.div className={styles.modalPaintingTitle}>
               {modal.imgTitle}
