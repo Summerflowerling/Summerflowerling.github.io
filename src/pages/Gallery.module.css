@@ -97,6 +97,9 @@
   border-radius: 1rem;
   filter: brightness(110%);
   pointer-events: none;
+  object-fit: contain;
+  width: auto;
+  height: auto;
 }
 
 .modalPaintingTitle {
@@ -108,8 +111,8 @@
 
 .close {
   position: absolute;
-  top: 2rem;
-  right: 3rem;
+  top: 0vh;
+  right: 25vw;
   font-size: 2.5rem;
   color: var(--white);
   cursor: pointer;
@@ -150,6 +153,11 @@
     font-size: 0.9rem;
     padding: 0.7rem;
   }
+  .close {
+    top: 3vh;
+    right: 4vw;
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 48rem) {
@@ -179,6 +187,19 @@
     font-size: 0.75rem;
     padding: 0.5rem;
   }
+  .modal {
+    padding: 1rem;
+  }
+
+  .modalImg {
+    max-height: 70vh;
+  }
+
+  .close {
+    top: 8vh;
+    right: calc(3vw + 1rem);
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 30rem) {
@@ -207,6 +228,11 @@
   .paintingTitle {
     font-size: 0.8rem;
     padding: 0.625rem;
+  }
+  .close {
+    top: 10vh;
+    right: 6vw;
+    font-size: 2.5rem;
   }
 }
 
