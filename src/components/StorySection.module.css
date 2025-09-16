@@ -32,7 +32,7 @@
 }
 
 .storyParagraph {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.8;
   color: var(--text-color);
   font-family: 'Cormorant Infant', 'Baskerville', 'Times New Roman', serif;
@@ -44,7 +44,7 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .firstSentence {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--text-color);
   display: block;
@@ -126,6 +126,26 @@
   color: var(--accent-color);
   margin-left: 0.1rem;
   display: inline;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: opacity;
+}
+
+.restOfStory {
+  margin-top: 1.5rem;
+  text-align: left;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.firstSentence {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .typingText {
@@ -185,13 +205,13 @@
   }
 
   .storyParagraph {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     line-height: 1.7;
     margin: 3rem 0;
   }
 
   .firstSentence {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
     margin-top: 0;
     padding: 1rem;
@@ -214,13 +234,13 @@
   }
 
   .storyParagraph {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     line-height: 1.6;
     margin: 2rem 0;
   }
 
   .firstSentence {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     min-height: 2.5rem;
     margin-bottom: 1.5rem;
     margin-top: 0;
@@ -263,14 +283,14 @@
   }
 
   .storyParagraph {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.6;
     margin: 0.7rem 0;
     text-align: left;
   }
 
   .firstSentence {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     min-height: 2rem;
     margin-bottom: 3rem;
     text-align: center;
@@ -309,31 +329,39 @@
   }
 }
 
-@media (max-width: 22.5rem) {
+@supports (-webkit-appearance: none) {
   .storySection {
-    padding: 0.75rem 0.5rem;
-    padding-top: 1.5rem;
-    min-height: 65vh;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 
   .storyParagraph {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .firstSentence {
-    font-size: 1.1rem;
-    padding: 0 0.25rem;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-    white-space: normal;
-    min-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   .highlight {
-    font-size: 0.85em;
-    background-size: 100% 0.08em;
+    background-attachment: local;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .restOfStory {
+    animation: safariSlideIn 1.2s ease-out 0.8s both;
+  }
+}
+
+@keyframes safariSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
