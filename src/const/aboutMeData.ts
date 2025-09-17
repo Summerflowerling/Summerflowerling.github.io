@@ -3,7 +3,7 @@ export const workExperiences = [
     id: 1,
     title: 'Software Engineer - Health Tech',
     description:
-      'Developed AI-powered tools to enhance patient retention for dental clinics, crafting React and TypeScript interfaces for personalised outreach and seamless data workflows. Integrated secure APIs with fuzzy search and role-based access, boosting engagement with 80%+ test coverage.',
+      'Developed AI-powered tools to enhance patient retention for dental clinics, crafting React and TypeScript interfaces for personalised outreach and seamless data workflows. Integrated secure APIs with role-based access, boosting engagement with 80%+ test coverage.',
     years: 'Feb 2025 - Present',
     colorClass: 'aboutMeWidgetColor2',
   },
@@ -27,7 +27,7 @@ export const workExperiences = [
     id: 4,
     title: 'Helpline Volunteer',
     description:
-      'Listened and supported callers with empathy, shaping my knack for human-centred solutions over five years.',
+      'Provided empathetic support to callers, honing my ability to develop human-centred solutions over five years.',
     years: 'Feb 2017 - Feb 2022',
     colorClass: 'aboutMeWidgetColor1',
   },
@@ -48,7 +48,7 @@ export const books = [
     subtitle: 'Tess Gerritsen',
     image: '/img/the-silient-girl-cover.jpg',
     review:
-      'This gripping thriller, part of my favourite mystery novel series by my top suspense writer, has a fascinating plot, well-developed characters, and a wealth of medical knowledge. I couldn’t put it down!\n',
+      'This gripping thriller is part of my favourite mystery series by my top suspense writer. I’ve always loved crime and mystery novels, and in a way, being a developer feels a bit like being a detective—piecing together clues when debugging to get to the heart of a problem.',
     amazonLink:
       'https://www.amazon.com/Silent-Girl-Rizzoli-Isles-Novel/dp/034551551X',
   },
