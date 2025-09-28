@@ -1,0 +1,149 @@
+.pageContainer {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.sectionsContainer {
+  width: 100%;
+  position: relative;
+}
+
+.section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.fadeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background-color, #f5f3f0);
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity var(--transition-duration, 300ms)
+    cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  contain: layout style paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.fadeOverlay.visible {
+  opacity: 0;
+}
+
+.fadeOverlay.fading-out {
+  opacity: 0;
+  animation: fadeInOverlay 800ms ease-out forwards;
+}
+
+.fadeOverlay.white-pause {
+  opacity: 1;
+}
+
+.fadeOverlay.fading-in {
+  opacity: 1;
+  animation: fadeOutOverlay 800ms ease-in forwards;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeOverlay {
+    transition: opacity var(--transition-duration, 150ms) ease;
+    animation: none !important;
+  }
+
+  .fadeOverlay.fading-in {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@supports (-webkit-appearance: none) {
+  .pageContainer {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .fadeOverlay {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.section > * {
+  width: 100%;
+  position: relative;
+}
+
+.sectionContainer {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sectionContainer[data-transitioning='true'] {
+  scroll-behavior: auto;
+}
+
+@media (max-width: 768px) {
+  .section {
+    --transition-duration: 200ms;
+    contain: layout style;
+  }
+
+  .sectionContainer {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+@media (min-resolution: 120dpi) {
+  .fadeOverlay {
+    --transition-duration: 400ms;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+  .sectionsContainer {
+    scroll-snap-type: y mandatory;
+  }
+
+  .section {
+    scroll-snap-align: start;
+  }
+}
