@@ -1,28 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { User, Palette, Mail } from 'lucide-react';
-import styles from './Header.module.css';
 
-const SECTIONS = [
-  {
-    id: 'about',
-    name: 'About me',
-    icon: User,
-    ariaLabel: 'Navigate to About me section',
-  },
-  {
-    id: 'gallery',
-    name: 'Gallery',
-    icon: Palette,
-    ariaLabel: 'Navigate to Gallery section',
-  },
-  {
-    id: 'contact',
-    name: 'Contact',
-    icon: Mail,
-    ariaLabel: 'Navigate to Contact section',
-  },
-];
+import styles from './Header.module.css';
+import { SECTIONS } from '../const/header';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
