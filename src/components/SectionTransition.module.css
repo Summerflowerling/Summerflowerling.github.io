@@ -5,6 +5,7 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 .sectionsContainer {
@@ -17,6 +18,9 @@
   min-height: 100vh;
   position: relative;
   scroll-snap-align: start;
+  contain: layout style;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .fadeOverlay {
@@ -28,13 +32,12 @@
   background: var(--background-color, #f5f3f0);
   pointer-events: none;
   z-index: 9999;
-  transition: opacity var(--transition-duration, 300ms)
-    cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity;
   contain: layout style paint;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  isolation: isolate;
 }
 .fadeOverlay.visible {
   opacity: 0;
@@ -57,30 +60,43 @@
 @keyframes fadeInOverlay {
   from {
     opacity: 0;
+    transform: translateZ(0) scale(1);
   }
   to {
     opacity: 1;
+    transform: translateZ(0) scale(1);
   }
 }
 
 @keyframes fadeOutOverlay {
   from {
     opacity: 1;
+    transform: translateZ(0) scale(1);
   }
   to {
     opacity: 0;
+    transform: translateZ(0) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .fadeOverlay {
-    transition: opacity var(--transition-duration, 150ms) ease;
+    transition: opacity 150ms ease;
     animation: none !important;
+  }
+
+  .fadeOverlay.fading-out {
+    animation: none;
+    opacity: 1;
   }
 
   .fadeOverlay.fading-in {
     animation: none;
     opacity: 0;
+  }
+
+  .section {
+    scroll-snap-align: none;
   }
 }
 
@@ -119,7 +135,11 @@
 @media (max-width: 768px) {
   .section {
     --transition-duration: 200ms;
-    contain: layout style;
+    contain: layout style paint;
+  }
+
+  .fadeOverlay {
+    contain: strict;
   }
 
   .sectionContainer {

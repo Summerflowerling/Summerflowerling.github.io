@@ -76,27 +76,29 @@ const Gallery = () => {
             aria-modal='true'
             aria-labelledby='modal-title'
           >
-            <motion.span
-              className={styles.close}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              role='button'
-              aria-label='Close modal'
-            >
-              ×
-            </motion.span>
-            <motion.img
-              className={styles.modalImg}
-              src={modal.imgSrc}
-              alt={modal.imgTitle}
-              width={600}
-              height={800}
-              loading='eager'
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-            />
+            <div className={styles.modalImageContainer}>
+              <motion.span
+                className={styles.close}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                role='button'
+                aria-label='Close modal'
+              >
+                ×
+              </motion.span>
+              <motion.img
+                className={styles.modalImg}
+                src={modal.imgSrc}
+                alt={modal.imgTitle}
+                width={600}
+                height={800}
+                loading='eager'
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+              />
+            </div>
             <motion.div className={styles.modalPaintingTitle}>
               {modal.imgTitle}
             </motion.div>

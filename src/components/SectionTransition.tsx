@@ -1,4 +1,4 @@
-import { useState, useEffect, type ReactNode } from 'react';
+import { useState, useEffect, useMemo, type ReactNode } from 'react';
 import styles from './SectionTransition.module.css';
 
 interface SectionTransitionProps {
@@ -81,16 +81,18 @@ const SectionTransition = ({
       )}
 
       <div className={styles.sectionsContainer}>
-        {Object.entries(children).map(([sectionId, content]) => (
-          <section
-            key={sectionId}
-            id={sectionId}
-            className={styles.section}
-            data-active={sectionId === activeSection}
-          >
-            {content}
-          </section>
-        ))}
+        {useMemo(() => 
+          Object.entries(children).map(([sectionId, content]) => (
+            <section
+              key={sectionId}
+              id={sectionId}
+              className={styles.section}
+              data-active={sectionId === activeSection}
+            >
+              {content}
+            </section>
+          )), [children, activeSection]
+        )}
       </div>
     </div>
   );

@@ -91,6 +91,13 @@
   cursor: pointer;
 }
 
+.modalImageContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .modalImg {
   max-width: 90%;
   max-height: 80vh;
@@ -111,11 +118,25 @@
 
 .close {
   position: absolute;
-  top: 0vh;
-  right: 25vw;
-  font-size: 2.5rem;
+  top: -2rem;
+  right: -2rem;
+  font-size: 2rem;
   color: var(--white);
   cursor: pointer;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.close:hover {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .footer {
@@ -154,9 +175,11 @@
     padding: 0.7rem;
   }
   .close {
-    top: 3vh;
-    right: 4vw;
-    font-size: 3rem;
+    top: -0.5rem;
+    right: -0.5rem;
+    font-size: 1.8rem;
+    width: 2.2rem;
+    height: 2.2rem;
   }
 }
 
@@ -196,9 +219,11 @@
   }
 
   .close {
-    top: 8vh;
-    right: calc(3vw + 1rem);
-    font-size: 2.5rem;
+    top: -0.5rem;
+    right: -0.5rem;
+    font-size: 1.6rem;
+    width: 2rem;
+    height: 2rem;
   }
 }
 
@@ -230,9 +255,11 @@
     padding: 0.625rem;
   }
   .close {
-    top: 10vh;
-    right: 6vw;
-    font-size: 2.5rem;
+    top: -0.5rem;
+    right: -0.5rem;
+    font-size: 1.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 }
 
