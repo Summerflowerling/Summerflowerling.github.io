@@ -14,18 +14,27 @@
   pointer-events: auto;
 }
 
-.modalImageContainer {
+.modalContentContainer {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 100001;
   pointer-events: auto;
   padding: clamp(0.5rem, 2vw, 1rem);
   box-sizing: border-box;
+  gap: clamp(1rem, 3vh, 2rem);
+}
+
+.modalImageContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modalImg {
@@ -42,25 +51,22 @@
 }
 
 .modalPaintingTitle {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   color: var(--white);
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   text-align: center;
-  z-index: 100001;
   pointer-events: none;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90vw;
 }
 
 @media (min-width: 48.0625rem) and (max-width: 64rem) {
   .modalImg {
-    max-width: 98vw;
-  }
-
-  .modalPaintingTitle {
-    bottom: 1rem;
+    max-width: 90vw;
   }
 }
 
@@ -72,8 +78,8 @@
     min-height: 25vh;
   }
 
-  .modalPaintingTitle {
-    bottom: 3rem;
+  .modalContentContainer {
+    gap: clamp(0.75rem, 2vh, 1.5rem);
   }
 }
 
@@ -85,7 +91,7 @@
     min-height: 20vh;
   }
 
-  .modalPaintingTitle {
-    bottom: 10rem;
+  .modalContentContainer {
+    gap: clamp(0.5rem, 1.5vh, 1rem);
   }
 }

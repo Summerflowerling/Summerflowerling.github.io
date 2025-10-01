@@ -23,28 +23,30 @@ const ModalOverlay = ({ modalState, onClose }: ModalOverlayProps) => {
         aria-modal='true'
         aria-labelledby='modal-title'
       />
-      <div className={styles.modalImageContainer}>
-        <CloseButton onClose={onClose} />
-        <motion.img
-          className={styles.modalImg}
-          src={modalState.imgSrc}
-          alt={modalState.imgTitle}
-          width={GALLERY_CONFIG.MODAL_IMAGE_WIDTH}
-          height={GALLERY_CONFIG.MODAL_IMAGE_HEIGHT}
-          loading='eager'
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0.9 }}
-        />
+      <div className={styles.modalContentContainer}>
+        <div className={styles.modalImageContainer}>
+          <CloseButton onClose={onClose} />
+          <motion.img
+            className={styles.modalImg}
+            src={modalState.imgSrc}
+            alt={modalState.imgTitle}
+            width={GALLERY_CONFIG.MODAL_IMAGE_WIDTH}
+            height={GALLERY_CONFIG.MODAL_IMAGE_HEIGHT}
+            loading='eager'
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.9 }}
+          />
+        </div>
+        <motion.div
+          className={styles.modalPaintingTitle}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {modalState.imgTitle}
+        </motion.div>
       </div>
-      <motion.div
-        className={styles.modalPaintingTitle}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {modalState.imgTitle}
-      </motion.div>
     </AnimatePresence>,
     document.body,
   );
