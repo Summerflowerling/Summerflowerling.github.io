@@ -1,0 +1,91 @@
+.modal {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.modalOverlay {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.modalImageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100001;
+  pointer-events: auto;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  box-sizing: border-box;
+}
+
+.modalImg {
+  max-width: 80vw;
+  max-height: 80vh;
+  min-width: 40vw;
+  min-height: 30vh;
+  border-radius: 1rem;
+  filter: brightness(110%);
+  pointer-events: none;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+
+.modalPaintingTitle {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--white);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-align: center;
+  z-index: 100001;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 48.0625rem) and (max-width: 64rem) {
+  .modalImg {
+    max-width: 98vw;
+  }
+
+  .modalPaintingTitle {
+    bottom: 1rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .modalImg {
+    max-width: 85vw;
+    max-height: 75vh;
+    min-width: 60vw;
+    min-height: 25vh;
+  }
+
+  .modalPaintingTitle {
+    bottom: 3rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .modalImg {
+    max-width: 80vw;
+    max-height: 70vh;
+    min-width: 50vw;
+    min-height: 20vh;
+  }
+
+  .modalPaintingTitle {
+    bottom: 10rem;
+  }
+}
