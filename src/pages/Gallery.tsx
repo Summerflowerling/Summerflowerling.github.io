@@ -10,6 +10,7 @@ import {
   ANIMATION_DELAYS,
   ANIMATION_DURATIONS,
 } from '../const/galleryConstants';
+import { SectionTitle } from '../components/SectionTitle/SectionTitle';
 
 const Gallery = () => {
   const { modalState, openModal, closeModal } = useModal();
@@ -29,6 +30,7 @@ const Gallery = () => {
   return (
     <>
       <main className={styles.galleryContainer}>
+        <SectionTitle>My Art Works</SectionTitle>
         <motion.div
           className={styles.fullGallery}
           initial={{ opacity: 0 }}

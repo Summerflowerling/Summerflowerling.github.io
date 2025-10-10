@@ -32,20 +32,14 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   max-width: 75rem;
+  min-height: 50rem;
   width: 100%;
-  margin-top: 5rem;
+  margin: 3rem 0;
   padding: 0 1rem;
   justify-items: center;
 }
 
 /* Modal and close button styles moved to ModalOverlay.module.css and CloseButton.module.css */
-
-.footer {
-  text-align: center;
-  padding: 2rem 0;
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
 
 @media (min-width: 48.0625rem) and (max-width: 64rem) {
   .galleryContainer {
